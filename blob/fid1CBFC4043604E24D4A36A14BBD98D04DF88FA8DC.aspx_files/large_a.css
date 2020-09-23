@@ -1,0 +1,76 @@
+.ad-container {
+    height: 90px;
+    width: 728px;
+    background-image: url('http://www.koders.com/media/ads/koders_tip_a_base.gif');
+    background-repeat: no-repeat;
+    color: #222;
+    font-family: arial,helvecia, Tahoma, verdana;
+    position:relative;
+    overflow:hidden;
+    text-align:left !important;
+}
+
+.ad-container .content {
+    width: 440px;
+    position:absolute;
+    top: 10px;
+    left: 132px;
+}
+
+.ad-container .content-longer {
+    width: 560px;
+}
+
+.ad-container .title {
+    font-size: 16px;
+    line-height:22px;
+    color: #3B5F82;
+}
+
+.ad-container .description {
+    font-size: 13px;
+    line-height:17px;
+    color: #222;
+    
+}
+
+.ad-container .type {
+    float: left;
+    width: 115px;
+    margin-right: 20px;
+    vertical-align: middle;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    color: #FFCA00;
+    padding-top: 20px;
+    text-align: center;
+    visibility: hidden;
+}
+
+.ad-container a {
+    color: #3B5F82;
+}
+
+.ad-container .extended {
+    display: none;
+}
+
+.ad-container .more_info {
+    height: 23px;
+    width: 108px;
+    background-image: url('http://www.koders.com/media/ads/koders_tip_a_learnmore.gif');
+    display: block;
+    position:absolute;
+    top: 36px;
+    right: 40px;
+}
+
+.ad-container .more_info:hover {
+    background-image: url('http://www.koders.com/media/ads/koders_tip_a_learnmore_oo.gif');
+}
+
+.ad-container .more_info span {
+    display:none;
+    visibility:hidden;
+}

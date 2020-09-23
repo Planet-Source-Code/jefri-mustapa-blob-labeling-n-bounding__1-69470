@@ -1,0 +1,121 @@
+#topToolbars {
+	height: 34px;
+}
+
+.topToolbar {
+	/*float: right; 
+	clear:  both;*/
+	position: absolute;
+	background: url(../../images/gray-white-vgrad.png) left bottom repeat-x; 
+	height: 17px;
+	font-size: 11px;
+	line-height: 17px;
+	font-family: verdana, tahoma, helvecia, arial;
+	vertical-align:middle;
+	font-weight: bold;
+}
+
+.topToolbar a:hover {
+	text-decoration: none;
+}
+
+.topToolbarInner{
+	height: 17px;
+	border-bottom: 1px solid #ccc;
+	float: left;
+}
+
+.topToolbarCorner{
+	float: left;
+	width: 31px; height: 17px;
+	background: url(../../images/gray-corner.gif);
+}
+
+.topToolbar img, .topToolbar span{
+	vertical-align: bottom;
+	border: 0;
+}
+
+.topToolbar .topToolbarDownArrow {
+	font-size: 9px; 
+	font-family: arial, helvecia, tahoma, verdana 
+}
+
+.topToolbarButtonHover, .topToolbarButton{
+	display: block;
+	float: left;
+	color: black;
+	vertical-align: bottom;
+	padding: 2px 0px 2px 0px;
+	outline: none;
+	position: relative;
+	z-index: 1000;
+	line-height: 13px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.topToolbarButtonHover{
+	text-decoration: none;
+	color: #114477; 
+	background: #ddd;
+	cursor: default;
+}
+
+.topToolbarPopup{
+	position: absolute;
+	top: 17px;
+	left: 0px;
+	background: #FCFCFC;
+	border: 1px solid #ccc;
+	visibility: hidden;
+	display: none;
+	text-align:left;
+
+}
+
+.topToolbarButtonHover .topToolbarPopup{
+	visibility: inherit;
+	display: block;
+}
+
+.topToolbarPopup a {
+	color: black;
+	_width:100%;
+	display: block;
+	height: 22px;
+	line-height: 22px;
+	font-weight: normal;
+	color: black;
+	padding-left: 20px;
+	padding-right:10px;
+	background: none;
+	cursor: pointer;
+	vertical-align:middle;
+	white-space:nowrap;
+}
+
+.topToolbarPopup a:hover{ background: #eee; }
+
+.topToolbarPopup a img{
+	margin-left: -17px;
+	vertical-align: middle;
+}
+
+.topToolbar #proDownloadsPopup{
+	width: 200px; left: -35px;
+}
+div > #proDownloadsPopup{
+	left: -37px !important;
+}
+
+.topToolbar #proHelpPopup{
+	width: 170px; left: -105px;
+}
+div > #proHelpPopup{
+	left: -107px !important;
+}
+
+.topToolbar #proFeedbackPopup{
+	width: 140px;
+}

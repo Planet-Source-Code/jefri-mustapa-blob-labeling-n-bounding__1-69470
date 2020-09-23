@@ -1,0 +1,1654 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Koders Code Search - filterBlobExplorer.pas - Delphi</title>
+
+
+
+
+    
+    <meta name="robots" content="noarchive,index,follow">
+    <meta name="GOOGLEBOT" content="noarchive,index,follow">
+    <link href="http://www.koders.com/search/KodersDescriptionOS1_1.xml" title="Koders search" rel="search" type="application/opensearchdescription+xml">
+	<link href="http://www.koders.com/search/KodersDescriptionOS1_1Proj.xml" title="Koders Projects search" rel="search" type="application/opensearchdescription+xml">	
+    <link href="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/styles.css" type="text/css" rel="stylesheet"><!--[if IE]><link href="/skins/koders/iestyles.css" type="text/css" rel="stylesheet" /><![endif]-->
+<link href="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/koders.css" type="text/css" rel="stylesheet">
+     <meta name="ROBOTS" content="NOARCHIVE"> 
+		
+    
+
+<script type="text/javascript" language="javascript">
+//Copyright (c) 2005-2007 Koders.com,
+//All Rights Reserved.
+var anchors;
+var symbolSegment = 0;
+
+function assignInitial() {
+	var codeDiv = document.getElementById("CodeDiv");
+	if(codeDiv != null)
+	{
+		anchors = codeDiv.getElementsByTagName("a");
+		assignR(300);
+	}
+}
+
+function assignR(max) {
+	//var max = 50;
+	if(symbolSegment + max >= anchors.length) {
+		max = anchors.length - symbolSegment; 
+	}
+	for(i = 0; i < max; i++) {
+		var temp = "";
+		var index = symbolSegment +  i;
+		for(k=0; k < anchors[index].childNodes.length; k++) {
+			if(anchors[index].childNodes[k].data == undefined) {
+				temp = temp + anchors[index].childNodes[k].childNodes[0].data;
+			}
+			else {
+				temp = temp + anchors[index].childNodes[k].data;
+			}
+		}
+		
+		anchors[index].setAttribute("href", "javascript:searchRef('" + temp + "')");
+		anchors[index].setAttribute("title", "Search for references of '" + temp + "'");
+
+	}
+	
+	if(symbolSegment + max < anchors.length) { 
+		symbolSegment += max;
+		this.setTimeout("assignR(50)", 200);		
+	}
+	
+}
+
+function searchRef(symbol) {
+	location = homeUrl + "?s=" + symbol + "&scope=" + projectID + "&la=" + sourceLanguage;
+}
+
+function Hide(element) {
+	if(element) {
+		element.style.visibility = "hidden";
+		element.style.display = "none";
+	} 
+}
+
+function HideBanner() {
+	var eleArray = document.getElementsByTagName('div');
+	for(var i = 0; i < eleArray.length; i++) {
+		if(!eleArray[i] || !eleArray[i].id) {
+			continue;
+		}
+
+		var id = eleArray[i].id;
+		if(id && id.indexOf("RightBanner") != -1){
+			Hide(eleArray[i]);
+								
+			// hide all the iframes nested in the Banner
+			var arrIframe = eleArray[i].getElementsByTagName('iframe');
+			if(!arrIframe)
+				return;
+			
+			for(var j = 0; j < arrIframe.length; j++) {
+				Hide(arrIframe[j]);
+			}
+		}
+	}
+}
+
+var dojo;
+if(dojo) dojo.addOnLoad(assignInitial);
+else window.onload = assignInitial;
+</script>
+<link href="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/toptoolbar.css" type="text/css" rel="stylesheet"><link rel="stylesheet" href="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/large_a.css" type="text/css"><style type="text/css"> 
+.RightBanner { Z-INDEX: 2; RIGHT: 25px; FLOAT: right; WIDTH: 160px; POSITION: absolute; HEIGHT: 600px } 
+</style><link href="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/flyin.css" type="text/css" rel="stylesheet"><style type="text/css">
+.exp_header { BORDER-RIGHT: gray 1px solid; BORDER-TOP: gray 1px solid; BORDER-LEFT: gray 1px solid; BORDER-BOTTOM: gray 1px solid; FONT-FAMILY: Tahoma, Arial; BACKGROUND-COLOR: whitesmoke }
+.exp_items { LINE-HEIGHT: 110% }
+</style></head><body>
+
+	
+ 
+    <form name="FRM" method="post" action="kv.aspx?fid=1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC" id="FRM">
+<div>
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE2OTM0ODA4NjMPZBYGAgEPFgIeBFRleHQFNEtvZGVycyBDb2RlIFNlYXJjaCAtIGZpbHRlckJsb2JFeHBsb3Jlci5wYXMgLSBEZWxwaGlkAgkPDxYEHgZGaWxlSUQCq+m/Bh4JUHJvamVjdElEAq/UAWRkAg8PZBYEAgMPZBYCZg9kFggCAQ8PFgIeC05hdmlnYXRlVXJsBQEvZBYCZg8PFgIeCEltYWdlVXJsBRovc2tpbnMva29kZXJzL2xvZ29fbWVkLmdpZmRkAgcPEA8WAh4LXyFEYXRhQm91bmRnZBAVIQ1BbGwgTGFuZ3VhZ2VzDEFjdGlvblNjcmlwdANBZGEDQVNQCUFzc2VtYmxlcgFDAkMjA0MrKwVDb2JvbApDb2xkRnVzaW9uBkRlbHBoaQZFaWZmZWwGRXJsYW5nB0ZvcnRyYW4ESmF2YQpKYXZhU2NyaXB0A0pTUARMaXNwA0x1YQtNYXRoZW1hdGljYQZNYXRsYWIKT2JqZWN0aXZlQwRQZXJsA1BIUAZQcm9sb2cGUHl0aG9uBFJ1YnkGU2NoZW1lCVNtYWxsdGFsawNTUUwDVGNsAlZCBlZCLk5FVBUhASoMQWN0aW9uU2NyaXB0A0FkYQNBU1AJQXNzZW1ibGVyAUMCQyMDQ3BwBUNvYm9sCkNvbGRGdXNpb24GRGVscGhpBkVpZmZlbAZFcmxhbmcHRm9ydHJhbgRKYXZhCkphdmFTY3JpcHQDSlNQBExpc3ADTHVhC01hdGhlbWF0aWNhBk1hdGxhYgpPYmplY3RpdmVDBFBlcmwDUEhQBlByb2xvZwZQeXRob24EUnVieQZTY2hlbWUJU21hbGx0YWxrA1NRTANUY2wCVkIGVkIuTkVUFCsDIWdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2RkAgkPEA8WAh8FZ2QQFR0MQWxsIExpY2Vuc2VzA0FGTARBTDIwA0FTTARBUFNMA0JTRANDUEwFRVBMMTAER1RQTANHUEwETEdQTAVJQk1QTARJT1NMBE1TQ0wETVNQTARNU1JMB01TVlNTREsETUlURAVNUEwxMAVNUEwxMQVOUEwxMAVOUEwxMQNPU0wEUFNGTANTUEwDVzNDBVdYV0xMA1pMTANaUEwVHQEqA0FGTARBTDIwA0FTTARBUFNMA0JTRANDUEwFRVBMMTAER1RQTANHUEwETEdQTAVJQk1QTARJT1NMBE1TQ0wETVNQTARNU1JMB01TVlNTREsETUlURAVNUEwxMAVNUEwxMQVOUEwxMAVOUEwxMQNPU0wEUFNGTANTUEwDVzNDBVdYV0xMA1pMTANaUEwUKwMdZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dkZAILDw8WAh8DBTlodHRwOi8vd3d3LmtvZGVycy5jb20vY29ycC9hYm91dC9kZXZlbG9wZXJzL2xpY2Vuc2UtaW5mby9kFgJmDxYCHgNzcmMFEy9pbWFnZXMvaW5mb18xNi5naWZkAgkPDxYCHgdWaXNpYmxlZ2QWCmYPDxYEHwQFFC9pbWFnZXMvZG93bmxvYWQuZ2lmHgdUb29sVGlwBR9Eb3dubG9hZCBmaWx0ZXJCbG9iRXhwbG9yZXIucGFzZGQCAg8WAh4LXyFJdGVtQ291bnQCARYCZg9kFgJmDxUFFmZpbHRlckJsb2JFeHBsb3Jlci5wYXMGRGVscGhpAD1Db3B5cmlnaHQ6IChDKSAyMDA0IER1cmFuZCBFbW1hbnVlbAooQykgMjAwNCBCdXJnZWwgRXJpYwo8YnI+CExPQzogNzUxZAIDDxYCHwkCARYCZg9kFgZmDxUCADcvaW5mby5hc3B4P2M9UHJvamVjdEluZm8mcGlkPTdLVU5UODFUUDZTVkZNTkxXNTVHVVBYTFVIZAIBD2QWAmYPFQEHRmlsdGVyc2QCAg8VAgtTb3VyY2VGb3JnZQNjdnNkAgUPZBYCZg9kFgYCAQ8PFgIfAwU3L2luZm8uYXNweD9jPVByb2plY3RJbmZvJnBpZD03S1VOVDgxVFA2U1ZGTU5MVzU1R1VQWExVSGQWAmYPDxYCHwQFEi9pbWFnZXMvZm9sZGVyLmdpZmRkAgMPDxYCHwAFHi4uLmlsdGVyc1xGaWx0ZXJzMVxTcmNcRGVscGhpXGRkAgUPFgIfCQJCZAIHDxYCHwdoZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAQUaS29kZXZpZXdlcjEkRG93bmxvYWRCdXR0b24=" type="hidden">
+</div>
+
+<script type="text/javascript">
+<!--
+var theForm = document.forms['FRM'];
+if (!theForm) {
+    theForm = document.FRM;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+// -->
+</script>
+
+
+<script src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/WebResource.js" type="text/javascript"></script>
+
+
+<script src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/ScriptResource.js" type="text/javascript"></script>
+<script src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/ScriptResource_002.js" type="text/javascript"></script>
+<script src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/js.js" type="text/javascript"></script>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl02$scriptManager', document.getElementById('FRM'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls([], [], [], 90);
+//]]>
+</script>
+
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody><tr>
+                <td style="padding: 8px 10px 2px;" align="left">
+                    
+<table id="t1" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td style="white-space: nowrap;" nowrap="nowrap">
+		    <a id="ctl00_Home" href="http://www.koders.com/"><img id="ctl00_imgLogo" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/logo_med.gif" style="border-color: rgb(0, 0, 0); border-width: 0px; height: 32px; width: 141px;" hspace="0" vspace="6"></a>
+		</td>
+		<td style="white-space: nowrap;" nowrap="nowrap">
+		    <input name="ctl00$S" maxlength="128" id="ctl00_S" class="tbSearchSmall" style="width: 200px;" type="text">&nbsp;<input name="ctl00$btnSearch" value="Search" id="ctl00_btnSearch" type="submit"><input style="display: none;" type="text"><br>
+			Filter:
+			<select style="visibility: visible;" name="ctl00$Languages" id="ctl00_Languages">
+	<option value="*">All Languages</option>
+	<option value="ActionScript">ActionScript</option>
+	<option value="Ada">Ada</option>
+	<option value="ASP">ASP</option>
+	<option value="Assembler">Assembler</option>
+	<option value="C">C</option>
+	<option value="C#">C#</option>
+	<option value="Cpp">C++</option>
+	<option value="Cobol">Cobol</option>
+	<option value="ColdFusion">ColdFusion</option>
+	<option value="Delphi">Delphi</option>
+	<option value="Eiffel">Eiffel</option>
+	<option value="Erlang">Erlang</option>
+	<option value="Fortran">Fortran</option>
+	<option value="Java">Java</option>
+	<option value="JavaScript">JavaScript</option>
+	<option value="JSP">JSP</option>
+	<option value="Lisp">Lisp</option>
+	<option value="Lua">Lua</option>
+	<option value="Mathematica">Mathematica</option>
+	<option value="Matlab">Matlab</option>
+	<option value="ObjectiveC">ObjectiveC</option>
+	<option value="Perl">Perl</option>
+	<option value="PHP">PHP</option>
+	<option value="Prolog">Prolog</option>
+	<option value="Python">Python</option>
+	<option value="Ruby">Ruby</option>
+	<option value="Scheme">Scheme</option>
+	<option value="Smalltalk">Smalltalk</option>
+	<option value="SQL">SQL</option>
+	<option value="Tcl">Tcl</option>
+	<option value="VB">VB</option>
+	<option value="VB.NET">VB.NET</option>
+
+</select>&nbsp;<select style="visibility: visible;" name="ctl00$Licenses" id="ctl00_Licenses">
+	<option value="*">All Licenses</option>
+	<option value="AFL">AFL</option>
+	<option value="AL20">AL20</option>
+	<option value="ASL">ASL</option>
+	<option value="APSL">APSL</option>
+	<option value="BSD">BSD</option>
+	<option value="CPL">CPL</option>
+	<option value="EPL10">EPL10</option>
+	<option value="GTPL">GTPL</option>
+	<option value="GPL">GPL</option>
+	<option value="LGPL">LGPL</option>
+	<option value="IBMPL">IBMPL</option>
+	<option value="IOSL">IOSL</option>
+	<option value="MSCL">MSCL</option>
+	<option value="MSPL">MSPL</option>
+	<option value="MSRL">MSRL</option>
+	<option value="MSVSSDK">MSVSSDK</option>
+	<option value="MITD">MITD</option>
+	<option value="MPL10">MPL10</option>
+	<option value="MPL11">MPL11</option>
+	<option value="NPL10">NPL10</option>
+	<option value="NPL11">NPL11</option>
+	<option value="OSL">OSL</option>
+	<option value="PSFL">PSFL</option>
+	<option value="SPL">SPL</option>
+	<option value="W3C">W3C</option>
+	<option value="WXWLL">WXWLL</option>
+	<option value="ZLL">ZLL</option>
+	<option value="ZPL">ZPL</option>
+
+</select>&nbsp;<a id="ctl00_LicenseInfoLink" href="http://www.koders.com/corp/about/developers/license-info/"><img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/info_16.gif" id="ctl00_InfoImg" alt="InfoImg" border="0" height="16" width="16"></a>
+		</td>
+		<td align="center" valign="middle" width="0">
+			
+		</td>
+	</tr>
+</tbody></table>
+
+                </td>
+                <td>
+                    
+
+<script type="text/javascript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/toolbar.js"></script>
+
+<!-- {Begin Toolbar} -->
+<div id="topToolbars">
+<div class="topToolbar ttb_wider" style="width: 535px; z-index: 1; top: 0px; right: 0px;" onmouseover="Toolbar._onmouseover(event); " onmouseout="Toolbar._onmouseout(event); ">
+    <div class="topToolbarCorner"></div>
+    <div class="topToolbarInner">
+        <div class="topToolbarButton" style="width: 84px;">Company <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup">
+                <a href="http://www.koders.com/corp/about/">About Koders</a>
+                <a href="http://www.koders.com/corp/about/#Contact">Contact Us</a>
+                <a href="http://www.koders.com/blog/?cat=2">News</a>
+                <a href="http://www.koders.com/corp/about/#Jobs">Careers</a>
+                <a href="http://www.koders.com/corp/about/advertise/">Advertise</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 82px; cursor: pointer;" onclick="window.location='http://www.koders.com/corp/products/'">Products <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup">
+                <a href="http://www.koders.com/corp/products/pro/">Pro Edition</a>
+                <a href="http://www.koders.com/corp/products/enterprise-code-search/">Enterprise Edition</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 72px;">Plugins <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup">
+                <a href="http://www.koders.com/info.aspx?c=tools#IDEs">
+                    <img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/toolbar-eclipse_icon.gif"> Eclipse</a>
+                <a href="http://www.koders.com/info.aspx?c=tools#IDEs">
+                    <img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/toolbar-visual_icon.gif"> Visual Studio</a>
+                <a href="http://www.koders.com/info.aspx?c=tools#Firefox">Browser</a>
+                <a href="http://www.koders.com/info.aspx?c=tools#AddSearch">Widget APIs</a>
+                <a href="http://www.koders.com/blog/?p=36">Koders APIs</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 76px; cursor: pointer;" onclick="window.location='http://www.koders.com/corp/support/'">Support <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup">
+                <a href="http://www.koders.com/corp/support/code-search/getting-started/">Getting Started Guide</a>
+                <a href="http://www.koders.com/forums/">Forums</a>
+                <a href="http://www.koders.com/info.aspx?c=feedback&amp;product=kdc&amp;type=bug">Feedback</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 98px; cursor: pointer;" onclick="window.location='http://www.koders.com/corp/community/'">Community <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup">
+                <a href="http://www.koders.com/">Search Open Source</a>
+		<a href="http://www.koders.com/corp/about/developers/">Developers</a>
+                <a href="http://www.koders.com/info.aspx?c=forms/SubmitProject">Add Projects</a>
+                <a href="http://www.koders.com/blog/">Blog</a>
+                <a href="http://www.koders.com/zeitgeist/">Zeitgeist</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="color: rgb(22, 113, 217); width: 92px; cursor: pointer;" onclick="window.location='http://www.koders.com/info.aspx?page=MyAccount'">Subscribe <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup">
+                <a href="http://www.koders.com/info.aspx?page=MyAccount&amp;action=Login">Login</a>
+                <a href="http://www.koders.com/info.aspx?page=MyAccount">Join Now!</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="topToolbar" style="width: 385px; z-index: 0; right: 0px; top: 17px;">
+    <div class="topToolbarCorner"></div>
+    <div class="topToolbarInner" style="overflow: hidden; width: 353px; text-align: center;">
+        
+<!-- Media Server Begin: 325x16 -->
+<!-- begin ZEDO for channel: Toolbar Text Link , publisher: Koders.com , Ad Dimension: Sponsor Text Link - 325 x 16 -->  <script language="JavaScript">  var zflag_nid="547"; var zflag_cid="15/2/1"; var zflag_sid="0"; var zflag_width="325"; var zflag_height="16"; var zflag_sz="31";   </script>  <script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fo.js"></script><script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fm_003.js"></script><a href="http://xads.zedo.com//ads2/c%3Fa=327239%3Bx=1%3Bg=0,0%3Bc=547000015,547000015%3Bi=0%3Bn=547%3Bs=0%3Bs=0%3Bg=116%3Bm=0%3Bw=0%3Bu=TG7BAAoBABQAAFZzfCAAAAEO%3Bp%3D6%3Bf%3D378501%3Bh%3D184244%3Bk=http://www.koders.com/corp/products/pro/#?ref=%z"><img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/hex.gif" valign="top" align="top" border="0" height="16" hspace="4" vspace="0" width="16"><b><font color="blue">Download Koders Pro Edition - Free Trial!</font></b></a>  <!-- end ZEDO for channel: Toolbar Text Link , publisher: Koders.com , Ad Dimension: Sponsor Text Link - 325 x 16 -->
+<!-- Media Server End: 325x16, 70, 64 -->
+
+    </div>
+</div>
+<br class="clear">
+</div>
+<!-- {End Toolbar} -->
+
+                </td>
+            </tr>
+        </tbody></table>
+        
+        <div id="leaderboard" style="">
+            <center>
+				
+<!-- Media Server Begin: 728x90 -->
+<!-- begin ZEDO for channel:  Code Page 728x90 , publisher: Koders.com , Ad Dimension: Super Banner - 728 x 90 -->
+<script language="JavaScript">
+var zflag_nid="547"; var zflag_cid="9/4/1"; var zflag_sid="0"; var zflag_width="728"; var zflag_height="90"; var zflag_sz="14"; 
+</script>
+<script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fo.js"></script><script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fm_004.js"></script><div class="ad-container tip"><div class="type"><span>Quick Tip</span></div><div class="content"><strong class="title">Advanced Queries: Find Code Faster</strong><div class="description">You can refine your query syntax to find more relevant code.<br><b>Search for specific class, method or interface definitions.</b><br>Use boolean operators, wildcards, and more...     </div></div><a class="more_info" href="http://xads.zedo.com//ads2/c%3Fa=308983%3Bx=1%3Bg=0,0%3Bc=547000009,547000009%3Bi=0%3Bn=547%3Bs=0%3Bs=0%3Bg=116%3Bm=0%3Bw=0%3Bu=TG7BAAoBABQAAFZzfCAAAAEO%3Bk=http://www.koders.com/corp/support/code-search/getting-started/"><span>Learn More</span></a></div>
+<!-- end ZEDO  for channel:  Code Page 728x90 , publisher: Koders.com , Ad Dimension: Super Banner - 728 x 90 -->
+<!-- Media Server End: 728x90, 72, 68 -->
+               
+            </center>
+		</div>
+        
+        <div style="padding: 0px 10px;">
+            
+<!-- <div class="SidePadding" align="left"> -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr>
+		<td>
+			<table id="Table2" border="0" cellspacing="5" width="100%">
+				<tbody><tr>
+					<td class="info_panel" valign="top">
+						<table id="Table3" border="0">
+							<tbody><tr>
+								<td align="center" valign="middle" width="60">
+									<input name="Kodeviewer1$DownloadButton" id="Kodeviewer1_DownloadButton" title="Download filterBlobExplorer.pas" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/download.gif" style="border-width: 0px;" type="image">
+									<a id="Kodeviewer1_LinkButton1" href="javascript:__doPostBack('Kodeviewer1$LinkButton1','')">download</a>
+								</td>
+								<td>
+											<b>
+												filterBlobExplorer.pas
+											</b>
+											<br>
+											Language: <b>
+												Delphi
+											</b>
+											<br>
+											
+											Copyright: (C) 2004 Durand Emmanuel
+(C) 2004 Burgel Eric
+<br>
+											LOC: 751
+											<br>
+										</td>
+							</tr>
+						</tbody></table>
+					</td>
+					<td class="kodeviewer_info_panel" valign="top" width="200">
+								<b>Project Info</b><br>
+								<a title="" href="http://www.koders.com/info.aspx?c=ProjectInfo&amp;pid=7KUNT81TP6SVFMNLW55GUPXLUH">
+									<b>
+										<span id="Kodeviewer1_ProjectView_ctl00_Label2">Filters</span></b></a>
+								<br>
+								Server:
+								SourceForge
+								<br>
+								Type:
+								cvs
+							
+						
+						
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+	<div id="Kodeviewer1_RightBanner" class="RightBanner">
+<div style="margin-bottom: 2px;" align="center">[<a style="font-size: smaller;" href="javascript:HideBanner();">Show Code</a>] </div>
+<div>
+
+<!-- Media Server Begin: 160x600 -->
+<!-- begin ZEDO for channel:  Code Page A 160x600 , publisher: Koders.com , Ad Dimension: Wide Skyscraper - 160 x 600 -->
+<script language="JavaScript">
+var zflag_nid="547"; var zflag_cid="6/4/1"; var zflag_sid="0"; var zflag_width="160"; var zflag_height="600"; var zflag_sz="7"; 
+</script>
+<script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fo.js"></script><script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fm_002.js"></script><a href="http://xads.zedo.com//ads2/c?a=327229;x=1821;g=0,0;c=547000006,547000006;i=0;n=547;s=0;g=116;m=0;w=0;u=TG7BAAoBABQAAFZzfCAAAAEO;p=6;f=378501;h=184244;s=0;u=TG7BAAoBABQAAFZzfCAAAAEO;z=0.689305574369662;k=http://www.koders.com/corp/products/pro/#?ref=%z" target="_blank" onmouseover='window.status=" Ad powered by ZEDO"; return true;' onmouseout='window.status=""; return true;'><img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/Pro-sky3_2GA.gif" alt="Koders Pro Edition - Free Trial!" border="0" height="600" width="160"></a>
+<!-- end ZEDO  for channel:  Code Page A 160x600 , publisher: Koders.com , Ad Dimension: Wide Skyscraper - 160 x 600 -->
+<!-- Media Server End: 160x600, 67, 61 -->
+<br><br><br>
+<!-- Media Server Begin: 160x602 -->
+<!-- begin ZEDO for channel:  Code Page B 160x600 , publisher: Koders.com , Ad Dimension: Wide Skyscraper - 160 x 600 -->
+<script language="JavaScript">
+var zflag_nid="547"; var zflag_cid="31/4/1"; var zflag_sid="0"; var zflag_width="160"; var zflag_height="600"; var zflag_sz="7"; 
+</script>
+<script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fo.js"></script><script language="JavaScript" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/fm.js"></script><a href="http://xads.zedo.com//ads2/c?a=263751;x=0;g=0,0;c=547000031,547000031;i=0;n=547;s=0;s=0;g=116;m=0;w=0;u=TG7BAAoBABQAAFZzfCAAAAEO;s=0;u=TG7BAAoBABQAAFZzfCAAAAEO;z=0.5228691147007074;k=http://www.koders.com/corp/products/enterprise-code-search/" target="_blank" onmouseover='window.status=" Ad powered by ZEDO"; return true;' onmouseout='window.status=""; return true;'><img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/Ent-sky3.gif" alt="To search Enterprise Code - click here!" border="0" height="600" width="160"></a>
+<!-- end ZEDO for channel:  Code Page B 160x600 , publisher: Koders.com , Ad Dimension: Wide Skyscraper - 160 x 600 -->
+
+<!-- Media Server End: 160x602, 68, 62 -->
+<br><br><br>
+<!-- Media Server Begin: 160x603 -->
+
+<script src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/flyin.js" type="text/javascript"></script>
+
+
+<!-- Media Server End: 160x603, 88, 93 -->
+</div>
+<div style="margin-top: 2px;" align="center">[<a style="font-size: smaller;" href="javascript:HideBanner();">Show Code</a>] </div></div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr>
+		<td height="100%">
+			<table id="Table9" style="height: 100%;" border="0" cellpadding="0" cellspacing="8">
+				<tbody><tr>
+					<td valign="top">
+						
+						
+
+<table id="Table1" style="border: 1px solid gray; border-collapse: collapse;" border="0" cellpadding="3" cellspacing="0" width="100%">
+	<tbody>
+		<tr>
+			<th class="exp_header" align="left">
+				<a id="Kodeviewer1_ctl00_hyFicon" href="http://www.koders.com/info.aspx?c=ProjectInfo&amp;pid=7KUNT81TP6SVFMNLW55GUPXLUH"><img id="Kodeviewer1_ctl00_ficon" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/folder.gif" style="border-width: 0px;" align="left"></a>
+				<b>
+					<span id="Kodeviewer1_ctl00_Label1">...ilters\Filters1\Src\Delphi\</span>
+				</b>
+				<br>
+			</th>
+		</tr>
+		<tr>
+			<td class="exp_items">
+				
+						&nbsp;&nbsp;
+					<a title="abstractfilterNeighbor3.pas" href="http://www.koders.com/delphi/fid636997FD454BA778209E3B7372A3C7274D317519.aspx">...ractfilterNeighbor3.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="Chronometer.pas" href="http://www.koders.com/delphi/fid4D65AE28E43A3896171547453CF0BF629F3AEAC6.aspx">Chronometer.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="divers.pas" href="http://www.koders.com/delphi/fidF5A1AF8E2E50072AEA9ADD50BA6B095D086879C6.aspx">divers.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filter.pas" href="http://www.koders.com/delphi/fid52A76361D814AD12F136D289932BBDFD35529DF7.aspx">filter.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterAdjust.pas" href="http://www.koders.com/delphi/fid25ECE881BE4B6E468FFDEFF045480152F3440BCA.aspx">filterAdjust.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterArithmeticAdd.pas" href="http://www.koders.com/delphi/fid01EB7ED6301DB07BD0847FCD3E58C0201322E1F7.aspx">filterArithmeticAdd.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterArithmeticConstantAdd.pas" href="http://www.koders.com/delphi/fidD09CC6AE1E3BA8F916F9068E89431828493CF6B3.aspx">...ithmeticConstantAdd.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterArithmeticSubstract.pas" href="http://www.koders.com/delphi/fidBEB6EF650B07B69C134B2DDCACCB2D3B56ADFE33.aspx">...ArithmeticSubstract.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterBlobBalance.pas" href="http://www.koders.com/delphi/fidA3C7D2B7379F9A0DA9FC7E1C666B9A25574B1D69.aspx">filterBlobBalance.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterBlobExplorer.pas" href="http://www.koders.com/delphi/fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx">filterBlobExplorer.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterBlobGrouping.pas" href="http://www.koders.com/delphi/fidCA1579701BDAC8B6B1B7BA970CACF3D8C6FA25AB.aspx">filterBlobGrouping.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterBlobRepositioning.pas" href="http://www.koders.com/delphi/fid2E8D1B3D2E5CC0F3D7B484855859E45424281609.aspx">...erBlobRepositioning.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterBlobRepositioning2.pas" href="http://www.koders.com/delphi/fid50E63EC97BE01563D89A44E276813C6348AFB65D.aspx">...rBlobRepositioning2.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterBlur.pas" href="http://www.koders.com/delphi/fid5AC677DA9310032F9D061DC4D148CFAC158EB37D.aspx">filterBlur.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterCanny.pas" href="http://www.koders.com/delphi/fid8E488C25AC9E32247541D60AC65736A493438ACE.aspx">filterCanny.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterContour.pas" href="http://www.koders.com/delphi/fidE7CCC38511508CC4959D0254449FD1DFB2F3A694.aspx">filterContour.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterContrastExplorer.pas" href="http://www.koders.com/delphi/fid3E80152D7392B836F490CCEC6D1842EB2F0AE313.aspx">filterContrastExplorer.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterConvolution.pas" href="http://www.koders.com/delphi/fid156A881F592DFC9FB224C984633E3E65EF24BABD.aspx">filterConvolution.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterCoocurenceMatrix.pas" href="http://www.koders.com/delphi/fid6EBD3BA00B833082908FE806A3E4F818512CCC4B.aspx">filterCoocurenceMatrix.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterCopy.pas" href="http://www.koders.com/delphi/fidF470CADE6DB9E09290898E9764565D0A346FF7E2.aspx">filterCopy.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterCorrelation.pas" href="http://www.koders.com/delphi/fid518112779F826D8ECDF50D5AFD897AC29E8993C9.aspx">filterCorrelation.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterCutter.pas" href="http://www.koders.com/delphi/fid833589DF58B9FC6F7724E0D3ACC0D4E9A45CC9E7.aspx">filterCutter.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterDistancesMap.pas" href="http://www.koders.com/delphi/fid30264F3F7C43658BFCD24DFCA7837D5290099A53.aspx">filterDistancesMap.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterExplorer.pas" href="http://www.koders.com/delphi/fid719E0FC916FA9D9690BCFAEB4C27BE3B187335D7.aspx">filterExplorer.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterGradientAnisotropicDiffusion.pas" href="http://www.koders.com/delphi/fid16D089010AF7BE4A08B80E84585FA81ACB8E41CF.aspx">...nisotropicDiffusion.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterGranularityExplorer.pas" href="http://www.koders.com/delphi/fid1D1C3A66E25BB3691C1068CD6599123C8E2F6489.aspx">...GranularityExplorer.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterHistogram.pas" href="http://www.koders.com/delphi/fid2BBD8C9219598C84ECED33FEA23CB8B31014B94D.aspx">filterHistogram.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterHistogramContrast.pas" href="http://www.koders.com/delphi/fidE1DC4AAD71C52C53892CB5363DD23FA3832A98D5.aspx">...erHistogramContrast.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterImageCreator.pas" href="http://www.koders.com/delphi/fid450117683B132DC9278D4E32DD1EB1998DC08A32.aspx">filterImageCreator.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterImageLoader.pas" href="http://www.koders.com/delphi/fidCABC10E00D13EA97ACA645EAE59FD3583ED7AA3C.aspx">filterImageLoader.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterImageSaver.pas" href="http://www.koders.com/delphi/fidD61236321D24F0BEA12519EC4D46499E633B2BDB.aspx">filterImageSaver.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterIntegration.pas" href="http://www.koders.com/delphi/fid89190FB1F86CD511D8ADD8D47783D361AFC98656.aspx">filterIntegration.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterInvert.pas" href="http://www.koders.com/delphi/fid14F96D7DC35EF6B93622041BC6DD760FD07AFAE2.aspx">filterInvert.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterLocalDeviation.pas" href="http://www.koders.com/delphi/fidA1AE4A09334E9241D7EE2C486945F47B3FBE5520.aspx">filterLocalDeviation.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterLogPolar.pas" href="http://www.koders.com/delphi/fidB1A0AB9FC2BF0726973A4BF7158A820996CC6311.aspx">filterLogPolar.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterMedian.pas" href="http://www.koders.com/delphi/fid42254B2EF40CDA2469D9EC8C2491E0B18FC68722.aspx">filterMedian.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterMorphology.pas" href="http://www.koders.com/delphi/fid4CDC3D53337F1491DF3CAD7CBEB11A9FC5C607F6.aspx">filterMorphology.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterNonMaximaSuppression.pas" href="http://www.koders.com/delphi/fid41C32CA85D9CD43EF6431FCE8273E3C45394DF64.aspx">...onMaximaSuppression.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterNormalize.pas" href="http://www.koders.com/delphi/fid4CCDDC8F07C3516A7092F2E2734F839ECC3CC506.aspx">filterNormalize.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterOnOffCell.pas" href="http://www.koders.com/delphi/fid9A10FE3387EC9BC3F28EA9F745A7AFC8C107A8C9.aspx">filterOnOffCell.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterProjectionLine.pas" href="http://www.koders.com/delphi/fid69D8E7538BE89E2306F8C661CB4AEDF4E5309513.aspx">filterProjectionLine.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterPyramid.pas" href="http://www.koders.com/delphi/fid396CFE7CBFDF6DD3B0F74C6B6F66DD43E35DD0EC.aspx">filterPyramid.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterRescaleIntensity.pas" href="http://www.koders.com/delphi/fid9957858407928BECB060690545B4A94101BE9A9E.aspx">filterRescaleIntensity.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterResize.pas" href="http://www.koders.com/delphi/fid6FFFFD46726608C79F526DB29A5BB42A801E0064.aspx">filterResize.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterRotation.pas" href="http://www.koders.com/delphi/fid64B05C141456909182F95C16297A1F6F5D3C0B2B.aspx">filterRotation.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterSigmoid.pas" href="http://www.koders.com/delphi/fid509B1C711664488D3704A64E36E8EB159ADBB154.aspx">filterSigmoid.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterSmoothBilateral.pas" href="http://www.koders.com/delphi/fidF9CD5C0D1F4302214F41B9E7E9D323DD789190C1.aspx">filterSmoothBilateral.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterSobel.pas" href="http://www.koders.com/delphi/fid50D36C8E32842EA32020F38E9D33D27C8CE235DF.aspx">filterSobel.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterSPV.pas" href="http://www.koders.com/delphi/fid84B86A4BDAF96C9920AC449C7869ABF940B84146.aspx">filterSPV.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterStackProcessor.pas" href="http://www.koders.com/delphi/fidA8539336C31565257CD441916CD45A2318E95493.aspx">filterStackProcessor.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterStackSmasher.pas" href="http://www.koders.com/delphi/fid55BF46BC520D76B5ACF53041A2FEEB0624864DB2.aspx">filterStackSmasher.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterStandardDeviation.pas" href="http://www.koders.com/delphi/fid3BDFC49FAF40F68F875A77CF5CD98B70A3AE180E.aspx">...erStandardDeviation.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterSUSAN.pas" href="http://www.koders.com/delphi/fidFA9A3B77AAADB24D5D8DCA6341721B7F01793AB1.aspx">filterSUSAN.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterThresholdBinary.pas" href="http://www.koders.com/delphi/fidCDF86AC21E2D34DCB2AFC13B4EAAF8E635628BDA.aspx">filterThresholdBinary.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterVectorHistogram.pas" href="http://www.koders.com/delphi/fid566C6B322E872B12FAC04C5863228010CFE4CD54.aspx">filterVectorHistogram.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterWavelets.pas" href="http://www.koders.com/delphi/fid0A74DABA5F0B384AA09BC55786480DD94F65A61E.aspx">filterWavelets.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="filterWaves.pas" href="http://www.koders.com/delphi/fidB890931B23BAB729E00EF653B6FBB93D4ABE47D7.aspx">filterWaves.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="fmask.pas" href="http://www.koders.com/delphi/fid845E1DBBCA6E2BC5AAB53A91532A05B972A11DAB.aspx">fmask.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="fparameters.pas" href="http://www.koders.com/delphi/fid4C7AC0039B40895F5CD23A2EF181DE72C434228B.aspx">fparameters.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="image.pas" href="http://www.koders.com/delphi/fidFB9B1BC7F3599AAF4F172E0C065D441CB1F93441.aspx">image.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="imageIO.pas" href="http://www.koders.com/delphi/fid06E07769DF35069EAD0FC03F31BD410BDDFB4344.aspx">imageIO.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="imageIOVideo.pas" href="http://www.koders.com/delphi/fidA6D78EF971BA7F1F2017CF9AA0D8F6018C11611F.aspx">imageIOVideo.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="lacModel.pas" href="http://www.koders.com/delphi/fid213B539042F674B0FC847F5D99935B3A979C291D.aspx">lacModel.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="polygonalyzation.pas" href="http://www.koders.com/delphi/fid9E4D13C36611FC8D9BD598C6BA8209A5A738FE11.aspx">polygonalyzation.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="wrapper_itk.pas" href="http://www.koders.com/delphi/fid1411B35A9A5D436A6633F44ABFE17CA7DCB73698.aspx">wrapper_itk.pas<br></a>
+						&nbsp;&nbsp;
+					<a title="wrapper_opencv.pas" href="http://www.koders.com/delphi/fid97848BC95207CBB9B2238CF64F726A83827AC591.aspx">wrapper_opencv.pas<br></a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+
+						
+						
+					</td>
+					<td valign="top">
+						<div>
+							<pre><a href="#L1" name="L1">1</a><br><a href="#L2" name="L2">2</a><br><a href="#L3" name="L3">3</a><br><a href="#L4" name="L4">4</a><br><a href="#L5" name="L5">5</a><br><a href="#L6" name="L6">6</a><br><a href="#L7" name="L7">7</a><br><a href="#L8" name="L8">8</a><br><a href="#L9" name="L9">9</a><br><a href="#L10" name="L10">10</a><br><a href="#L11" name="L11">11</a><br><a href="#L12" name="L12">12</a><br><a href="#L13" name="L13">13</a><br><a href="#L14" name="L14">14</a><br><a href="#L15" name="L15">15</a><br><a href="#L16" name="L16">16</a><br><a href="#L17" name="L17">17</a><br><a href="#L18" name="L18">18</a><br><a href="#L19" name="L19">19</a><br><a href="#L20" name="L20">20</a><br><a href="#L21" name="L21">21</a><br><a href="#L22" name="L22">22</a><br><a href="#L23" name="L23">23</a><br><a href="#L24" name="L24">24</a><br><a href="#L25" name="L25">25</a><br><a href="#L26" name="L26">26</a><br><a href="#L27" name="L27">27</a><br><a href="#L28" name="L28">28</a><br><a href="#L29" name="L29">29</a><br><a href="#L30" name="L30">30</a><br><a href="#L31" name="L31">31</a><br><a href="#L32" name="L32">32</a><br><a href="#L33" name="L33">33</a><br><a href="#L34" name="L34">34</a><br><a href="#L35" name="L35">35</a><br><a href="#L36" name="L36">36</a><br><a href="#L37" name="L37">37</a><br><a href="#L38" name="L38">38</a><br><a href="#L39" name="L39">39</a><br><a href="#L40" name="L40">40</a><br><a href="#L41" name="L41">41</a><br><a href="#L42" name="L42">42</a><br><a href="#L43" name="L43">43</a><br><a href="#L44" name="L44">44</a><br><a href="#L45" name="L45">45</a><br><a href="#L46" name="L46">46</a><br><a href="#L47" name="L47">47</a><br><a href="#L48" name="L48">48</a><br><a href="#L49" name="L49">49</a><br><a href="#L50" name="L50">50</a><br><a href="#L51" name="L51">51</a><br><a href="#L52" name="L52">52</a><br><a href="#L53" name="L53">53</a><br><a href="#L54" name="L54">54</a><br><a href="#L55" name="L55">55</a><br><a href="#L56" name="L56">56</a><br><a href="#L57" name="L57">57</a><br><a href="#L58" name="L58">58</a><br><a href="#L59" name="L59">59</a><br><a href="#L60" name="L60">60</a><br><a href="#L61" name="L61">61</a><br><a href="#L62" name="L62">62</a><br><a href="#L63" name="L63">63</a><br><a href="#L64" name="L64">64</a><br><a href="#L65" name="L65">65</a><br><a href="#L66" name="L66">66</a><br><a href="#L67" name="L67">67</a><br><a href="#L68" name="L68">68</a><br><a href="#L69" name="L69">69</a><br><a href="#L70" name="L70">70</a><br><a href="#L71" name="L71">71</a><br><a href="#L72" name="L72">72</a><br><a href="#L73" name="L73">73</a><br><a href="#L74" name="L74">74</a><br><a href="#L75" name="L75">75</a><br><a href="#L76" name="L76">76</a><br><a href="#L77" name="L77">77</a><br><a href="#L78" name="L78">78</a><br><a href="#L79" name="L79">79</a><br><a href="#L80" name="L80">80</a><br><a href="#L81" name="L81">81</a><br><a href="#L82" name="L82">82</a><br><a href="#L83" name="L83">83</a><br><a href="#L84" name="L84">84</a><br><a href="#L85" name="L85">85</a><br><a href="#L86" name="L86">86</a><br><a href="#L87" name="L87">87</a><br><a href="#L88" name="L88">88</a><br><a href="#L89" name="L89">89</a><br><a href="#L90" name="L90">90</a><br><a href="#L91" name="L91">91</a><br><a href="#L92" name="L92">92</a><br><a href="#L93" name="L93">93</a><br><a href="#L94" name="L94">94</a><br><a href="#L95" name="L95">95</a><br><a href="#L96" name="L96">96</a><br><a href="#L97" name="L97">97</a><br><a href="#L98" name="L98">98</a><br><a href="#L99" name="L99">99</a><br><a href="#L100" name="L100">100</a><br><a href="#L101" name="L101">101</a><br><a href="#L102" name="L102">102</a><br><a href="#L103" name="L103">103</a><br><a href="#L104" name="L104">104</a><br><a href="#L105" name="L105">105</a><br><a href="#L106" name="L106">106</a><br><a href="#L107" name="L107">107</a><br><a href="#L108" name="L108">108</a><br><a href="#L109" name="L109">109</a><br><a href="#L110" name="L110">110</a><br><a href="#L111" name="L111">111</a><br><a href="#L112" name="L112">112</a><br><a href="#L113" name="L113">113</a><br><a href="#L114" name="L114">114</a><br><a href="#L115" name="L115">115</a><br><a href="#L116" name="L116">116</a><br><a href="#L117" name="L117">117</a><br><a href="#L118" name="L118">118</a><br><a href="#L119" name="L119">119</a><br><a href="#L120" name="L120">120</a><br><a href="#L121" name="L121">121</a><br><a href="#L122" name="L122">122</a><br><a href="#L123" name="L123">123</a><br><a href="#L124" name="L124">124</a><br><a href="#L125" name="L125">125</a><br><a href="#L126" name="L126">126</a><br><a href="#L127" name="L127">127</a><br><a href="#L128" name="L128">128</a><br><a href="#L129" name="L129">129</a><br><a href="#L130" name="L130">130</a><br><a href="#L131" name="L131">131</a><br><a href="#L132" name="L132">132</a><br><a href="#L133" name="L133">133</a><br><a href="#L134" name="L134">134</a><br><a href="#L135" name="L135">135</a><br><a href="#L136" name="L136">136</a><br><a href="#L137" name="L137">137</a><br><a href="#L138" name="L138">138</a><br><a href="#L139" name="L139">139</a><br><a href="#L140" name="L140">140</a><br><a href="#L141" name="L141">141</a><br><a href="#L142" name="L142">142</a><br><a href="#L143" name="L143">143</a><br><a href="#L144" name="L144">144</a><br><a href="#L145" name="L145">145</a><br><a href="#L146" name="L146">146</a><br><a href="#L147" name="L147">147</a><br><a href="#L148" name="L148">148</a><br><a href="#L149" name="L149">149</a><br><a href="#L150" name="L150">150</a><br><a href="#L151" name="L151">151</a><br><a href="#L152" name="L152">152</a><br><a href="#L153" name="L153">153</a><br><a href="#L154" name="L154">154</a><br><a href="#L155" name="L155">155</a><br><a href="#L156" name="L156">156</a><br><a href="#L157" name="L157">157</a><br><a href="#L158" name="L158">158</a><br><a href="#L159" name="L159">159</a><br><a href="#L160" name="L160">160</a><br><a href="#L161" name="L161">161</a><br><a href="#L162" name="L162">162</a><br><a href="#L163" name="L163">163</a><br><a href="#L164" name="L164">164</a><br><a href="#L165" name="L165">165</a><br><a href="#L166" name="L166">166</a><br><a href="#L167" name="L167">167</a><br><a href="#L168" name="L168">168</a><br><a href="#L169" name="L169">169</a><br><a href="#L170" name="L170">170</a><br><a href="#L171" name="L171">171</a><br><a href="#L172" name="L172">172</a><br><a href="#L173" name="L173">173</a><br><a href="#L174" name="L174">174</a><br><a href="#L175" name="L175">175</a><br><a href="#L176" name="L176">176</a><br><a href="#L177" name="L177">177</a><br><a href="#L178" name="L178">178</a><br><a href="#L179" name="L179">179</a><br><a href="#L180" name="L180">180</a><br><a href="#L181" name="L181">181</a><br><a href="#L182" name="L182">182</a><br><a href="#L183" name="L183">183</a><br><a href="#L184" name="L184">184</a><br><a href="#L185" name="L185">185</a><br><a href="#L186" name="L186">186</a><br><a href="#L187" name="L187">187</a><br><a href="#L188" name="L188">188</a><br><a href="#L189" name="L189">189</a><br><a href="#L190" name="L190">190</a><br><a href="#L191" name="L191">191</a><br><a href="#L192" name="L192">192</a><br><a href="#L193" name="L193">193</a><br><a href="#L194" name="L194">194</a><br><a href="#L195" name="L195">195</a><br><a href="#L196" name="L196">196</a><br><a href="#L197" name="L197">197</a><br><a href="#L198" name="L198">198</a><br><a href="#L199" name="L199">199</a><br><a href="#L200" name="L200">200</a><br><a href="#L201" name="L201">201</a><br><a href="#L202" name="L202">202</a><br><a href="#L203" name="L203">203</a><br><a href="#L204" name="L204">204</a><br><a href="#L205" name="L205">205</a><br><a href="#L206" name="L206">206</a><br><a href="#L207" name="L207">207</a><br><a href="#L208" name="L208">208</a><br><a href="#L209" name="L209">209</a><br><a href="#L210" name="L210">210</a><br><a href="#L211" name="L211">211</a><br><a href="#L212" name="L212">212</a><br><a href="#L213" name="L213">213</a><br><a href="#L214" name="L214">214</a><br><a href="#L215" name="L215">215</a><br><a href="#L216" name="L216">216</a><br><a href="#L217" name="L217">217</a><br><a href="#L218" name="L218">218</a><br><a href="#L219" name="L219">219</a><br><a href="#L220" name="L220">220</a><br><a href="#L221" name="L221">221</a><br><a href="#L222" name="L222">222</a><br><a href="#L223" name="L223">223</a><br><a href="#L224" name="L224">224</a><br><a href="#L225" name="L225">225</a><br><a href="#L226" name="L226">226</a><br><a href="#L227" name="L227">227</a><br><a href="#L228" name="L228">228</a><br><a href="#L229" name="L229">229</a><br><a href="#L230" name="L230">230</a><br><a href="#L231" name="L231">231</a><br><a href="#L232" name="L232">232</a><br><a href="#L233" name="L233">233</a><br><a href="#L234" name="L234">234</a><br><a href="#L235" name="L235">235</a><br><a href="#L236" name="L236">236</a><br><a href="#L237" name="L237">237</a><br><a href="#L238" name="L238">238</a><br><a href="#L239" name="L239">239</a><br><a href="#L240" name="L240">240</a><br><a href="#L241" name="L241">241</a><br><a href="#L242" name="L242">242</a><br><a href="#L243" name="L243">243</a><br><a href="#L244" name="L244">244</a><br><a href="#L245" name="L245">245</a><br><a href="#L246" name="L246">246</a><br><a href="#L247" name="L247">247</a><br><a href="#L248" name="L248">248</a><br><a href="#L249" name="L249">249</a><br><a href="#L250" name="L250">250</a><br><a href="#L251" name="L251">251</a><br><a href="#L252" name="L252">252</a><br><a href="#L253" name="L253">253</a><br><a href="#L254" name="L254">254</a><br><a href="#L255" name="L255">255</a><br><a href="#L256" name="L256">256</a><br><a href="#L257" name="L257">257</a><br><a href="#L258" name="L258">258</a><br><a href="#L259" name="L259">259</a><br><a href="#L260" name="L260">260</a><br><a href="#L261" name="L261">261</a><br><a href="#L262" name="L262">262</a><br><a href="#L263" name="L263">263</a><br><a href="#L264" name="L264">264</a><br><a href="#L265" name="L265">265</a><br><a href="#L266" name="L266">266</a><br><a href="#L267" name="L267">267</a><br><a href="#L268" name="L268">268</a><br><a href="#L269" name="L269">269</a><br><a href="#L270" name="L270">270</a><br><a href="#L271" name="L271">271</a><br><a href="#L272" name="L272">272</a><br><a href="#L273" name="L273">273</a><br><a href="#L274" name="L274">274</a><br><a href="#L275" name="L275">275</a><br><a href="#L276" name="L276">276</a><br><a href="#L277" name="L277">277</a><br><a href="#L278" name="L278">278</a><br><a href="#L279" name="L279">279</a><br><a href="#L280" name="L280">280</a><br><a href="#L281" name="L281">281</a><br><a href="#L282" name="L282">282</a><br><a href="#L283" name="L283">283</a><br><a href="#L284" name="L284">284</a><br><a href="#L285" name="L285">285</a><br><a href="#L286" name="L286">286</a><br><a href="#L287" name="L287">287</a><br><a href="#L288" name="L288">288</a><br><a href="#L289" name="L289">289</a><br><a href="#L290" name="L290">290</a><br><a href="#L291" name="L291">291</a><br><a href="#L292" name="L292">292</a><br><a href="#L293" name="L293">293</a><br><a href="#L294" name="L294">294</a><br><a href="#L295" name="L295">295</a><br><a href="#L296" name="L296">296</a><br><a href="#L297" name="L297">297</a><br><a href="#L298" name="L298">298</a><br><a href="#L299" name="L299">299</a><br><a href="#L300" name="L300">300</a><br><a href="#L301" name="L301">301</a><br><a href="#L302" name="L302">302</a><br><a href="#L303" name="L303">303</a><br><a href="#L304" name="L304">304</a><br><a href="#L305" name="L305">305</a><br><a href="#L306" name="L306">306</a><br><a href="#L307" name="L307">307</a><br><a href="#L308" name="L308">308</a><br><a href="#L309" name="L309">309</a><br><a href="#L310" name="L310">310</a><br><a href="#L311" name="L311">311</a><br><a href="#L312" name="L312">312</a><br><a href="#L313" name="L313">313</a><br><a href="#L314" name="L314">314</a><br><a href="#L315" name="L315">315</a><br><a href="#L316" name="L316">316</a><br><a href="#L317" name="L317">317</a><br><a href="#L318" name="L318">318</a><br><a href="#L319" name="L319">319</a><br><a href="#L320" name="L320">320</a><br><a href="#L321" name="L321">321</a><br><a href="#L322" name="L322">322</a><br><a href="#L323" name="L323">323</a><br><a href="#L324" name="L324">324</a><br><a href="#L325" name="L325">325</a><br><a href="#L326" name="L326">326</a><br><a href="#L327" name="L327">327</a><br><a href="#L328" name="L328">328</a><br><a href="#L329" name="L329">329</a><br><a href="#L330" name="L330">330</a><br><a href="#L331" name="L331">331</a><br><a href="#L332" name="L332">332</a><br><a href="#L333" name="L333">333</a><br><a href="#L334" name="L334">334</a><br><a href="#L335" name="L335">335</a><br><a href="#L336" name="L336">336</a><br><a href="#L337" name="L337">337</a><br><a href="#L338" name="L338">338</a><br><a href="#L339" name="L339">339</a><br><a href="#L340" name="L340">340</a><br><a href="#L341" name="L341">341</a><br><a href="#L342" name="L342">342</a><br><a href="#L343" name="L343">343</a><br><a href="#L344" name="L344">344</a><br><a href="#L345" name="L345">345</a><br><a href="#L346" name="L346">346</a><br><a href="#L347" name="L347">347</a><br><a href="#L348" name="L348">348</a><br><a href="#L349" name="L349">349</a><br><a href="#L350" name="L350">350</a><br><a href="#L351" name="L351">351</a><br><a href="#L352" name="L352">352</a><br><a href="#L353" name="L353">353</a><br><a href="#L354" name="L354">354</a><br><a href="#L355" name="L355">355</a><br><a href="#L356" name="L356">356</a><br><a href="#L357" name="L357">357</a><br><a href="#L358" name="L358">358</a><br><a href="#L359" name="L359">359</a><br><a href="#L360" name="L360">360</a><br><a href="#L361" name="L361">361</a><br><a href="#L362" name="L362">362</a><br><a href="#L363" name="L363">363</a><br><a href="#L364" name="L364">364</a><br><a href="#L365" name="L365">365</a><br><a href="#L366" name="L366">366</a><br><a href="#L367" name="L367">367</a><br><a href="#L368" name="L368">368</a><br><a href="#L369" name="L369">369</a><br><a href="#L370" name="L370">370</a><br><a href="#L371" name="L371">371</a><br><a href="#L372" name="L372">372</a><br><a href="#L373" name="L373">373</a><br><a href="#L374" name="L374">374</a><br><a href="#L375" name="L375">375</a><br><a href="#L376" name="L376">376</a><br><a href="#L377" name="L377">377</a><br><a href="#L378" name="L378">378</a><br><a href="#L379" name="L379">379</a><br><a href="#L380" name="L380">380</a><br><a href="#L381" name="L381">381</a><br><a href="#L382" name="L382">382</a><br><a href="#L383" name="L383">383</a><br><a href="#L384" name="L384">384</a><br><a href="#L385" name="L385">385</a><br><a href="#L386" name="L386">386</a><br><a href="#L387" name="L387">387</a><br><a href="#L388" name="L388">388</a><br><a href="#L389" name="L389">389</a><br><a href="#L390" name="L390">390</a><br><a href="#L391" name="L391">391</a><br><a href="#L392" name="L392">392</a><br><a href="#L393" name="L393">393</a><br><a href="#L394" name="L394">394</a><br><a href="#L395" name="L395">395</a><br><a href="#L396" name="L396">396</a><br><a href="#L397" name="L397">397</a><br><a href="#L398" name="L398">398</a><br><a href="#L399" name="L399">399</a><br><a href="#L400" name="L400">400</a><br><a href="#L401" name="L401">401</a><br><a href="#L402" name="L402">402</a><br><a href="#L403" name="L403">403</a><br><a href="#L404" name="L404">404</a><br><a href="#L405" name="L405">405</a><br><a href="#L406" name="L406">406</a><br><a href="#L407" name="L407">407</a><br><a href="#L408" name="L408">408</a><br><a href="#L409" name="L409">409</a><br><a href="#L410" name="L410">410</a><br><a href="#L411" name="L411">411</a><br><a href="#L412" name="L412">412</a><br><a href="#L413" name="L413">413</a><br><a href="#L414" name="L414">414</a><br><a href="#L415" name="L415">415</a><br><a href="#L416" name="L416">416</a><br><a href="#L417" name="L417">417</a><br><a href="#L418" name="L418">418</a><br><a href="#L419" name="L419">419</a><br><a href="#L420" name="L420">420</a><br><a href="#L421" name="L421">421</a><br><a href="#L422" name="L422">422</a><br><a href="#L423" name="L423">423</a><br><a href="#L424" name="L424">424</a><br><a href="#L425" name="L425">425</a><br><a href="#L426" name="L426">426</a><br><a href="#L427" name="L427">427</a><br><a href="#L428" name="L428">428</a><br><a href="#L429" name="L429">429</a><br><a href="#L430" name="L430">430</a><br><a href="#L431" name="L431">431</a><br><a href="#L432" name="L432">432</a><br><a href="#L433" name="L433">433</a><br><a href="#L434" name="L434">434</a><br><a href="#L435" name="L435">435</a><br><a href="#L436" name="L436">436</a><br><a href="#L437" name="L437">437</a><br><a href="#L438" name="L438">438</a><br><a href="#L439" name="L439">439</a><br><a href="#L440" name="L440">440</a><br><a href="#L441" name="L441">441</a><br><a href="#L442" name="L442">442</a><br><a href="#L443" name="L443">443</a><br><a href="#L444" name="L444">444</a><br><a href="#L445" name="L445">445</a><br><a href="#L446" name="L446">446</a><br><a href="#L447" name="L447">447</a><br><a href="#L448" name="L448">448</a><br><a href="#L449" name="L449">449</a><br><a href="#L450" name="L450">450</a><br><a href="#L451" name="L451">451</a><br><a href="#L452" name="L452">452</a><br><a href="#L453" name="L453">453</a><br><a href="#L454" name="L454">454</a><br><a href="#L455" name="L455">455</a><br><a href="#L456" name="L456">456</a><br><a href="#L457" name="L457">457</a><br><a href="#L458" name="L458">458</a><br><a href="#L459" name="L459">459</a><br><a href="#L460" name="L460">460</a><br><a href="#L461" name="L461">461</a><br><a href="#L462" name="L462">462</a><br><a href="#L463" name="L463">463</a><br><a href="#L464" name="L464">464</a><br><a href="#L465" name="L465">465</a><br><a href="#L466" name="L466">466</a><br><a href="#L467" name="L467">467</a><br><a href="#L468" name="L468">468</a><br><a href="#L469" name="L469">469</a><br><a href="#L470" name="L470">470</a><br><a href="#L471" name="L471">471</a><br><a href="#L472" name="L472">472</a><br><a href="#L473" name="L473">473</a><br><a href="#L474" name="L474">474</a><br><a href="#L475" name="L475">475</a><br><a href="#L476" name="L476">476</a><br><a href="#L477" name="L477">477</a><br><a href="#L478" name="L478">478</a><br><a href="#L479" name="L479">479</a><br><a href="#L480" name="L480">480</a><br><a href="#L481" name="L481">481</a><br><a href="#L482" name="L482">482</a><br><a href="#L483" name="L483">483</a><br><a href="#L484" name="L484">484</a><br><a href="#L485" name="L485">485</a><br><a href="#L486" name="L486">486</a><br><a href="#L487" name="L487">487</a><br><a href="#L488" name="L488">488</a><br><a href="#L489" name="L489">489</a><br><a href="#L490" name="L490">490</a><br><a href="#L491" name="L491">491</a><br><a href="#L492" name="L492">492</a><br><a href="#L493" name="L493">493</a><br><a href="#L494" name="L494">494</a><br><a href="#L495" name="L495">495</a><br><a href="#L496" name="L496">496</a><br><a href="#L497" name="L497">497</a><br><a href="#L498" name="L498">498</a><br><a href="#L499" name="L499">499</a><br><a href="#L500" name="L500">500</a><br><a href="#L501" name="L501">501</a><br><a href="#L502" name="L502">502</a><br><a href="#L503" name="L503">503</a><br><a href="#L504" name="L504">504</a><br><a href="#L505" name="L505">505</a><br><a href="#L506" name="L506">506</a><br><a href="#L507" name="L507">507</a><br><a href="#L508" name="L508">508</a><br><a href="#L509" name="L509">509</a><br><a href="#L510" name="L510">510</a><br><a href="#L511" name="L511">511</a><br><a href="#L512" name="L512">512</a><br><a href="#L513" name="L513">513</a><br><a href="#L514" name="L514">514</a><br><a href="#L515" name="L515">515</a><br><a href="#L516" name="L516">516</a><br><a href="#L517" name="L517">517</a><br><a href="#L518" name="L518">518</a><br><a href="#L519" name="L519">519</a><br><a href="#L520" name="L520">520</a><br><a href="#L521" name="L521">521</a><br><a href="#L522" name="L522">522</a><br><a href="#L523" name="L523">523</a><br><a href="#L524" name="L524">524</a><br><a href="#L525" name="L525">525</a><br><a href="#L526" name="L526">526</a><br><a href="#L527" name="L527">527</a><br><a href="#L528" name="L528">528</a><br><a href="#L529" name="L529">529</a><br><a href="#L530" name="L530">530</a><br><a href="#L531" name="L531">531</a><br><a href="#L532" name="L532">532</a><br><a href="#L533" name="L533">533</a><br><a href="#L534" name="L534">534</a><br><a href="#L535" name="L535">535</a><br><a href="#L536" name="L536">536</a><br><a href="#L537" name="L537">537</a><br><a href="#L538" name="L538">538</a><br><a href="#L539" name="L539">539</a><br><a href="#L540" name="L540">540</a><br><a href="#L541" name="L541">541</a><br><a href="#L542" name="L542">542</a><br><a href="#L543" name="L543">543</a><br><a href="#L544" name="L544">544</a><br><a href="#L545" name="L545">545</a><br><a href="#L546" name="L546">546</a><br><a href="#L547" name="L547">547</a><br><a href="#L548" name="L548">548</a><br><a href="#L549" name="L549">549</a><br><a href="#L550" name="L550">550</a><br><a href="#L551" name="L551">551</a><br><a href="#L552" name="L552">552</a><br><a href="#L553" name="L553">553</a><br><a href="#L554" name="L554">554</a><br><a href="#L555" name="L555">555</a><br><a href="#L556" name="L556">556</a><br><a href="#L557" name="L557">557</a><br><a href="#L558" name="L558">558</a><br><a href="#L559" name="L559">559</a><br><a href="#L560" name="L560">560</a><br><a href="#L561" name="L561">561</a><br><a href="#L562" name="L562">562</a><br><a href="#L563" name="L563">563</a><br><a href="#L564" name="L564">564</a><br><a href="#L565" name="L565">565</a><br><a href="#L566" name="L566">566</a><br><a href="#L567" name="L567">567</a><br><a href="#L568" name="L568">568</a><br><a href="#L569" name="L569">569</a><br><a href="#L570" name="L570">570</a><br><a href="#L571" name="L571">571</a><br><a href="#L572" name="L572">572</a><br><a href="#L573" name="L573">573</a><br><a href="#L574" name="L574">574</a><br><a href="#L575" name="L575">575</a><br><a href="#L576" name="L576">576</a><br><a href="#L577" name="L577">577</a><br><a href="#L578" name="L578">578</a><br><a href="#L579" name="L579">579</a><br><a href="#L580" name="L580">580</a><br><a href="#L581" name="L581">581</a><br><a href="#L582" name="L582">582</a><br><a href="#L583" name="L583">583</a><br><a href="#L584" name="L584">584</a><br><a href="#L585" name="L585">585</a><br><a href="#L586" name="L586">586</a><br><a href="#L587" name="L587">587</a><br><a href="#L588" name="L588">588</a><br><a href="#L589" name="L589">589</a><br><a href="#L590" name="L590">590</a><br><a href="#L591" name="L591">591</a><br><a href="#L592" name="L592">592</a><br><a href="#L593" name="L593">593</a><br><a href="#L594" name="L594">594</a><br><a href="#L595" name="L595">595</a><br><a href="#L596" name="L596">596</a><br><a href="#L597" name="L597">597</a><br><a href="#L598" name="L598">598</a><br><a href="#L599" name="L599">599</a><br><a href="#L600" name="L600">600</a><br><a href="#L601" name="L601">601</a><br><a href="#L602" name="L602">602</a><br><a href="#L603" name="L603">603</a><br><a href="#L604" name="L604">604</a><br><a href="#L605" name="L605">605</a><br><a href="#L606" name="L606">606</a><br><a href="#L607" name="L607">607</a><br><a href="#L608" name="L608">608</a><br><a href="#L609" name="L609">609</a><br><a href="#L610" name="L610">610</a><br><a href="#L611" name="L611">611</a><br><a href="#L612" name="L612">612</a><br><a href="#L613" name="L613">613</a><br><a href="#L614" name="L614">614</a><br><a href="#L615" name="L615">615</a><br><a href="#L616" name="L616">616</a><br><a href="#L617" name="L617">617</a><br><a href="#L618" name="L618">618</a><br><a href="#L619" name="L619">619</a><br><a href="#L620" name="L620">620</a><br><a href="#L621" name="L621">621</a><br><a href="#L622" name="L622">622</a><br><a href="#L623" name="L623">623</a><br><a href="#L624" name="L624">624</a><br><a href="#L625" name="L625">625</a><br><a href="#L626" name="L626">626</a><br><a href="#L627" name="L627">627</a><br><a href="#L628" name="L628">628</a><br><a href="#L629" name="L629">629</a><br><a href="#L630" name="L630">630</a><br><a href="#L631" name="L631">631</a><br><a href="#L632" name="L632">632</a><br><a href="#L633" name="L633">633</a><br><a href="#L634" name="L634">634</a><br><a href="#L635" name="L635">635</a><br><a href="#L636" name="L636">636</a><br><a href="#L637" name="L637">637</a><br><a href="#L638" name="L638">638</a><br><a href="#L639" name="L639">639</a><br><a href="#L640" name="L640">640</a><br><a href="#L641" name="L641">641</a><br><a href="#L642" name="L642">642</a><br><a href="#L643" name="L643">643</a><br><a href="#L644" name="L644">644</a><br><a href="#L645" name="L645">645</a><br><a href="#L646" name="L646">646</a><br><a href="#L647" name="L647">647</a><br><a href="#L648" name="L648">648</a><br><a href="#L649" name="L649">649</a><br><a href="#L650" name="L650">650</a><br><a href="#L651" name="L651">651</a><br><a href="#L652" name="L652">652</a><br><a href="#L653" name="L653">653</a><br><a href="#L654" name="L654">654</a><br><a href="#L655" name="L655">655</a><br><a href="#L656" name="L656">656</a><br><a href="#L657" name="L657">657</a><br><a href="#L658" name="L658">658</a><br><a href="#L659" name="L659">659</a><br><a href="#L660" name="L660">660</a><br><a href="#L661" name="L661">661</a><br><a href="#L662" name="L662">662</a><br><a href="#L663" name="L663">663</a><br><a href="#L664" name="L664">664</a><br><a href="#L665" name="L665">665</a><br><a href="#L666" name="L666">666</a><br><a href="#L667" name="L667">667</a><br><a href="#L668" name="L668">668</a><br><a href="#L669" name="L669">669</a><br><a href="#L670" name="L670">670</a><br><a href="#L671" name="L671">671</a><br><a href="#L672" name="L672">672</a><br><a href="#L673" name="L673">673</a><br><a href="#L674" name="L674">674</a><br><a href="#L675" name="L675">675</a><br><a href="#L676" name="L676">676</a><br><a href="#L677" name="L677">677</a><br><a href="#L678" name="L678">678</a><br><a href="#L679" name="L679">679</a><br><a href="#L680" name="L680">680</a><br><a href="#L681" name="L681">681</a><br><a href="#L682" name="L682">682</a><br><a href="#L683" name="L683">683</a><br><a href="#L684" name="L684">684</a><br><a href="#L685" name="L685">685</a><br><a href="#L686" name="L686">686</a><br><a href="#L687" name="L687">687</a><br><a href="#L688" name="L688">688</a><br><a href="#L689" name="L689">689</a><br><a href="#L690" name="L690">690</a><br><a href="#L691" name="L691">691</a><br><a href="#L692" name="L692">692</a><br><a href="#L693" name="L693">693</a><br><a href="#L694" name="L694">694</a><br><a href="#L695" name="L695">695</a><br><a href="#L696" name="L696">696</a><br><a href="#L697" name="L697">697</a><br><a href="#L698" name="L698">698</a><br><a href="#L699" name="L699">699</a><br><a href="#L700" name="L700">700</a><br><a href="#L701" name="L701">701</a><br><a href="#L702" name="L702">702</a><br><a href="#L703" name="L703">703</a><br><a href="#L704" name="L704">704</a><br><a href="#L705" name="L705">705</a><br><a href="#L706" name="L706">706</a><br><a href="#L707" name="L707">707</a><br><a href="#L708" name="L708">708</a><br><a href="#L709" name="L709">709</a><br><a href="#L710" name="L710">710</a><br><a href="#L711" name="L711">711</a><br><a href="#L712" name="L712">712</a><br><a href="#L713" name="L713">713</a><br><a href="#L714" name="L714">714</a><br><a href="#L715" name="L715">715</a><br><a href="#L716" name="L716">716</a><br><a href="#L717" name="L717">717</a><br><a href="#L718" name="L718">718</a><br><a href="#L719" name="L719">719</a><br><a href="#L720" name="L720">720</a><br><a href="#L721" name="L721">721</a><br><a href="#L722" name="L722">722</a><br><a href="#L723" name="L723">723</a><br><a href="#L724" name="L724">724</a><br><a href="#L725" name="L725">725</a><br><a href="#L726" name="L726">726</a><br><a href="#L727" name="L727">727</a><br><a href="#L728" name="L728">728</a><br><a href="#L729" name="L729">729</a><br><a href="#L730" name="L730">730</a><br><a href="#L731" name="L731">731</a><br><a href="#L732" name="L732">732</a><br><a href="#L733" name="L733">733</a><br><a href="#L734" name="L734">734</a><br><a href="#L735" name="L735">735</a><br><a href="#L736" name="L736">736</a><br><a href="#L737" name="L737">737</a><br><a href="#L738" name="L738">738</a><br><a href="#L739" name="L739">739</a><br><a href="#L740" name="L740">740</a><br><a href="#L741" name="L741">741</a><br><a href="#L742" name="L742">742</a><br><a href="#L743" name="L743">743</a><br><a href="#L744" name="L744">744</a><br><a href="#L745" name="L745">745</a><br><a href="#L746" name="L746">746</a><br><a href="#L747" name="L747">747</a><br><a href="#L748" name="L748">748</a><br><a href="#L749" name="L749">749</a><br><a href="#L750" name="L750">750</a><br><a href="#L751" name="L751">751</a><br><a href="#L752" name="L752">752</a><br><a href="#L753" name="L753">753</a><br><a href="#L754" name="L754">754</a><br><a href="#L755" name="L755">755</a><br><a href="#L756" name="L756">756</a><br><a href="#L757" name="L757">757</a><br><a href="#L758" name="L758">758</a><br><a href="#L759" name="L759">759</a><br><a href="#L760" name="L760">760</a><br><a href="#L761" name="L761">761</a><br><a href="#L762" name="L762">762</a><br><a href="#L763" name="L763">763</a><br><a href="#L764" name="L764">764</a><br><a href="#L765" name="L765">765</a><br><a href="#L766" name="L766">766</a><br><a href="#L767" name="L767">767</a><br><a href="#L768" name="L768">768</a><br><a href="#L769" name="L769">769</a><br><a href="#L770" name="L770">770</a><br><a href="#L771" name="L771">771</a><br><a href="#L772" name="L772">772</a><br><a href="#L773" name="L773">773</a><br><a href="#L774" name="L774">774</a><br><a href="#L775" name="L775">775</a><br><a href="#L776" name="L776">776</a><br><a href="#L777" name="L777">777</a><br><a href="#L778" name="L778">778</a><br><a href="#L779" name="L779">779</a><br><a href="#L780" name="L780">780</a><br><a href="#L781" name="L781">781</a><br><a href="#L782" name="L782">782</a><br><a href="#L783" name="L783">783</a><br><a href="#L784" name="L784">784</a><br><a href="#L785" name="L785">785</a><br><a href="#L786" name="L786">786</a><br><a href="#L787" name="L787">787</a><br><a href="#L788" name="L788">788</a><br><a href="#L789" name="L789">789</a><br><a href="#L790" name="L790">790</a><br><a href="#L791" name="L791">791</a><br><a href="#L792" name="L792">792</a><br><a href="#L793" name="L793">793</a><br><a href="#L794" name="L794">794</a><br><a href="#L795" name="L795">795</a><br><a href="#L796" name="L796">796</a><br><a href="#L797" name="L797">797</a><br><a href="#L798" name="L798">798</a><br><a href="#L799" name="L799">799</a><br><a href="#L800" name="L800">800</a><br><a href="#L801" name="L801">801</a><br><a href="#L802" name="L802">802</a><br><a href="#L803" name="L803">803</a><br><a href="#L804" name="L804">804</a><br><a href="#L805" name="L805">805</a><br><a href="#L806" name="L806">806</a><br><a href="#L807" name="L807">807</a><br><a href="#L808" name="L808">808</a><br><a href="#L809" name="L809">809</a><br><a href="#L810" name="L810">810</a><br><a href="#L811" name="L811">811</a><br><a href="#L812" name="L812">812</a><br><a href="#L813" name="L813">813</a><br><a href="#L814" name="L814">814</a><br><a href="#L815" name="L815">815</a><br><a href="#L816" name="L816">816</a><br><a href="#L817" name="L817">817</a><br><a href="#L818" name="L818">818</a><br><a href="#L819" name="L819">819</a><br><a href="#L820" name="L820">820</a><br><a href="#L821" name="L821">821</a><br><a href="#L822" name="L822">822</a><br><a href="#L823" name="L823">823</a><br><a href="#L824" name="L824">824</a><br><a href="#L825" name="L825">825</a><br><a href="#L826" name="L826">826</a><br><a href="#L827" name="L827">827</a><br><a href="#L828" name="L828">828</a><br><a href="#L829" name="L829">829</a><br><a href="#L830" name="L830">830</a><br><a href="#L831" name="L831">831</a><br><a href="#L832" name="L832">832</a><br><a href="#L833" name="L833">833</a><br><a href="#L834" name="L834">834</a><br><a href="#L835" name="L835">835</a><br><a href="#L836" name="L836">836</a><br><a href="#L837" name="L837">837</a><br><a href="#L838" name="L838">838</a><br><a href="#L839" name="L839">839</a><br><a href="#L840" name="L840">840</a><br><a href="#L841" name="L841">841</a><br><a href="#L842" name="L842">842</a><br><a href="#L843" name="L843">843</a><br><a href="#L844" name="L844">844</a><br><a href="#L845" name="L845">845</a><br><a href="#L846" name="L846">846</a><br><a href="#L847" name="L847">847</a><br><a href="#L848" name="L848">848</a><br><a href="#L849" name="L849">849</a><br><a href="#L850" name="L850">850</a><br><a href="#L851" name="L851">851</a><br><a href="#L852" name="L852">852</a><br><a href="#L853" name="L853">853</a><br><a href="#L854" name="L854">854</a><br><a href="#L855" name="L855">855</a><br><a href="#L856" name="L856">856</a><br><a href="#L857" name="L857">857</a><br><a href="#L858" name="L858">858</a><br><a href="#L859" name="L859">859</a><br><a href="#L860" name="L860">860</a><br><a href="#L861" name="L861">861</a><br><a href="#L862" name="L862">862</a><br><a href="#L863" name="L863">863</a><br><a href="#L864" name="L864">864</a><br><a href="#L865" name="L865">865</a><br><a href="#L866" name="L866">866</a><br><a href="#L867" name="L867">867</a><br><a href="#L868" name="L868">868</a><br><a href="#L869" name="L869">869</a><br><a href="#L870" name="L870">870</a><br><a href="#L871" name="L871">871</a><br><a href="#L872" name="L872">872</a><br><a href="#L873" name="L873">873</a><br><a href="#L874" name="L874">874</a><br><a href="#L875" name="L875">875</a><br><a href="#L876" name="L876">876</a><br><a href="#L877" name="L877">877</a><br><a href="#L878" name="L878">878</a><br><a href="#L879" name="L879">879</a><br><a href="#L880" name="L880">880</a><br><a href="#L881" name="L881">881</a><br><a href="#L882" name="L882">882</a><br><a href="#L883" name="L883">883</a><br><a href="#L884" name="L884">884</a><br><a href="#L885" name="L885">885</a><br><a href="#L886" name="L886">886</a><br><a href="#L887" name="L887">887</a><br><a href="#L888" name="L888">888</a><br><a href="#L889" name="L889">889</a><br><a href="#L890" name="L890">890</a><br><a href="#L891" name="L891">891</a><br><a href="#L892" name="L892">892</a><br><a href="#L893" name="L893">893</a><br><a href="#L894" name="L894">894</a><br><a href="#L895" name="L895">895</a><br><a href="#L896" name="L896">896</a><br><a href="#L897" name="L897">897</a><br><a href="#L898" name="L898">898</a><br><a href="#L899" name="L899">899</a><br><a href="#L900" name="L900">900</a><br><a href="#L901" name="L901">901</a><br><a href="#L902" name="L902">902</a><br><a href="#L903" name="L903">903</a><br><a href="#L904" name="L904">904</a><br><a href="#L905" name="L905">905</a><br><a href="#L906" name="L906">906</a><br><a href="#L907" name="L907">907</a><br><a href="#L908" name="L908">908</a><br><a href="#L909" name="L909">909</a><br><a href="#L910" name="L910">910</a><br><a href="#L911" name="L911">911</a><br><a href="#L912" name="L912">912</a><br><a href="#L913" name="L913">913</a><br><a href="#L914" name="L914">914</a><br><a href="#L915" name="L915">915</a><br><a href="#L916" name="L916">916</a><br><a href="#L917" name="L917">917</a><br><a href="#L918" name="L918">918</a><br><a href="#L919" name="L919">919</a><br><a href="#L920" name="L920">920</a><br><a href="#L921" name="L921">921</a><br><a href="#L922" name="L922">922</a><br><a href="#L923" name="L923">923</a><br><a href="#L924" name="L924">924</a><br><a href="#L925" name="L925">925</a><br><a href="#L926" name="L926">926</a><br><a href="#L927" name="L927">927</a><br><a href="#L928" name="L928">928</a><br><a href="#L929" name="L929">929</a><br><a href="#L930" name="L930">930</a><br><a href="#L931" name="L931">931</a><br><a href="#L932" name="L932">932</a><br><a href="#L933" name="L933">933</a><br><a href="#L934" name="L934">934</a><br><a href="#L935" name="L935">935</a><br><a href="#L936" name="L936">936</a><br><a href="#L937" name="L937">937</a><br></pre>
+						</div>
+					</td>
+					<td onmouseup="javascript:LogReuse();" valign="top">
+						<div id="CodeDiv">
+							<pre><span class="k">unit</span> <a class="r">filterBlobExplorer</a>;
+<span class="c">(* ***** BEGIN LICENSE BLOCK *****
+ * Copyright (C) 2004 Durand Emmanuel
+ * Copyright (C) 2004 Burgel Eric
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * Contact :
+ *   filters@edurand.com
+ *   filters@burgel.com
+ *
+ * ***** END LICENSE BLOCK ***** *)</span>
+
+<span class="c">{
+ edurand (filters@edurand.com)
+}</span>
+
+<span class="c">{
+BLOB is an acronym for : Binary Large OBject
+In image processing :
+  A connected region in a image in which all pixels have the same gray-level value
+
+Algorithm:
+ I have first imaginate this algorythm alone,
+ but one day I found this link : http://homepages.inf.ed.ac.uk/rbf/HIPR2/label.htm
+ Name : Connected Components Labeling
+ see also
+  http://crd.lbl.gov/~kewu/ps/LBNL-56864.pdf
+}</span>
+
+<span class="k">interface</span>
+<span class="k">uses</span>
+  <a class="r">filter</a>, <a class="r">fparameters</a>, <a class="r">image</a>, <a class="r">classes</a>, <a class="r">polygonalyzation</a>;
+
+<span class="k">type</span>
+
+  <a class="r">TFilterBlobExplorer</a> = <span class="k">class</span>(<a class="r">TFilter</a>)
+  <span class="k">public</span>
+    <span class="k">constructor</span> <a class="r">Create</a>; <a class="r">override</a>;
+    <span class="k">destructor</span> <a class="r">Destroy</a>; <a class="r">override</a>;
+    <span class="k">procedure</span> <a class="r">setParameterImage</a>( <span class="k">const</span> <a class="r">aName</a>: <span class="k">String</span>; <span class="k">const</span> <a class="r">aImage</a>: <a class="r">PBitmap32</a>); <a class="r">override</a> ;
+    <span class="k">procedure</span> <a class="r">Run</a>(); <a class="r">override</a>;
+  <span class="k">private</span>
+    <a class="r">parameterImageIn</a>, <a class="r">parameterImageOut</a> : <a class="r">TParameterImage</a>;
+    <a class="r">parameterImageBlobIndex</a> : <a class="r">TParameterImage</a>;
+    <a class="r">parameterIntensityBackground</a> : <a class="r">TParameterInteger</a>;
+    <a class="r">parameterIntensityPrecision</a> : <a class="r">TParameterInteger</a>;
+    <a class="r">parameterEnableBlobArea</a> : <a class="r">TParameterString</a>;
+    <a class="r">parameterBlobAreaMin</a>, <a class="r">parameterBlobAreaMax</a>  : <a class="r">TParameterInteger</a>;
+    <a class="r">parameterContour</a> : <a class="r">TParameterBoolean</a>;
+    <a class="r">parameterCriticalPoints</a> : <a class="r">TParameterBoolean</a>;
+    <a class="r">parameterContourCriticalPointsAppoximationAccuracy</a> : <a class="r">TParameterInteger</a>;
+    <a class="r">parameterApproximationMethod</a> : <a class="r">TParameterString</a>;
+    <a class="r">parameterBlobSurfaceInfo</a> : <a class="r">TParameterBoolean</a>;
+    <a class="r">parameterOutBlobs</a> : <a class="r">TParameterArrayPointers</a>;
+    <a class="r">parameterIgnoreBlobsOnImageEdges</a> : <a class="r">TParameterBoolean</a>;
+    <a class="r">parameterMonitoring</a> : <a class="r">TParameterBoolean</a>;
+    <a class="r">imageIn</a>, <a class="r">imageOut</a> : <a class="r">PBitmap32</a>;
+    <span class="c">// _imageBlobTmpColorIndex : a image buffer containing, for each pixel,
+</span>    <span class="c">//  the temporary index of the color(=the label) of the corresponding blob.
+</span>    <span class="c">//  This label may have to be merged in a next step
+</span>    <a class="r">_imageBlobTmpColorIndex</a> : <a class="r">PBitmap32</a>;
+    <span class="c">// when labels have been linked, we obtain a image containing, for each pixel,
+</span>    <span class="c">//  the real index of the corresponding blob.
+</span>    <span class="c">// This index can be used to obtain the blob in the blobs output.
+</span>    <a class="r">_imageBlobRealIndex</a> : <a class="r">PBitmap32</a>;
+    <span class="c">// _imageBlobContour : a temporary image used to track the contour of blob
+</span>    <a class="r">_imageBlobContour</a> : <a class="r">PBitmap32</a>;
+    <span class="c">// _arrayBlobLinks : used by the merge label process
+</span>    <a class="r">_arrayBlobLinks</a> : <span class="k">array</span> <span class="k">of</span> <span class="k">array</span> <span class="k">of</span> <span class="k">Integer</span>;
+    <span class="c">// _arrayBlobTmpColors : get the color RGB of a blob tmp label
+</span>    <a class="r">_arrayBlobTmpColors</a>  : <span class="k">array</span> <span class="k">of</span> <a class="r">TColor32</a>;
+    <span class="c">// _arrayBlobRealIndex : get the real label of a blob tmp label (after the merge process)
+</span>    <a class="r">_arrayBlobRealIndex</a> : <span class="k">array</span>  <span class="k">of</span> <a class="r">TColor32</a>;
+    <span class="c">// _arrayBlobRealColors : get the real color RGB of a blob tmp label (after the merge process)
+</span>    <a class="r">_arrayBlobRealColors</a> : <span class="k">array</span> <span class="k">of</span> <a class="r">TColor32</a>;
+    <a class="r">_src</a>, <a class="r">_dest</a> : <a class="r">PColor32Array</a>;
+    <a class="r">w</a>,<a class="r">h</a> :<span class="k">Integer</span>;
+    <a class="r">_blobCounter</a> : <span class="k">Integer</span>;
+    <a class="r">intensityPrecision</a> : <span class="k">Integer</span>;
+    <a class="r">intensityBackground</a> : <span class="k">Integer</span>;
+    <a class="r">pixelIsInKnowBlob</a> : <a class="r">boolean</a>;
+    <a class="r">intensityXY</a> : <span class="k">Integer</span>;
+    <a class="r">imageSrcRowmax</a>, <a class="r">imageSrcColmax</a> : <span class="k">Integer</span>;
+    <a class="r">_blobIndexWasInspected</a> : <span class="k">array</span> <span class="k">of</span> <span class="k">Char</span>;
+    <a class="r">_tblobList</a> : <span class="k">array</span> <span class="k">of</span> <a class="r">TBlob</a>;
+    <a class="r">_bloblistindexByBlobrealindex</a> : <span class="k">array</span> <span class="k">of</span> <span class="k">Integer</span>;
+    <a class="r">_appoximationAccuracy</a> : <span class="k">Single</span>;
+    <a class="r">_approximationMethod</a> : <a class="r">TApproximationMethod</a>;
+    <span class="k">procedure</span> <a class="r">_run</a>();
+    <span class="k">procedure</span> <a class="r">findBlobApproximately</a>;
+    <span class="k">procedure</span> <a class="r">mergeLinkedBlob</a>;
+    <span class="k">procedure</span> <a class="r">drawBlobs</a>;
+    <span class="k">procedure</span> <a class="r">createBlobList</a>;
+    <span class="k">function</span> <a class="r">isSameIntensity</a>(<a class="r">intensity1</a>,<a class="r">intensity2</a>:<span class="k">Integer</span>) : <a class="r">boolean</a>;
+    <span class="k">procedure</span> <a class="r">linkBlobs</a>(<a class="r">indexBlob1</a>,<a class="r">indexBlob2</a>:<span class="k">Integer</span>);
+    <span class="k">procedure</span> <a class="r">checkIfCurrentPixelIsPartOfBlobAt</a>(<a class="r">imageSrcNeighborRow</a>,<a class="r">imageSrcNeighborCol</a>:<span class="k">Integer</span>);
+    <span class="k">procedure</span> <a class="r">findRealColorOfBlob</a>(<a class="r">blobIndex</a>:<span class="k">Integer</span>; <span class="k">var</span> <a class="r">realblobColor</a>:<a class="r">TColor32</a>);
+    <span class="k">procedure</span> <a class="r">checkBlobArea</a>();
+    <span class="k">procedure</span> <a class="r">ignoreBlobsOnImageEdges</a>();
+    <span class="k">procedure</span> <a class="r">findCriticalPoints</a>();
+    <span class="k">procedure</span> <a class="r">drawCriticalPoints</a>();
+    <span class="k">procedure</span> <a class="r">createBlobContourPoints</a>(<span class="k">var</span> <a class="r">blob</a>:<a class="r">TBlob</a>;<a class="r">firstPoint</a>:<a class="r">TFPoint</a>);
+    <span class="k">function</span> <a class="r">getBlobContourNextPoint</a>(<span class="k">var</span> <a class="r">blob</a>:<a class="r">TBlob</a>; <a class="r">currentPoint</a>:<a class="r">TFPoint</a>; <a class="r">direction</a>:<span class="k">Byte</span>) : <a class="r">TFPoint</a>;
+    <span class="k">procedure</span> <a class="r">calculImageBlobRealIndex</a>();
+    <span class="k">procedure</span> <a class="r">calculBlobSurfaceInfo</a>();
+  <span class="k">end</span>;
+
+<span class="k">implementation</span>
+<span class="k">uses</span>
+  <a class="r">imageIO</a>, <a class="r">SysUtils</a>, <a class="r">Math</a>;
+
+<span class="k">constructor</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">Create</a>;
+<span class="k">begin</span>
+  <span class="k">inherited</span>;
+  <a class="r">parameterImageIn</a> := <a class="r">addParameterImage</a>(<span class="str">'inImage'</span>, <span class="str">'input image'</span>);
+  <a class="r">parameterImageOut</a> := <a class="r">addParameterImage</a>(<span class="str">'outImage'</span>, <span class="str">'result image with blobs'</span>);
+  <a class="r">parameterImageBlobIndex</a> := <a class="r">addOutputParameterImage</a>(<span class="str">'imageBlobIndex'</span>, <span class="str">'result image with blobs index'</span>);
+  <a class="r">parameterIntensityBackground</a> := <a class="r">addParameterInteger</a>(<span class="str">'intensityBackground'</span>,<span class="str">''</span>,0,255,200);
+  <a class="r">parameterIntensityPrecision</a> := <a class="r">addParameterInteger</a>(<span class="str">'intensityPrecision'</span>,<span class="str">'pixel of intensity+-intensityPrecision are of the same blob'</span>,1,255,40);
+  <a class="r">parameterEnableBlobArea</a> := <a class="r">addParameterString</a>(<span class="str">'enableBlobArea'</span>,<span class="str">'TRUE/FALSE'</span>,<span class="str">'TRUE'</span>);
+  <a class="r">parameterBlobAreaMin</a> := <a class="r">addParameterInteger</a>(<span class="str">'blobAreaMin'</span>,<span class="str">'explication...'</span>,0,999999,0);
+  <a class="r">parameterBlobAreaMax</a> := <a class="r">addParameterInteger</a>(<span class="str">'blobAreaMax'</span>,<span class="str">'explication...'</span>,0,999999,999999);
+  <a class="r">parameterContour</a> := <a class="r">addParameterBoolean</a>(<span class="str">'contour'</span>,<span class="str">'show only blobs contours'</span>,<a class="r">False</a>);
+  <a class="r">parameterCriticalPoints</a> := <a class="r">addParameterBoolean</a>(<span class="str">'criticalPoints'</span>,<span class="str">'find contours critical points and rectangle container'</span>,<a class="r">False</a>);
+  <a class="r">parameterContourCriticalPointsAppoximationAccuracy</a> := <a class="r">addParameterInteger</a>(<span class="str">'contourCriticalPointsAppoximationAccuracy'</span>,<span class="str">''</span>,0,20,1);
+  <a class="r">parameterApproximationMethod</a> := <a class="r">addParameterString</a>(<span class="str">'approximationMethod'</span>,<span class="str">'Douglas-Peucker/Sklansky-Gonzalez'</span>,<span class="str">'Douglas-Peucker'</span>);
+  <a class="r">parameterBlobSurfaceInfo</a> := <a class="r">addParameterBoolean</a>(<span class="str">'blobSurfaceInfo'</span>,<span class="str">'calcul blob rectangle container, blob area, gravity center'</span>,<a class="r">true</a>);
+  <a class="r">parameterOutBlobs</a> := <a class="r">addOutputParameterArrayPointers</a>(<span class="str">'blobs'</span>,<span class="str">'array of pointers on TBlob object'</span>);
+  <a class="r">parameterIgnoreBlobsOnImageEdges</a> := <a class="r">addParameterBoolean</a>( <span class="str">'ignoreBlobsOnImageEdges'</span>, <span class="str">'set TRUE to ignore blobs on input image edges'</span> , <a class="r">False</a> );
+  <a class="r">parameterMonitoring</a> := <a class="r">addParameterBoolean</a>(<span class="str">'monitoring'</span>,<span class="str">'monitoring'</span>,<a class="r">True</a>);
+  <a class="r">SetLength</a>(<a class="r">_tblobList</a>,0);
+<span class="k">end</span>;
+
+<span class="k">destructor</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">Destroy</a>;
+<span class="k">begin</span>
+  <span class="k">inherited</span>;
+  <a class="r">image</a>.<a class="r">freeImage</a>(<a class="r">_imageBlobRealIndex</a>);
+  <a class="r">image</a>.<a class="r">freeImage</a>(<a class="r">_imageBlobTmpColorIndex</a>);
+  <a class="r">image</a>.<a class="r">freeImage</a>(<a class="r">_imageBlobContour</a>);
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">setParameterImage</a>( <span class="k">const</span> <a class="r">aName</a>: <span class="k">String</span>; <span class="k">const</span> <a class="r">aImage</a>: <a class="r">PBitmap32</a>);
+<span class="k">begin</span>
+  <span class="k">if</span> <a class="r">aName</a>=<span class="str">'outImage'</span> <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">_imageBlobTmpColorIndex</a>:=<a class="r">image</a>.<a class="r">eraseOrCreateImageLike</a>(<a class="r">_imageBlobTmpColorIndex</a>,<a class="r">aImage</a>);
+    <a class="r">_imageBlobContour</a>:=<a class="r">image</a>.<a class="r">eraseOrCreateImageLike</a>(<a class="r">_imageBlobContour</a>,<a class="r">aImage</a>);
+    <a class="r">_imageBlobRealIndex</a>:=<a class="r">image</a>.<a class="r">eraseOrCreateImageLike</a>(<a class="r">_imageBlobRealIndex</a>,<a class="r">aImage</a>);
+  <span class="k">end</span>;
+  <span class="k">inherited</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">Run</a>();
+<span class="k">begin</span>
+  <a class="r">imageIn</a>:=<a class="r">parameterImageIn</a>.<a class="r">Image</a>;
+  <a class="r">imageOut</a>:=<a class="r">parameterImageOut</a>.<a class="r">Image</a>;
+  <span class="k">if</span> (<a class="r">imageIn</a>&lt;&gt;<span class="k">nil</span>) <span class="k">and</span> (<a class="r">imageOut</a>&lt;&gt;<span class="k">nil</span>) <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">_run</a>();
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">_run</a>();
+<span class="k">var</span>
+  <a class="r">i</a> : <span class="k">Integer</span>;
+  <a class="r">pointersOnBlobs</a> : <span class="k">array</span> <span class="k">of</span> <span class="k">Pointer</span>;
+<span class="k">begin</span>
+  <span class="c">// initialisation
+</span>  <a class="r">_src</a>:=<a class="r">imageIn</a>.<a class="r">Bits</a>;
+  <a class="r">h</a>:=<a class="r">imageIn</a>.<a class="r">Height</a>;
+  <a class="r">w</a>:=<a class="r">imageIn</a>.<a class="r">Width</a>;
+  <a class="r">eraseImage</a>(<a class="r">imageOut</a>);
+  <a class="r">intensityPrecision</a>:=<a class="r">parameterIntensityPrecision</a>.<a class="r">Value</a>;
+  <a class="r">intensityBackground</a>:=<a class="r">parameterIntensityBackground</a>.<a class="r">Value</a>;
+  <a class="r">SetLength</a>(<a class="r">_arrayBlobTmpColors</a>,1);
+  <a class="r">_arrayBlobTmpColors</a>[0]:=<a class="r">clBlack32</a>;
+  <span class="k">for</span> <a class="r">i</a>:=<a class="r">Low</a>(<a class="r">_arrayBlobLinks</a>) <span class="k">to</span> <a class="r">High</a>(<a class="r">_arrayBlobLinks</a>) <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">SetLength</a>(<a class="r">_arrayBlobLinks</a>[<a class="r">i</a>],0);
+  <span class="k">end</span>;
+  <a class="r">SetLength</a>(<a class="r">_arrayBlobLinks</a>,1);
+  <a class="r">SetLength</a>(<a class="r">_arrayBlobLinks</a>[0],0);
+  <span class="k">for</span> <a class="r">i</a>:=<a class="r">Low</a>(<a class="r">_arrayBlobRealColors</a>) <span class="k">to</span> <a class="r">High</a>(<a class="r">_arrayBlobRealColors</a>) <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">_arrayBlobRealColors</a>[<a class="r">i</a>]:=0;
+  <span class="k">end</span>;
+  <a class="r">image</a>.<a class="r">resetNextColor</a>();
+  <a class="r">SetLength</a>(<a class="r">_blobIndexWasInspected</a>,0);
+
+  <span class="c">// we start by searching blob with a fast, but approximate, method.
+</span>  <a class="r">_blobCounter</a>:=0;
+  <a class="r">findBlobApproximately</a>();
+
+  <span class="c">// now we merge blob who are one to the other
+</span>  <a class="r">mergeLinkedBlob</a>;
+
+  <span class="c">// check blob area
+</span>  <span class="k">if</span> <a class="r">parameterEnableBlobArea</a>.<a class="r">Value</a>=<span class="str">'TRUE'</span> <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">checkBlobArea</a>();
+  <span class="k">end</span>;
+
+  <span class="c">// IgnoreBlobsOnImageEdges
+</span>  <span class="k">if</span> <a class="r">parameterIgnoreBlobsOnImageEdges</a>.<a class="r">Value</a> = <a class="r">True</a> <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">ignoreBlobsOnImageEdges</a>();
+  <span class="k">end</span>;
+
+  <span class="c">//  since we have done all the last process with indexed color,
+</span>  <span class="c">//   now we must set the real color of blobs
+</span>  <a class="r">drawBlobs</a>();
+
+  <span class="c">// create blob list
+</span>  <a class="r">createBlobList</a>();
+
+  <span class="c">// calcul the image containing index of blobs
+</span>  <a class="r">calculImageBlobRealIndex</a>();
+  <a class="r">setOutputParameterImage</a>( <span class="str">'imageBlobIndex'</span>, <a class="r">_imageBlobRealIndex</a> );
+
+  <span class="c">// criticalPoints
+</span>  <span class="k">if</span> <a class="r">parameterCriticalPoints</a>.<a class="r">Value</a>=<a class="r">True</a> <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">_appoximationAccuracy</a>:=<a class="r">parameterContourCriticalPointsAppoximationAccuracy</a>.<a class="r">Value</a>/10;
+    <a class="r">_approximationMethod</a>:=<a class="r">amDouglasPeucker</a>;
+    <span class="k">if</span> <a class="r">parameterApproximationMethod</a>.<a class="r">Value</a>=<span class="str">'Sklansky-Gonzalez'</span> <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">_approximationMethod</a>:=<a class="r">amSklanskyGonzalez</a>;
+    <span class="k">end</span>;
+    <a class="r">findCriticalPoints</a>();
+    <span class="k">if</span> <a class="r">parameterMonitoring</a>.<a class="r">Value</a>=<a class="r">true</a> <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">drawCriticalPoints</a>();
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+
+  <span class="c">// blob surface info
+</span>  <span class="k">if</span> <a class="r">parameterBlobSurfaceInfo</a>.<a class="r">Value</a>=<a class="r">True</a> <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">calculBlobSurfaceInfo</a>();
+  <span class="k">end</span>;
+
+  <span class="c">// set output 'blobs'
+</span>  <a class="r">SetLength</a>(<a class="r">pointersOnBlobs</a>,<a class="r">Length</a>(<a class="r">_tblobList</a>));
+  <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_tblobList</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">pointersOnBlobs</a>[<a class="r">i</a>]:=@<a class="r">_tblobList</a>[<a class="r">i</a>];
+  <span class="k">end</span>;
+  <a class="r">setOutputParameterArrayPointers</a>(<span class="str">'blobs'</span>,<a class="r">pointersOnBlobs</a>);
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">findBlobApproximately</a>();
+<span class="k">var</span>
+  <a class="r">imageSrcRow</a>, <a class="r">imageSrcCol</a> : <span class="k">Integer</span>;
+  <a class="r">pSrcCurrentPixel</a> : <a class="r">PColor32Array</a>;
+<span class="k">begin</span>
+  <a class="r">eraseImage</a>(<a class="r">_imageBlobTmpColorIndex</a>);
+  <a class="r">pSrcCurrentPixel</a>:=<a class="r">imageIn</a>.<a class="r">Bits</a>;
+  <a class="r">imageSrcRowmax</a>:=<a class="r">h</a>-1;
+  <a class="r">imageSrcColmax</a>:=<a class="r">w</a>-1;
+  <span class="k">for</span> <a class="r">imageSrcRow</a>:=0 <span class="k">to</span> <a class="r">imageSrcRowmax</a> <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">_dest</a>:=<a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+    <a class="r">Inc</a>(<a class="r">_dest</a>,<a class="r">imageSrcRow</a>*<a class="r">w</a>);
+    <span class="k">for</span> <a class="r">imageSrcCol</a>:=0 <span class="k">to</span> <a class="r">imageSrcColmax</a> <span class="k">do</span> <span class="k">begin</span>
+      <span class="c">// get intensity of the current pixel, at x,y
+</span>      <a class="r">intensityXY</a> := <a class="r">image</a>.<a class="r">Intensity</a>( <a class="r">pSrcCurrentPixel</a>^[0] );
+      <span class="c">// set blob info by looking its neighbor
+</span>      <span class="k">if</span> <a class="r">intensityXY</a>&lt;<a class="r">intensityBackground</a> <span class="k">then</span> <span class="k">begin</span>
+        <span class="c">// for black pixel, we set blob color to black
+</span>        <span class="c">// block color = index 0 of blobColors
+</span>        <a class="r">_dest</a>^[0]:=0;
+      <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+        <a class="r">pixelIsInKnowBlob</a>:=<a class="r">False</a>;
+        <a class="r">checkIfCurrentPixelIsPartOfBlobAt</a>(<a class="r">imageSrcRow</a>-1,<a class="r">imageSrcCol</a>);
+        <a class="r">checkIfCurrentPixelIsPartOfBlobAt</a>(<a class="r">imageSrcRow</a>-1,<a class="r">imageSrcCol</a>-1);
+        <a class="r">checkIfCurrentPixelIsPartOfBlobAt</a>(<a class="r">imageSrcRow</a>,<a class="r">imageSrcCol</a>-1);
+        <a class="r">checkIfCurrentPixelIsPartOfBlobAt</a>(<a class="r">imageSrcRow</a>-1,<a class="r">imageSrcCol</a>+1);
+        <span class="c">// if the current pixel is the first pixel of a blob
+</span>        <span class="k">if</span> <a class="r">pixelIsInKnowBlob</a>=<a class="r">False</a> <span class="k">then</span> <span class="k">begin</span>
+          <a class="r">Inc</a>(<a class="r">_blobCounter</a>);
+          <a class="r">SetLength</a>(<a class="r">_arrayBlobTmpColors</a>,1+<a class="r">_blobCounter</a>);
+          <a class="r">SetLength</a>(<a class="r">_arrayBlobLinks</a>,1+<a class="r">_blobCounter</a>);
+          <a class="r">SetLength</a>(<a class="r">_arrayBlobLinks</a>[<a class="r">_blobCounter</a>],0);
+          <a class="r">_dest</a>^[0]:=<a class="r">_blobCounter</a>;
+          <a class="r">_arrayBlobTmpColors</a>[<a class="r">_blobCounter</a>]:=<a class="r">image</a>.<a class="r">getNextColor</a>();
+          <span class="k">if</span> <a class="r">_blobCounter</a>&gt;20000 <span class="k">then</span> <a class="r">exit</a>;
+        <span class="k">end</span>;
+      <span class="k">end</span>;
+      <a class="r">Inc</a>(<a class="r">pSrcCurrentPixel</a>);
+      <a class="r">Inc</a>(<a class="r">_dest</a>);
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">checkIfCurrentPixelIsPartOfBlobAt</a>(<a class="r">imageSrcNeighborRow</a>,<a class="r">imageSrcNeighborCol</a>:<span class="k">Integer</span>);
+<span class="k">var</span>
+  <a class="r">intensityNeighbor</a> : <span class="k">Integer</span>;
+  <a class="r">outputColorNeighbor</a> : <a class="r">TColor32</a>;
+<span class="k">begin</span>
+  <span class="k">if</span> (<a class="r">imageSrcNeighborRow</a>&gt;=0) <span class="k">and</span> (<a class="r">imageSrcNeighborCol</a>&gt;=0)
+  <span class="k">and</span> (<a class="r">imageSrcNeighborCol</a>&lt;=<a class="r">imageSrcColmax</a>)
+  <span class="k">and</span> (<a class="r">imageSrcNeighborRow</a>&lt;=<a class="r">imageSrcRowmax</a>) <span class="k">then</span> <span class="k">begin</span>
+    <span class="c">// we check if the intensity of the neighbor (in imageIn)
+</span>    <span class="c">// and the current pixel (in imageIn too) is equal
+</span>    <a class="r">intensityNeighbor</a> := <a class="r">image</a>.<a class="r">Intensity</a>( <a class="r">_src</a>[<a class="r">imageSrcNeighborRow</a>*<a class="r">w</a>+<a class="r">imageSrcNeighborCol</a>] );
+    <span class="k">if</span> <a class="r">isSameIntensity</a>(<a class="r">intensityNeighbor</a>,<a class="r">intensityXY</a>)=<a class="r">True</a> <span class="k">then</span> <span class="k">begin</span>
+      <span class="c">// we get the neighbor blob color (in _imageBlobTmpColorIndex)
+</span>      <a class="r">outputColorNeighbor</a>:=<a class="r">image</a>.<a class="r">getPixel</a>(<a class="r">_imageBlobTmpColorIndex</a>,<a class="r">imageSrcNeighborCol</a>,<a class="r">imageSrcNeighborRow</a>);
+      <span class="c">// then the current pixel is part of the same blob than the neighbor
+</span>      <span class="c">// if it's the first neighbor to be equal to the current pixel
+</span>      <span class="k">if</span> <a class="r">pixelIsInKnowBlob</a>=<a class="r">False</a> <span class="k">then</span> <span class="k">begin</span>
+        <a class="r">_dest</a>^[0]:=<a class="r">outputColorNeighbor</a>;
+        <a class="r">pixelIsInKnowBlob</a>:=<a class="r">True</a>;
+      <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+      <span class="c">// if itsn't the first blob neighbor to be equal to the current pixel
+</span>        <span class="c">// if itsn't the same outputColorNeighbor/blob
+</span>        <span class="k">if</span> <a class="r">_dest</a>^[0]&lt;&gt;<a class="r">outputColorNeighbor</a> <span class="k">then</span> <span class="k">begin</span>
+          <span class="c">// then we must save the color conversion,
+</span>          <span class="c">// because in fact its the same blob,
+</span>          <span class="c">// and we will convert it at the end
+</span>          <a class="r">linkBlobs</a>(<a class="r">_dest</a>^[0],<a class="r">outputColorNeighbor</a>);
+          <a class="r">linkBlobs</a>(<a class="r">outputColorNeighbor</a>,<a class="r">_dest</a>^[0]);
+        <span class="k">end</span>;
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">function</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">isSameIntensity</a>(<a class="r">intensity1</a>,<a class="r">intensity2</a>:<span class="k">Integer</span>) : <a class="r">boolean</a>;
+<span class="k">var</span>
+  <a class="r">diffIntensity</a> : <span class="k">Integer</span>;
+<span class="k">begin</span>
+  <a class="r">Result</a>:=<a class="r">False</a>;
+  <span class="k">if</span> (<a class="r">intensity1</a>&gt;=<a class="r">intensityBackground</a>) <span class="k">and</span> (<a class="r">intensity2</a>&gt;=<a class="r">intensityBackground</a>) <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">diffIntensity</a>:=<a class="r">Abs</a>(<a class="r">intensity1</a>-<a class="r">intensity2</a>);
+    <span class="k">if</span> <a class="r">diffIntensity</a>&lt;=<a class="r">intensityPrecision</a> <span class="k">then</span> <a class="r">Result</a>:=<a class="r">True</a>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">linkBlobs</a>(<a class="r">indexBlob1</a>,<a class="r">indexBlob2</a>:<span class="k">Integer</span>);
+<span class="k">var</span>
+  <a class="r">blobsLinkedLength</a> : <span class="k">Integer</span>;
+  <a class="r">i</a> : <span class="k">Integer</span>;
+  <a class="r">alreadyLinked</a> : <a class="r">boolean</a>;
+<span class="k">begin</span>
+  <a class="r">alreadyLinked</a>:=<a class="r">False</a>;
+  <a class="r">blobsLinkedLength</a>:=<a class="r">Length</a>(<a class="r">_arrayBlobLinks</a>[<a class="r">indexBlob1</a>]);
+  <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">blobsLinkedLength</a>-1 <span class="k">do</span> <span class="k">begin</span>
+    <span class="k">if</span> <a class="r">_arrayBlobLinks</a>[<a class="r">indexBlob1</a>][<a class="r">i</a>]=<a class="r">indexBlob2</a> <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">alreadyLinked</a>:=<a class="r">True</a>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+  <span class="k">if</span> <a class="r">alreadyLinked</a>=<a class="r">False</a> <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">Inc</a>(<a class="r">blobsLinkedLength</a>);
+    <a class="r">SetLength</a>(<a class="r">_arrayBlobLinks</a>[<a class="r">indexBlob1</a>],<a class="r">blobsLinkedLength</a>);
+    <a class="r">_arrayBlobLinks</a>[<a class="r">indexBlob1</a>][<a class="r">blobsLinkedLength</a>-1]:=<a class="r">indexBlob2</a>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">mergeLinkedBlob</a>();
+<span class="k">var</span>
+  <a class="r">blobsLinkedLength</a> : <span class="k">Integer</span>;
+  <a class="r">blobIndex</a>, <a class="r">blobIndex2</a>, <a class="r">blobIndexMax</a>, <a class="r">i</a>, <a class="r">linkedBlobIndex</a> : <span class="k">Integer</span>;
+  <a class="r">realblobColor</a> : <a class="r">TColor32</a>;
+<span class="k">begin</span>
+  <a class="r">SetLength</a>(<a class="r">_arrayBlobRealColors</a>,<a class="r">Length</a>(<a class="r">_arrayBlobTmpColors</a>));
+  <a class="r">SetLength</a>(<a class="r">_arrayBlobRealIndex</a>,<a class="r">Length</a>(<a class="r">_arrayBlobTmpColors</a>));
+  <a class="r">blobIndexMax</a>:=<a class="r">Length</a>(<a class="r">_arrayBlobTmpColors</a>)-1;
+  <span class="k">if</span> <a class="r">_blobCounter</a>&lt;20000 <span class="k">then</span> <span class="k">begin</span>
+    <span class="c">// for each blob real color
+</span>    <span class="k">for</span> <a class="r">blobIndex</a>:=1 <span class="k">to</span> <a class="r">blobIndexMax</a> <span class="k">do</span> <span class="k">begin</span>
+      <span class="c">// if real color isn't already set
+</span>      <span class="k">if</span> <a class="r">_arrayBlobRealColors</a>[<a class="r">blobIndex</a>]=0 <span class="k">then</span> <span class="k">begin</span>
+        <span class="c">// try to find if a linked blob real color is already set
+</span>        <a class="r">SetLength</a>(<a class="r">_blobIndexWasInspected</a>,0);
+        <a class="r">SetLength</a>(<a class="r">_blobIndexWasInspected</a>,<a class="r">Length</a>(<a class="r">_arrayBlobTmpColors</a>));
+        <a class="r">findRealColorOfBlob</a>(<a class="r">blobIndex</a>, <a class="r">realblobColor</a>);
+        <span class="c">// if no linked blob real color is set
+</span>        <span class="k">if</span> <a class="r">realblobColor</a>=0 <span class="k">then</span> <span class="k">begin</span>
+          <span class="c">// then we use the blob real color
+</span>          <a class="r">realblobColor</a>:=<a class="r">_arrayBlobTmpColors</a>[<a class="r">blobIndex</a>];
+        <span class="k">end</span>;
+        <a class="r">_arrayBlobRealColors</a>[<a class="r">blobIndex</a>]:=<a class="r">realblobColor</a>;
+      <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+      <span class="c">// if real color is already set, we get it
+</span>        <a class="r">realblobColor</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">blobIndex</a>];
+      <span class="k">end</span>;
+      <span class="c">// we set linked blob real color to this blob real color
+</span>      <a class="r">blobsLinkedLength</a>:=<a class="r">Length</a>(<a class="r">_arrayBlobLinks</a>[<a class="r">blobIndex</a>]);
+      <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">blobsLinkedLength</a>-1 <span class="k">do</span> <span class="k">begin</span>
+        <a class="r">linkedBlobIndex</a>:=<a class="r">_arrayBlobLinks</a>[<a class="r">blobIndex</a>][<a class="r">i</a>];
+        <a class="r">_arrayBlobRealColors</a>[<a class="r">linkedBlobIndex</a>]:=<a class="r">realblobColor</a>;
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+  <span class="c">// if there are too many blob, then we can't do this processing
+</span>    <span class="k">for</span> <a class="r">blobIndex</a>:=1 <span class="k">to</span> <a class="r">blobIndexMax</a> <span class="k">do</span> <span class="k">begin</span>
+      <a class="r">_arrayBlobRealColors</a>[<a class="r">blobIndex</a>]:=<a class="r">_arrayBlobTmpColors</a>[<a class="r">blobIndex</a>];
+      <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobIndex</a>]:=<a class="r">blobIndex</a>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+  <span class="c">// calculate real blob index
+</span>  <span class="k">for</span> <a class="r">blobIndex</a>:=1 <span class="k">to</span> <a class="r">blobIndexMax</a> <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobIndex</a>]:=0;
+    <a class="r">realblobColor</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">blobIndex</a>];
+    <span class="k">for</span> <a class="r">blobIndex2</a>:=1 <span class="k">to</span> <a class="r">blobIndexMax</a> <span class="k">do</span> <span class="k">begin</span>
+      <span class="k">if</span> <a class="r">_arrayBlobRealColors</a>[<a class="r">blobIndex2</a>]=<a class="r">realblobColor</a> <span class="k">then</span> <span class="k">begin</span>
+        <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobIndex2</a>]:=<a class="r">blobIndex</a>;        
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">findRealColorOfBlob</a>(<a class="r">blobIndex</a>:<span class="k">Integer</span>; <span class="k">var</span> <a class="r">realblobColor</a>:<a class="r">TColor32</a>);
+<span class="k">var</span>
+  <a class="r">blobsLinkedLength</a> : <span class="k">Integer</span>;
+  <a class="r">i</a>, <a class="r">linkedBlobIndex</a> : <span class="k">Integer</span>;
+<span class="k">begin</span>
+  <a class="r">realblobColor</a>:=0;
+  <a class="r">blobsLinkedLength</a>:=<a class="r">Length</a>(<a class="r">_arrayBlobLinks</a>[<a class="r">blobIndex</a>]);
+  <a class="r">i</a>:=0;
+  <span class="k">while</span> (<a class="r">i</a>&lt;<a class="r">blobsLinkedLength</a>) <span class="k">and</span> (<a class="r">realblobColor</a>=0) <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">linkedBlobIndex</a>:=<a class="r">_arrayBlobLinks</a>[<a class="r">blobIndex</a>][<a class="r">i</a>];
+    <a class="r">realblobColor</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">linkedBlobIndex</a>];
+    <a class="r">Inc</a>(<a class="r">i</a>);
+  <span class="k">end</span>;
+  <a class="r">_blobIndexWasInspected</a>[<a class="r">blobIndex</a>]:=<span class="k">Char</span>(1);
+  <span class="k">if</span> <a class="r">realblobColor</a>=0 <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">i</a>:=0;
+    <span class="k">while</span> (<a class="r">i</a>&lt;<a class="r">blobsLinkedLength</a>) <span class="k">and</span> (<a class="r">realblobColor</a>=0) <span class="k">do</span> <span class="k">begin</span>
+      <a class="r">linkedBlobIndex</a>:=<a class="r">_arrayBlobLinks</a>[<a class="r">blobIndex</a>][<a class="r">i</a>];
+      <span class="k">if</span> <a class="r">_blobIndexWasInspected</a>[<a class="r">linkedBlobIndex</a>]=<span class="k">Char</span>(0) <span class="k">then</span> <span class="k">begin</span>
+        <a class="r">findRealColorOfBlob</a>(<a class="r">linkedBlobIndex</a>, <a class="r">realblobColor</a>);
+      <span class="k">end</span>;
+      <a class="r">Inc</a>(<a class="r">i</a>);
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">checkBlobArea</a>();
+<span class="k">var</span>
+  <a class="r">p</a>, <a class="r">max</a> : <span class="k">Cardinal</span>;
+  <a class="r">_dest</a> : <a class="r">PColor32Array</a>;
+  <a class="r">blobColorIndex</a> : <a class="r">TColor32</a>;
+  <a class="r">blobPixelCounter</a> : <span class="k">array</span> <span class="k">of</span> <a class="r">TColor32</a>;
+  <a class="r">areaMin</a>, <a class="r">areaMax</a> : <span class="k">Integer</span>;
+  <a class="r">i</a>, <a class="r">iMax</a> : <span class="k">Integer</span>;
+  <a class="r">j</a>, <a class="r">jMax</a> : <span class="k">Integer</span>;
+  <a class="r">blobRealIndex</a> : <span class="k">Integer</span>;
+  <a class="r">area</a> : <span class="k">Integer</span>;
+<span class="k">begin</span>
+  <a class="r">SetLength</a>(<a class="r">blobPixelCounter</a>,<a class="r">Length</a>(<a class="r">_arrayBlobTmpColors</a>));
+  <a class="r">areaMin</a>:=<a class="r">parameterBlobAreaMin</a>.<a class="r">Value</a>;
+  <a class="r">areaMax</a>:=<a class="r">parameterBlobAreaMax</a>.<a class="r">Value</a>;
+  <a class="r">iMax</a>:=<a class="r">Length</a>(<a class="r">blobPixelCounter</a>)-1;
+  <a class="r">jMax</a>:=<a class="r">iMax</a>;
+  <span class="c">// first, we calculate the number of pixel (=area) of each blob
+</span>  <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">iMax</a> <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">blobPixelCounter</a>[<a class="r">i</a>]:=0;
+  <span class="k">end</span>;
+  <span class="c">//   for each pixel in the image containing the blob tmp color index
+</span>  <a class="r">max</a>:=<a class="r">imageIn</a>.<a class="r">Height</a>*<a class="r">imageIn</a>.<a class="r">Width</a>-1;
+  <a class="r">_dest</a>:=<a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+  <span class="k">for</span> <a class="r">p</a>:=0 <span class="k">to</span> <a class="r">max</a> <span class="k">do</span> <a class="r">Begin</a>
+    <a class="r">blobColorIndex</a>:=<a class="r">_dest</a>^[0];
+    <span class="c">// we retrieve the blob real index
+</span>    <a class="r">blobRealIndex</a>:=<a class="r">_arrayBlobRealIndex</a>[<a class="r">blobColorIndex</a>];
+    <span class="c">// and then increment it's calculated area
+</span>    <a class="r">Inc</a>(<a class="r">blobPixelCounter</a>[<a class="r">blobRealIndex</a>]);
+    <a class="r">Inc</a>(<a class="r">_dest</a>);
+  <span class="k">end</span>;
+  <span class="c">// second, we check if the calculated area is in the range areaMin-&gt;areaMax
+</span>  <span class="k">for</span> <a class="r">i</a>:=1 <span class="k">to</span> <a class="r">iMax</a> <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">area</a>:=<a class="r">blobPixelCounter</a>[<a class="r">i</a>];
+    <span class="c">// if outside the limit
+</span>    <span class="k">if</span> (<a class="r">area</a>&lt;&gt;0) <span class="k">then</span> <span class="k">begin</span>
+      <span class="k">if</span> (<a class="r">area</a>&lt;<a class="r">areaMin</a>) <span class="k">or</span> (<a class="r">area</a>&gt;<a class="r">areaMax</a>) <span class="k">then</span> <span class="k">begin</span>
+        <span class="c">// remove it
+</span>        <span class="k">for</span> <a class="r">j</a>:=1 <span class="k">to</span> <a class="r">jMax</a> <span class="k">do</span> <span class="k">begin</span>
+          <span class="k">if</span> <a class="r">_arrayBlobRealIndex</a>[<a class="r">i</a>]=<a class="r">_arrayBlobRealIndex</a>[<a class="r">j</a>] <span class="k">then</span> <span class="k">begin</span>
+            <a class="r">_arrayBlobRealColors</a>[<a class="r">j</a>]:=0;
+          <span class="k">end</span>;
+        <span class="k">end</span>;
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">ignoreBlobsOnImageEdges</a>();
+<span class="k">var</span>
+  <a class="r">max</a> : <span class="k">Cardinal</span>;
+  <a class="r">destLineTop</a>, <a class="r">destLineBottom</a> : <a class="r">PColor32Array</a>;
+  <a class="r">destColLeft</a>, <a class="r">destColRight</a> : <a class="r">PColor32Array</a>;
+  <a class="r">blobColorIndex</a> : <a class="r">TColor32</a>;
+  <a class="r">blobToIgnore</a> : <span class="k">array</span> <span class="k">of</span> <a class="r">boolean</a>;
+  <a class="r">i</a>, <a class="r">iMax</a> : <span class="k">Integer</span>;
+  <a class="r">j</a>, <a class="r">jMax</a> : <span class="k">Integer</span>;
+  <a class="r">blobRealIndex</a> : <span class="k">Integer</span>;
+  <a class="r">x</a> : <span class="k">Integer</span>;
+  <a class="r">ignore</a> : <span class="k">Boolean</span>;
+<span class="k">begin</span>
+  <a class="r">SetLength</a>( <a class="r">blobToIgnore</a>, <a class="r">Length</a>(<a class="r">_arrayBlobTmpColors</a>) );
+  <a class="r">iMax</a> := <a class="r">Length</a>(<a class="r">blobToIgnore</a>)-1;
+  <a class="r">jMax</a> := <a class="r">iMax</a>;
+  <span class="c">// first, we search blob to ignore
+</span>  <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">iMax</a> <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">blobToIgnore</a>[<a class="r">i</a>] := <a class="r">False</a>;
+  <span class="k">end</span>;
+  <span class="c">//   for each pixel on the edge of the image containing the blob tmp color index
+</span>  <a class="r">max</a> := <a class="r">imageIn</a>.<a class="r">Width</a>-1;
+  <a class="r">destLineTop</a> := <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+  <a class="r">destLineBottom</a> := <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+  <a class="r">Inc</a>(<a class="r">destLineBottom</a>, ((<a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Height</a>)-1)*<a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Width</a>);
+  <span class="k">for</span> <a class="r">x</a>:=0 <span class="k">to</span> <a class="r">max</a> <span class="k">do</span> <span class="k">begin</span>
+    <span class="c">// destLineTop
+</span>      <a class="r">blobColorIndex</a> := <a class="r">destLineTop</a>^[0];
+      <span class="c">// we retrieve the blob real index
+</span>      <a class="r">blobRealIndex</a> := <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobColorIndex</a>];
+      <span class="c">// and then we set to ignore it
+</span>      <a class="r">blobToIgnore</a>[<a class="r">blobRealIndex</a>] := <a class="r">True</a>;
+      <a class="r">Inc</a>( <a class="r">destLineTop</a> );
+    <span class="c">// destLineBottom
+</span>      <a class="r">blobColorIndex</a> := <a class="r">destLineBottom</a>^[0];
+      <span class="c">// we retrieve the blob real index
+</span>      <a class="r">blobRealIndex</a> := <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobColorIndex</a>];
+      <span class="c">// and then we set to ignore it
+</span>      <a class="r">blobToIgnore</a>[<a class="r">blobRealIndex</a>] := <a class="r">True</a>;
+      <a class="r">Inc</a>( <a class="r">destLineBottom</a> );
+  <span class="k">end</span>;
+  <a class="r">max</a> := <a class="r">imageIn</a>.<a class="r">Height</a>-1;
+  <a class="r">destColLeft</a> := <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+  <a class="r">destColRight</a> := <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+  <a class="r">Inc</a>( <a class="r">destColRight</a>, <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Width</a>-1 );
+  <span class="k">for</span> <a class="r">x</a>:=0 <span class="k">to</span> <a class="r">max</a> <span class="k">do</span> <span class="k">begin</span>
+    <span class="c">// destColLeft
+</span>      <a class="r">blobColorIndex</a> := <a class="r">destColLeft</a>^[0];
+      <span class="c">// we retrieve the blob real index
+</span>      <a class="r">blobRealIndex</a> := <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobColorIndex</a>];
+      <span class="c">// and then we set to ignore it
+</span>      <a class="r">blobToIgnore</a>[<a class="r">blobRealIndex</a>] := <a class="r">True</a>;
+      <a class="r">Inc</a>( <a class="r">destColLeft</a>, <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Width</a> );
+    <span class="c">// destColRight
+</span>      <a class="r">blobColorIndex</a> := <a class="r">destColRight</a>^[0];
+      <span class="c">// we retrieve the blob real index
+</span>      <a class="r">blobRealIndex</a> := <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobColorIndex</a>];
+      <span class="c">// and then we set to ignore it
+</span>      <a class="r">blobToIgnore</a>[<a class="r">blobRealIndex</a>] := <a class="r">True</a>;
+      <a class="r">Inc</a>( <a class="r">destColRight</a>, <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Width</a> );
+  <span class="k">end</span>;
+  <span class="c">// second, we remove blob to ignore
+</span>  <span class="k">for</span> <a class="r">i</a>:=1 <span class="k">to</span> <a class="r">iMax</a> <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">ignore</a> := <a class="r">blobToIgnore</a>[<a class="r">i</a>];
+    <span class="c">// if outside the limit
+</span>    <span class="k">if</span> <a class="r">ignore</a>=<a class="r">True</a> <span class="k">then</span> <span class="k">begin</span>
+      <span class="c">// remove it
+</span>      <span class="k">for</span> <a class="r">j</a>:=1 <span class="k">to</span> <a class="r">jMax</a> <span class="k">do</span> <span class="k">begin</span>
+        <span class="k">if</span> <a class="r">_arrayBlobRealIndex</a>[<a class="r">i</a>] = <a class="r">_arrayBlobRealIndex</a>[<a class="r">j</a>] <span class="k">then</span> <span class="k">begin</span>
+          <a class="r">_arrayBlobRealColors</a>[<a class="r">j</a>] := 0;
+        <span class="k">end</span>;
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">drawBlobs</a>;
+<span class="k">var</span>
+  <a class="r">p</a>, <a class="r">max</a> : <span class="k">Cardinal</span>;
+  <a class="r">_src</a>, <a class="r">_dest</a> : <a class="r">PColor32Array</a>;
+  <a class="r">pSrcLeft</a>, <a class="r">pSrcRight</a> : <a class="r">PColor32Array</a>;
+  <a class="r">pSrcTop</a>, <a class="r">pSrcBottom</a> : <a class="r">PColor32Array</a>;
+  <a class="r">blobColorIndex</a> : <span class="k">Integer</span>;
+  <a class="r">blobColor</a>, <a class="r">destColor</a> : <a class="r">TColor32</a>;
+  <a class="r">nblobColorIndex</a> : <span class="k">Integer</span>;
+  <a class="r">n1Color</a>,<a class="r">n2Color</a>,<a class="r">n3Color</a>,<a class="r">n4Color</a> : <a class="r">TColor32</a>;
+  <a class="r">imageSrcRow</a>, <a class="r">imageSrcCol</a> : <span class="k">Integer</span>;
+<span class="k">begin</span>
+  <span class="c">// if we must show the blob filled
+</span>  <span class="k">if</span> <a class="r">parameterContour</a>.<a class="r">Value</a>=<a class="r">False</a> <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">max</a>:=<a class="r">imageIn</a>.<a class="r">Height</a>*<a class="r">imageIn</a>.<a class="r">Width</a>-1;
+    <a class="r">_src</a>:=<a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+    <a class="r">_dest</a>:=<a class="r">imageOut</a>.<a class="r">Bits</a>;
+    <span class="k">for</span> <a class="r">p</a>:= 0 <span class="k">to</span> <a class="r">max</a> <span class="k">do</span> <span class="k">begin</span>
+      <a class="r">blobColorIndex</a>:=<a class="r">_src</a>^[0];
+      <a class="r">destColor</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">blobColorIndex</a>];
+      <a class="r">_dest</a>^[0]:=<a class="r">destColor</a>;
+      <a class="r">inc</a>(<a class="r">_src</a>);
+      <a class="r">inc</a>(<a class="r">_dest</a>);
+    <span class="k">end</span>;
+  <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+  <span class="c">// if we must show only the contour, we will remove blob content
+</span>   <a class="r">imageSrcRowmax</a>:=<a class="r">h</a>-1;
+   <a class="r">imageSrcColmax</a>:=<a class="r">w</a>-1;
+   <span class="k">for</span> <a class="r">imageSrcRow</a>:=1 <span class="k">to</span> <a class="r">imageSrcRowmax</a>-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">_dest</a>:=<a class="r">imageOut</a>.<a class="r">Bits</a>;
+    <a class="r">Inc</a>(<a class="r">_dest</a>,<a class="r">imageSrcRow</a>*<a class="r">w</a>+1); <span class="c">// +1 because we start with col 1
+</span>
+    <a class="r">_src</a>:=<a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+    <a class="r">Inc</a>(<a class="r">_src</a>,<a class="r">imageSrcRow</a>*<a class="r">w</a>+1);
+
+    <a class="r">pSrcTop</a>:=<a class="r">_src</a>;
+    <a class="r">Dec</a>(<a class="r">pSrcTop</a>,<a class="r">w</a>);
+
+    <a class="r">pSrcBottom</a>:=<a class="r">_src</a>;
+    <a class="r">Inc</a>(<a class="r">pSrcBottom</a>,<a class="r">w</a>);
+
+    <a class="r">pSrcLeft</a>:=<a class="r">_src</a>;
+    <a class="r">Dec</a>(<a class="r">pSrcLeft</a>);
+
+    <a class="r">pSrcRight</a>:=<a class="r">_src</a>;
+    <a class="r">Inc</a>(<a class="r">pSrcRight</a>);
+
+    <span class="k">for</span> <a class="r">imageSrcCol</a>:=1 <span class="k">to</span> <a class="r">imageSrcColmax</a>-1 <span class="k">do</span> <span class="k">begin</span>
+     <a class="r">blobColorIndex</a>:=<a class="r">_src</a>^[0];
+     <a class="r">blobColor</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">blobColorIndex</a>];
+     <a class="r">destColor</a>:=<a class="r">clBlack32</a>;
+     <span class="c">// we must only check the 4 pixels (top, bottom,left,right)
+</span>     <span class="c">// left
+</span>     <a class="r">nblobColorIndex</a>:=<a class="r">pSrcLeft</a>^[0];
+     <a class="r">n1Color</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">nblobColorIndex</a>];
+     <span class="k">if</span> (<a class="r">n1Color</a>&lt;&gt;<a class="r">blobColor</a>) <span class="k">then</span> <span class="k">begin</span>
+       <a class="r">destColor</a>:=<a class="r">blobColor</a>;
+     <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+       <span class="c">// right
+</span>       <a class="r">nblobColorIndex</a>:=<a class="r">pSrcRight</a>^[0];
+       <a class="r">n2Color</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">nblobColorIndex</a>];
+       <span class="k">if</span> (<a class="r">n2Color</a>&lt;&gt;<a class="r">blobColor</a>)  <span class="k">then</span> <span class="k">begin</span>
+         <a class="r">destColor</a>:=<a class="r">blobColor</a>;
+       <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+         <span class="c">// top
+</span>         <a class="r">nblobColorIndex</a>:=<a class="r">pSrcTop</a>^[0];
+         <a class="r">n3Color</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">nblobColorIndex</a>];
+          <span class="k">if</span> (<a class="r">n3Color</a>&lt;&gt;<a class="r">blobColor</a>) <span class="k">then</span> <span class="k">begin</span>
+            <a class="r">destColor</a>:=<a class="r">blobColor</a>;
+          <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+            <span class="c">// bottom
+</span>            <a class="r">nblobColorIndex</a>:=<a class="r">pSrcBottom</a>^[0];
+            <a class="r">n4Color</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">nblobColorIndex</a>];
+            <span class="k">if</span> (<a class="r">n4Color</a>&lt;&gt;<a class="r">blobColor</a>) <span class="k">then</span> <span class="k">begin</span>
+              <a class="r">destColor</a>:=<a class="r">blobColor</a>;
+            <span class="k">end</span>;
+          <span class="k">end</span>;
+        <span class="k">end</span>;
+     <span class="k">end</span>;
+     <a class="r">_dest</a>^[0]:=<a class="r">destColor</a>;
+     <a class="r">Inc</a>(<a class="r">_dest</a>);
+     <a class="r">Inc</a>(<a class="r">_src</a>);
+     <a class="r">Inc</a>(<a class="r">pSrcLeft</a>);
+     <a class="r">Inc</a>(<a class="r">pSrcRight</a>);
+     <a class="r">Inc</a>(<a class="r">pSrcTop</a>);
+     <a class="r">Inc</a>(<a class="r">pSrcBottom</a>);
+    <span class="k">end</span>;
+   <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">createBlobList</a>;
+<span class="k">var</span>
+  <a class="r">brc</a>, <a class="r">b</a> : <span class="k">Integer</span>;
+  <a class="r">brcColor</a>, <a class="r">brcColor2</a> : <a class="r">TColor32</a>;
+  <a class="r">blobAlreadyExist</a> : <span class="k">Boolean</span>;
+  <a class="r">i</a> : <span class="k">Integer</span>;
+<span class="k">begin</span>
+  <a class="r">SetLength</a>(<a class="r">_tblobList</a>,0);
+  <a class="r">SetLength</a>(<a class="r">_bloblistindexByBlobrealindex</a>,0);
+  <a class="r">SetLength</a>(<a class="r">_bloblistindexByBlobrealindex</a>,<a class="r">Length</a>(<a class="r">_arrayBlobRealColors</a>));
+  <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_bloblistindexByBlobrealindex</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">_bloblistindexByBlobrealindex</a>[<a class="r">i</a>]:=0;
+  <span class="k">end</span>;
+  <span class="c">// for each blob real color
+</span>  <span class="k">for</span> <a class="r">brc</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_arrayBlobRealColors</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">brcColor</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">brc</a>];
+    <span class="k">if</span> <a class="r">brcColor</a>=0 <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">_bloblistindexByBlobrealindex</a>[<a class="r">brc</a>]:=-1;
+    <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+      <span class="c">// search this color in all blob of blobList
+</span>      <a class="r">blobAlreadyExist</a>:=<a class="r">False</a>;
+      <span class="k">for</span> <a class="r">b</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_tblobList</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+        <span class="k">if</span> <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">color</a>=<a class="r">brcColor</a> <span class="k">then</span> <span class="k">begin</span>
+          <a class="r">blobAlreadyExist</a>:=<a class="r">True</a>;
+          <a class="r">break</a>;
+        <span class="k">end</span>;
+      <span class="k">end</span>;
+      <span class="c">// if the blob doesn't exist in blobList
+</span>      <span class="k">if</span> <a class="r">blobAlreadyExist</a>=<a class="r">False</a> <span class="k">then</span> <span class="k">begin</span>
+        <span class="c">// we add it
+</span>        <a class="r">SetLength</a>(<a class="r">_tblobList</a>,<a class="r">Length</a>(<a class="r">_tblobList</a>)+1);
+        <a class="r">b</a>:=<a class="r">Length</a>(<a class="r">_tblobList</a>)-1;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">color</a> := <a class="r">brcColor</a>;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">index</a> := <a class="r">b</a>;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">rectangleContainer</a>.<a class="r">Left</a>:=<a class="r">w</a>;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">rectangleContainer</a>.<a class="r">Right</a>:=0;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">rectangleContainer</a>.<a class="r">Top</a>:=<a class="r">h</a>;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">rectangleContainer</a>.<a class="r">Bottom</a>:=0;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">pixelArea</a>:=0;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">gravityCenter</a>.<a class="r">x</a>:=0;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">gravityCenter</a>.<a class="r">y</a>:=0;
+        <a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">perimeter</a>:=0;
+        <span class="c">// and we can calcul all the link _arrayBlobRealColors-&gt;tblob (usefull for next procedure)
+</span>        <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_arrayBlobRealColors</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+          <a class="r">brcColor2</a>:=<a class="r">_arrayBlobRealColors</a>[<a class="r">i</a>];
+          <span class="k">if</span> <a class="r">brcColor2</a>=<a class="r">brcColor</a> <span class="k">then</span> <span class="k">begin</span>
+            <a class="r">_bloblistindexByBlobrealindex</a>[<a class="r">i</a>]:=<a class="r">b</a>;
+          <span class="k">end</span>;
+        <span class="k">end</span>;
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">calculImageBlobRealIndex</a>();
+<span class="k">var</span>
+  <a class="r">p</a>, <a class="r">max</a> : <span class="k">Integer</span>;
+  <a class="r">src</a>, <a class="r">dest</a> : <a class="r">PColor32Array</a>;
+  <a class="r">blobColorIndex</a> : <a class="r">TColor32</a>;
+  <a class="r">blobRealIndex</a> : <span class="k">Integer</span>;
+  <a class="r">blobIndex</a> : <span class="k">Integer</span>;
+<span class="k">begin</span>
+  <a class="r">max</a> := <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Height</a>*<a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Width</a>-1;
+  <a class="r">src</a> := <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Bits</a>;
+  <a class="r">dest</a> := <a class="r">_imageBlobRealIndex</a>.<a class="r">Bits</a>;
+  <span class="k">for</span> <a class="r">p</a>:= 0 <span class="k">to</span> <a class="r">max</a> <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">blobColorIndex</a> := <a class="r">src</a>^[0];
+    <a class="r">blobRealIndex</a> := <a class="r">_arrayBlobRealIndex</a>[<a class="r">blobColorIndex</a>];
+    <a class="r">blobIndex</a> := <a class="r">_bloblistindexByBlobrealindex</a>[<a class="r">blobRealIndex</a>];
+    <a class="r">dest</a>^[0] := <a class="r">blobIndex</a>;
+    <a class="r">Inc</a>( <a class="r">src</a> );
+    <a class="r">Inc</a>( <a class="r">dest</a> );
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">calculBlobSurfaceInfo</a>();
+<span class="k">var</span>
+  <a class="r">x</a>, <a class="r">y</a> : <span class="k">Integer</span>;
+  <a class="r">blobIndex</a> : <span class="k">Integer</span>;
+  <a class="r">i</a>, <a class="r">iMax</a> : <span class="k">Integer</span>;
+  <a class="r">blob</a> : <a class="r">PBlob</a>;
+  <a class="r">dest</a> : <a class="r">PColor32Array</a>;
+<span class="k">begin</span>
+  <span class="c">// step 1
+</span>  <span class="k">for</span> <a class="r">y</a>:=0 <span class="k">to</span> <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Height</a>-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">dest</a> := <a class="r">_imageBlobRealIndex</a>.<a class="r">Bits</a>;
+    <a class="r">Inc</a>( <a class="r">dest</a>, <a class="r">y</a>*<a class="r">_imageBlobRealIndex</a>.<a class="r">Width</a> );
+    <span class="k">for</span> <a class="r">x</a>:=0 <span class="k">to</span> <a class="r">_imageBlobTmpColorIndex</a>.<a class="r">Width</a>-1 <span class="k">do</span> <span class="k">begin</span>
+      <a class="r">blobIndex</a> := <a class="r">dest</a>^[0];
+      <span class="k">if</span> <a class="r">blobIndex</a>&lt;&gt;-1 <span class="k">then</span> <span class="k">begin</span>
+        <span class="c">// blob rectangle container
+</span>        <span class="k">if</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Left</a>&gt;<a class="r">x</a> <span class="k">then</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Left</a>:=<a class="r">x</a>;
+        <span class="k">if</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Right</a>&lt;<a class="r">x</a> <span class="k">then</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Right</a>:=<a class="r">x</a>;;
+        <span class="k">if</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Top</a>&gt;<a class="r">y</a> <span class="k">then</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Top</a>:=<a class="r">y</a>;
+        <span class="k">if</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Bottom</a>&lt;<a class="r">y</a> <span class="k">then</span> <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>.<a class="r">Bottom</a>:=<a class="r">y</a>;
+        <span class="c">// pixelArea
+</span>        <a class="r">Inc</a>(<a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">pixelArea</a>);
+        <span class="c">// gravity center
+</span>        <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">gravityCenter</a>.<a class="r">x</a>:=<a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">gravityCenter</a>.<a class="r">x</a>+<a class="r">x</a>;
+        <a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">gravityCenter</a>.<a class="r">y</a>:=<a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">gravityCenter</a>.<a class="r">y</a>+<a class="r">y</a>;
+      <span class="k">end</span>;
+      <a class="r">Inc</a>(<a class="r">dest</a>);
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+  <span class="c">// step 2
+</span>  <span class="k">for</span> <a class="r">blobIndex</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_tblobList</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">blob</a>:=@<a class="r">_tblobList</a>[<a class="r">blobIndex</a>];
+    <span class="c">// blob rectangle container:right/bottom is outside, by convention of filters ROI
+</span>    <a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Right</a>:=<a class="r">Math</a>.<a class="r">Min</a>(<a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Right</a>+1,<a class="r">w</a>-1);
+    <a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Bottom</a>:=<a class="r">Math</a>.<a class="r">Min</a>(<a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Bottom</a>+1,<a class="r">h</a>-1);
+    <a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Left</a>:=<a class="r">Math</a>.<a class="r">Min</a>(<a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Left</a>,<a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Right</a>);
+    <a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Top</a>:=<a class="r">Math</a>.<a class="r">Min</a>(<a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Top</a>,<a class="r">blob</a>.<a class="r">rectangleContainer</a>.<a class="r">Bottom</a>);
+    <span class="c">// gravity center
+</span>    <a class="r">blob</a>.<a class="r">gravityCenter</a>.<a class="r">x</a>:=<a class="r">blob</a>.<a class="r">gravityCenter</a>.<a class="r">x</a>/<a class="r">blob</a>.<a class="r">pixelArea</a>;
+    <a class="r">blob</a>.<a class="r">gravityCenter</a>.<a class="r">y</a>:=<a class="r">blob</a>.<a class="r">gravityCenter</a>.<a class="r">y</a>/<a class="r">blob</a>.<a class="r">pixelArea</a>;
+    <span class="c">// vector chain
+</span>    <a class="r">SetLength</a>(<a class="r">blob</a>.<a class="r">vectorChain</a>,0);
+    <a class="r">SetLength</a>(<a class="r">blob</a>.<a class="r">vectorChain</a>,<a class="r">Length</a>(<a class="r">blob</a>.<a class="r">approximatedSegmentList</a>));
+    <a class="r">iMax</a>:=<a class="r">Length</a>(<a class="r">blob</a>.<a class="r">approximatedSegmentList</a>)-1;
+    <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">iMax</a> <span class="k">do</span> <span class="k">begin</span>
+      <a class="r">blob</a>.<a class="r">vectorChain</a>[<a class="r">i</a>]:=<a class="r">image</a>.<a class="r">convertToVector</a>(<a class="r">blob</a>.<a class="r">approximatedSegmentList</a>[<a class="r">i</a>]);
+    <span class="k">end</span>;
+    <span class="c">// perimeter
+</span>    <a class="r">iMax</a>:=<a class="r">Length</a>(<a class="r">blob</a>.<a class="r">vectorChain</a>)-1;
+    <span class="k">for</span> <a class="r">i</a>:=0 <span class="k">to</span> <a class="r">iMax</a> <span class="k">do</span> <span class="k">begin</span>
+      <a class="r">blob</a>.<a class="r">perimeter</a>:=<a class="r">blob</a>.<a class="r">perimeter</a>+<a class="r">blob</a>.<a class="r">vectorChain</a>[<a class="r">i</a>].<a class="r">length</a>;
+    <span class="k">end</span>;
+    <span class="c">// monitoring
+</span>    <span class="k">if</span> <a class="r">parameterMonitoring</a>.<a class="r">Value</a>=<a class="r">true</a> <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">image</a>.<a class="r">drawRect</a>(<a class="r">imageOut</a>,<a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">rectangleContainer</a>,<a class="r">clBlue32</a>,1);
+      <a class="r">image</a>.<a class="r">drawDisk</a>(<a class="r">imageOut</a>,<a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">gravityCenter</a>.<a class="r">x</a>,<a class="r">_tblobList</a>[<a class="r">blobIndex</a>].<a class="r">gravityCenter</a>.<a class="r">y</a>,2,<a class="r">clRed32</a>);
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">findCriticalPoints</a>();
+<span class="k">var</span>
+  <a class="r">b</a> : <span class="k">Integer</span>;
+  <a class="r">x</a>, <a class="r">y</a> : <span class="k">Integer</span>;
+  <a class="r">pColor</a>, <a class="r">bColor</a> : <a class="r">TColor32</a>;
+  <a class="r">pPoint</a> : <a class="r">TFPoint</a>;
+  <a class="r">blobFound</a> : <span class="k">Boolean</span>;
+<span class="k">begin</span>
+  <span class="c">// for each blob
+</span>  <span class="k">for</span> <a class="r">b</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_tblobList</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">bColor</a>:=<a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">color</a>;
+    <span class="c">// search a point in the current blob
+</span>    <a class="r">blobFound</a>:=<a class="r">False</a>;
+    <span class="k">for</span> <a class="r">y</a>:=0 <span class="k">to</span> <a class="r">imageOut</a>.<a class="r">Height</a>-1 <span class="k">do</span> <span class="k">begin</span>
+      <a class="r">_dest</a>:=<a class="r">imageOut</a>.<a class="r">Bits</a>;
+      <a class="r">Inc</a>(<a class="r">_dest</a>,<a class="r">y</a>*<a class="r">imageOut</a>.<a class="r">Width</a>);
+      <span class="k">for</span> <a class="r">x</a>:=0 <span class="k">to</span> <a class="r">imageOut</a>.<a class="r">Width</a>-1 <span class="k">do</span> <span class="k">begin</span>
+        <a class="r">pColor</a>:=<a class="r">_dest</a>^[0];
+        <span class="c">// if we have found a point of this blob
+</span>        <span class="k">if</span> <a class="r">pColor</a>=<a class="r">bColor</a> <span class="k">then</span> <span class="k">begin</span>
+          <a class="r">blobFound</a>:=<a class="r">True</a>;
+          <a class="r">pPoint</a>.<a class="r">x</a>:=<a class="r">x</a>;
+          <a class="r">pPoint</a>.<a class="r">y</a>:=<a class="r">y</a>;
+          <a class="r">createBlobContourPoints</a>(<a class="r">_tblobList</a>[<a class="r">b</a>],<a class="r">pPoint</a>);
+          <a class="r">break</a>;
+        <span class="k">end</span>;
+        <a class="r">Inc</a>(<a class="r">_dest</a>);
+      <span class="k">end</span>;
+      <span class="k">if</span> <a class="r">blobFound</a>=<a class="r">True</a> <span class="k">then</span> <span class="k">begin</span>
+        <a class="r">break</a>;
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">createBlobContourPoints</a>(<span class="k">var</span> <a class="r">blob</a>:<a class="r">TBlob</a>;<a class="r">firstPoint</a>:<a class="r">TFPoint</a>);
+<span class="k">var</span>
+  <a class="r">currentPoint</a>, <a class="r">nextPoint</a> : <a class="r">TFPoint</a>;
+  <a class="r">direction</a> : <span class="k">Byte</span>;
+  <a class="r">deltaX</a>, <a class="r">deltaY</a> : <span class="k">Integer</span>;
+  <a class="r">stop</a> : <a class="r">boolean</a>;
+<span class="k">begin</span>
+  <a class="r">image</a>.<a class="r">eraseImage</a>(<a class="r">_imageBlobContour</a>);
+  <a class="r">currentPoint</a>:=<a class="r">firstPoint</a>;
+  <a class="r">direction</a>:=1;
+  <a class="r">stop</a>:=<a class="r">false</a>;
+  <span class="k">repeat</span>
+    <a class="r">nextPoint</a>:=<a class="r">getBlobContourNextPoint</a>(<a class="r">blob</a>,<a class="r">currentPoint</a>,<a class="r">direction</a>);
+    <span class="k">if</span> <a class="r">nextPoint</a>.<a class="r">x</a>&gt;=0 <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">SetLength</a>(<a class="r">blob</a>.<a class="r">segmentList</a>,<a class="r">Length</a>(<a class="r">blob</a>.<a class="r">segmentList</a>)+1);
+      <a class="r">blob</a>.<a class="r">segmentList</a>[<a class="r">Length</a>(<a class="r">blob</a>.<a class="r">segmentList</a>)-1].<a class="r">p1</a>:=<a class="r">currentPoint</a>;
+      <a class="r">blob</a>.<a class="r">segmentList</a>[<a class="r">Length</a>(<a class="r">blob</a>.<a class="r">segmentList</a>)-1].<a class="r">p2</a>:=<a class="r">nextPoint</a>;
+      <a class="r">blob</a>.<a class="r">segmentList</a>[<a class="r">Length</a>(<a class="r">blob</a>.<a class="r">segmentList</a>)-1].<a class="r">width</a>:=1;
+    <span class="k">end</span>;
+    <a class="r">deltaX</a>:=<a class="r">Floor</a>(<a class="r">nextPoint</a>.<a class="r">x</a>-<a class="r">currentPoint</a>.<a class="r">x</a>);
+    <a class="r">deltaY</a>:=<a class="r">Floor</a>(<a class="r">nextPoint</a>.<a class="r">y</a>-<a class="r">currentPoint</a>.<a class="r">y</a>);
+    <span class="k">if</span> (<a class="r">deltaX</a>=1) <span class="k">and</span> (<a class="r">deltaY</a>=0) <span class="k">then</span> <a class="r">direction</a>:=1;
+    <span class="k">if</span> (<a class="r">deltaX</a>=1) <span class="k">and</span> (<a class="r">deltaY</a>=-1) <span class="k">then</span> <a class="r">direction</a>:=2;
+    <span class="k">if</span> (<a class="r">deltaX</a>=0) <span class="k">and</span> (<a class="r">deltaY</a>=-1) <span class="k">then</span> <a class="r">direction</a>:=3;
+    <span class="k">if</span> (<a class="r">deltaX</a>=-1) <span class="k">and</span> (<a class="r">deltaY</a>=-1) <span class="k">then</span> <a class="r">direction</a>:=4;
+    <span class="k">if</span> (<a class="r">deltaX</a>=-1) <span class="k">and</span> (<a class="r">deltaY</a>=0) <span class="k">then</span> <a class="r">direction</a>:=5;
+    <span class="k">if</span> (<a class="r">deltaX</a>=-1) <span class="k">and</span> (<a class="r">deltaY</a>=1) <span class="k">then</span> <a class="r">direction</a>:=6;
+    <span class="k">if</span> (<a class="r">deltaX</a>=0) <span class="k">and</span> (<a class="r">deltaY</a>=1) <span class="k">then</span> <a class="r">direction</a>:=7;
+    <span class="k">if</span> (<a class="r">deltaX</a>=1) <span class="k">and</span> (<a class="r">deltaY</a>=1) <span class="k">then</span> <a class="r">direction</a>:=8;
+    <a class="r">currentPoint</a>:=<a class="r">nextPoint</a>;
+    <span class="k">if</span> <a class="r">stop</a>=<a class="r">false</a> <span class="k">then</span> <a class="r">stop</a>:=(<a class="r">currentPoint</a>.<a class="r">x</a>=<a class="r">firstPoint</a>.<a class="r">x</a>) <span class="k">and</span> (<a class="r">currentPoint</a>.<a class="r">y</a>=<a class="r">firstPoint</a>.<a class="r">y</a>);
+    <span class="k">if</span> <a class="r">stop</a>=<a class="r">false</a> <span class="k">then</span> <a class="r">stop</a>:=(<a class="r">currentPoint</a>.<a class="r">x</a>=-1) <span class="k">and</span> (<a class="r">currentPoint</a>.<a class="r">y</a>=-1);
+  <span class="k">until</span> <a class="r">stop</a>=<a class="r">true</a>;
+  <span class="c">// appoximation ?
+</span>  <span class="k">if</span> <a class="r">_appoximationAccuracy</a>=0 <span class="k">then</span> <span class="k">begin</span>
+    <a class="r">blob</a>.<a class="r">approximatedSegmentList</a>:=<a class="r">blob</a>.<a class="r">segmentList</a>;
+  <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+    <span class="c">// approximation by polygonalization
+</span>    <span class="k">if</span> <a class="r">_approximationMethod</a>=<a class="r">amSklanskyGonzalez</a> <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">blob</a>.<a class="r">approximatedSegmentList</a>:=<a class="r">polygonalyzation</a>.<a class="r">polygonalization_SklanskyGonzalez</a>(<a class="r">blob</a>.<a class="r">segmentList</a>,<a class="r">_appoximationAccuracy</a>,<span class="k">nil</span><span class="c">{imageOut}</span>);
+    <span class="k">end</span> <span class="k">else</span> <span class="k">begin</span>
+      <a class="r">blob</a>.<a class="r">approximatedSegmentList</a>:=<a class="r">polygonalyzation</a>.<a class="r">polygonalization_DouglasPeucker</a>(<a class="r">blob</a>.<a class="r">segmentList</a>,<a class="r">_appoximationAccuracy</a>,<span class="k">nil</span><span class="c">{imageOut}</span>);
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+<span class="k">function</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">getBlobContourNextPoint</a>(<span class="k">var</span> <a class="r">blob</a>:<a class="r">TBlob</a>; <a class="r">currentPoint</a>:<a class="r">TFPoint</a>; <a class="r">direction</a>:<span class="k">Byte</span>) : <a class="r">TFPoint</a>;
+<span class="k">var</span>
+  <a class="r">newPoint</a> : <a class="r">TFPoint</a>;
+  <a class="r">x</a>,<a class="r">y</a> : <span class="k">Integer</span>;
+  <a class="r">bColor</a> : <a class="r">TColor32</a>;
+  <a class="r">directionScan</a>, <a class="r">directionScanStop</a> : <span class="k">Byte</span>;
+
+  <span class="k">procedure</span> <a class="r">tryPoint</a>(<a class="r">sx</a>,<a class="r">sy</a>:<span class="k">Integer</span>);
+  <span class="k">var</span>
+    <a class="r">pColor</a> : <a class="r">TColor32</a>;
+  <span class="k">begin</span>
+    <span class="k">if</span> (<a class="r">sx</a>&gt;=0) <span class="k">and</span> (<a class="r">sx</a>&lt;<a class="r">imageOut</a>.<a class="r">Width</a>) <span class="k">and</span> (<a class="r">sy</a>&gt;=0) <span class="k">and</span> (<a class="r">sy</a>&lt;<a class="r">imageOut</a>.<a class="r">Height</a>) <span class="k">then</span> <span class="k">begin</span>
+      <a class="r">pColor</a>:=<a class="r">image</a>.<a class="r">getPixel</a>(<a class="r">imageOut</a>,<a class="r">sx</a>,<a class="r">sy</a>);
+      <span class="k">if</span> <a class="r">pColor</a>=<a class="r">bColor</a> <span class="k">then</span> <span class="k">begin</span>
+          <a class="r">newPoint</a>.<a class="r">x</a>:=<a class="r">sx</a>;
+          <a class="r">newPoint</a>.<a class="r">y</a>:=<a class="r">sy</a>;
+      <span class="k">end</span>;
+    <span class="k">end</span>;
+  <span class="k">end</span>;
+
+<span class="k">begin</span>
+  <a class="r">newPoint</a>.<a class="r">x</a>:=-1;
+  <a class="r">newPoint</a>.<a class="r">y</a>:=-1;
+  <a class="r">bColor</a>:=<a class="r">blob</a>.<a class="r">color</a>;
+  <a class="r">x</a>:=<a class="r">Floor</a>(<a class="r">currentPoint</a>.<a class="r">x</a>);
+  <a class="r">y</a>:=<a class="r">Floor</a>(<a class="r">currentPoint</a>.<a class="r">y</a>);
+  <a class="r">directionScan</a>:=(<a class="r">direction</a>+2) <span class="k">mod</span> 8;
+  <a class="r">directionScanStop</a>:=(<a class="r">direction</a>+3) <span class="k">mod</span> 8;
+  <span class="k">if</span> <a class="r">directionScanStop</a>=0 <span class="k">then</span> <a class="r">directionScanStop</a>:=8;
+  <span class="k">repeat</span>
+    <span class="k">case</span> <a class="r">directionScan</a> <span class="k">of</span>
+    1:  <a class="r">tryPoint</a>(<a class="r">x</a>+1,<a class="r">y</a>);
+    2:  <a class="r">tryPoint</a>(<a class="r">x</a>+1,<a class="r">y</a>-1);
+    3:  <a class="r">tryPoint</a>(<a class="r">x</a>,<a class="r">y</a>-1);
+    4:  <a class="r">tryPoint</a>(<a class="r">x</a>-1,<a class="r">y</a>-1);
+    5:  <a class="r">tryPoint</a>(<a class="r">x</a>-1,<a class="r">y</a>);
+    6:  <a class="r">tryPoint</a>(<a class="r">x</a>-1,<a class="r">y</a>+1);
+    7:  <a class="r">tryPoint</a>(<a class="r">x</a>,<a class="r">y</a>+1);
+    8:  <a class="r">tryPoint</a>(<a class="r">x</a>+1,<a class="r">y</a>+1);
+    <span class="k">end</span>;
+
+    <span class="k">if</span> <a class="r">directionScan</a>=0 <span class="k">then</span>
+      <a class="r">directionScan</a>:=8
+    <span class="k">else</span>
+      <a class="r">Dec</a>(<a class="r">directionScan</a>);
+
+  <span class="k">until</span> (<a class="r">directionScan</a>=<a class="r">directionScanStop</a>) <span class="k">or</span> (<a class="r">newPoint</a>.<a class="r">x</a>&lt;&gt;-1);
+  <a class="r">Result</a>:=<a class="r">newPoint</a>;
+<span class="k">end</span>;
+
+<span class="k">procedure</span> <a class="r">TFilterBlobExplorer</a>.<a class="r">drawCriticalPoints</a>();
+<span class="k">var</span>
+  <a class="r">b</a> : <span class="k">Integer</span>;
+  <a class="r">sl</a> : <a class="r">TSegmentList</a>;
+<span class="k">begin</span>
+  <a class="r">sl</a>:=<span class="k">nil</span>;
+  <span class="c">// for each blob
+</span>  <span class="k">for</span> <a class="r">b</a>:=0 <span class="k">to</span> <a class="r">Length</a>(<a class="r">_tblobList</a>)-1 <span class="k">do</span> <span class="k">begin</span>
+    <a class="r">sl</a>:=<a class="r">_tblobList</a>[<a class="r">b</a>].<a class="r">approximatedSegmentList</a>;
+    <a class="r">image</a>.<a class="r">drawLines</a>(<a class="r">imageOut</a>,<a class="r">sl</a>,<a class="r">clYellow32</a>,<a class="r">clRed32</a>);
+  <span class="k">end</span>;
+<span class="k">end</span>;
+
+
+<span class="k">end</span>.
+</pre>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+<script type="text/javascript" language="javascript">
+	
+var homeUrl = "/"; 
+var projectID = "7KUNT81TP6SVFMNLW55GUPXLUH";
+var sourceLanguage = "Delphi";
+var IsLogged = false;
+
+// only logs once
+function LogReuse() {
+	// dynamic image loading
+	if(!IsLogged) {
+		//alert("logging");
+		var	fileImg	= new Image();
+		var fileImgSrc = "/kv.aspx?fid=1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC&mode=cp";
+		//alert("fileImgSrc = " + fileImgSrc);
+		fileImg.src	= fileImgSrc;
+		IsLogged = true;
+	} else {
+		//alert("already logged!");
+	}
+	return true;
+}
+</script>
+
+
+            
+        </div>
+        
+        
+<!-- Footer -->
+
+<div style="clear: both;" id="FooterDiv" align="center">
+	<div id="KodersFooter_ctl00_ContentRotator468x100">
+	
+<!-- 468x100 start: Koders.Web.ContentRotator2 -->
+
+<!-- Media Server Begin: 468x100 -->
+<iframe name="koders_ad_frame" id="koders_ad_frame" src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/a.htm" marginwidth="0" marginheight="0" hspace="0" vspace="0" allowtransparency="true" frameborder="0" height="100" scrolling="no" width="468">
+&lt;!-- for browsers that do not support iframes --&gt;
+&lt;a
+href="/Special/AdServer/?action=click&amp;flight=78&amp;redirecturl=KD7KH2LHS3NR157RR348GVYPV566VU7QQ5NGZ1LRT5NAH37QEN7GG4QRSB6E117F&amp;random=633274084201450910"&gt;
+&lt;img
+src="/Special/AdServer/?action=serveimage&amp;flight=78&amp;imageurl=KD7KH2LHS3NR157RR348GVYPV566VU7QQ5N4ZVUPLN28CX7QY56MZ1KGTBPRD2EHSB6E117NLW5KH37Q9CQPD6ASUBPAD16PLW3A&amp;random=633274084201450910"
+BORDER="0" WIDTH="468" HEIGHT="100" ALT="Click Here"&gt;&lt;/a&gt;
+</iframe>
+<!-- Media Server End: 468x100, 78, 78 -->
+
+<!-- 468x100 end -->
+
+</div>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+	<a href="http://www.koders.com/blog/" title="Subscribe to our blog to find out the latest in Koders news.">Blog</a> |
+<a href="http://www.koders.com/forums/" title="Find the answer to your question in our forums.">Forums</a> |
+<a href="http://www.koders.com/corp/products/enterprise-code-search/" title="Our products make code search work for your.">Products</a> |
+<a href="http://www.koders.com/zeitgeist/" title="Examin trends in programming language search and usage.">Zeitgeist</a> |
+<a href="http://www.koders.com/info.aspx?c=tools#IDEs" title="Levarage Koders from within your favorite IDE.">Plugins</a><br>
+<a href="http://www.koders.com/corp/about/privacy-policy/" title="Find out how Koders respects your privacy">Privacy Policy</a> |
+<a href="http://www.koders.com/corp/about/terms-of-service/" title="The Terms of Service for using Koders.com">Terms of Service</a> |
+<a href="http://www.koders.com/corp/about/" title="About Koders the company">Company</a> |
+<a href="http://www.koders.com/corp/about/#Contact" title="Contact us and let us know your thoughts.">Contact Us</a>
+
+<br><br>
+<div>
+<a href="http://www.koders.com/blog/?feed=rss2" type="application/rss+xml" style="border-style: solid; border-color: rgb(255, 204, 153) rgb(102, 51, 0) rgb(51, 51, 0) rgb(255, 153, 102); border-width: 1px; padding: 0pt 0.4em; background: rgb(255, 102, 0) none repeat scroll 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: white; font-weight: bold; text-decoration: none;">RSS Feed</a>
+</div>
+</div>
+<p>
+	<span class="footer">
+		Copyright © 2007 <a href="http://www.koders.com/">Koders</a>
+		
+		<br>
+		<a id="KodersFooter_ctl00_hplWorkingTime" title="0.00\0.05\0.00\0.00\0.02\0.02\0.08\0.00\0.12\0.00s" style="color: graytext;">processed in: 0.28s</a>
+	</span>
+</p>
+
+</div>
+
+    
+
+<script type="text/javascript">
+<!--
+Sys.Application.initialize();
+// -->
+</script>
+<div id="flyin" style="display: none; top: 4133px; left: 273px;">
+  <div class="title_container">
+    <span class="title"><span><img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/koders_logo.gif" class="koders_logo"></span></span>
+    <span class="close" onclick="tagUser('7');startSlide('up');">Close</span>
+  </div>
+  <div class="content_wrapper">
+    <div class="flyin">
+      <div class="step1" id="step1">
+        <div class="content">
+          <h3>New Release!</h3>
+          <img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/exclusive_invitation.gif" class="invitation_image" align="right">
+          <p>      
+            You are about to see the results of your search for Open Source code.  
+            Would you also like to search your internal projects?
+          </p>	
+          <p>      
+            This is a priority invitation to download a <strong>FREE TRIAL</strong> of Koders Pro Edition so you 
+            can experience blazingly fast search for your teams' code.
+          </p>         
+          <div class="email_area">    
+            <div id="fields">   
+              <input class="email_input" id="email_address" onclick="clearEmail(this)" value="&lt;Type your email here&gt;" type="text">
+              <div class="pro_download_button_container">
+                  <a class="pro_download_button" href="javascript: void(0);" title="Download Koders Pro Edition!" onclick="if(AddEmail(document.getElementById('email_address').value,null,'eg2')!=false) { window.open('http://www.koders.com/corp/products/pro/thank-you/') }"></a>
+                  <div class="link_status">For 32-bit Windows XP and Vista</div>
+              </div>
+            </div>
+            <div id="status"></div>
+          </div>
+          <div class="email_status" id="email_status"></div>               
+        </div> 
+      </div>         
+    </div>     
+  </div>  
+  <div class="status_area">Find • Share • Learn • Reuse</div> 
+<img src="fid1CBFC4043604E24D4A36A14BBD98D04DF88FA8DC.aspx_files/a.gif"></div></form>
+<div style="opacity: 0; height: 13597px; width: 1257px; display: none;" id="overlay"></div></body></html>
