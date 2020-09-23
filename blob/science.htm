@@ -1,0 +1,1196 @@
+<html><head>
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- TRANSKEY: 10/08/2007 05:39:33 EDT#1862_004#252914#161.139.212.150 -->
+
+<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE"><!-- static const char articletmpl_sccsId[] = "%W%  %G% %U% --- Retrieved: %H% %T%"; --><title>ScienceDirect
+- Computer Vision and Image Understanding : Linear-time
+connected-component labeling based on sequential local operations</title>
+
+
+
+
+<link rel="stylesheet" title="Default Styles" href="science_files/css_art_v01.css" type="text/css">
+<link rel="stylesheet" title="Default Styles" href="science_files/css_gen_v01.css" type="text/css"><meta http-equiv="Set-Cookie" content="BROWSER_SUPPORTS_COOKIES=1; path=/"></head><body bgcolor="#ffffff" text="#000000">
+
+
+
+
+<script language="Javascript"><!--
+        function openNS(url) {
+                if ((navigator.appName == "Microsoft Internet Explorer") &&
+                        (parseFloat(navigator.appVersion) < 4 ))
+                {
+                        return false;
+                }
+               
+                var newX=600,newY=400,xOffset=10,yOffset=10;
+                var parms = 'width=' + newX +
+                                ',height=' + newY +
+                                ',screenX='+ xOffset +
+                                ',screenY=' + yOffset +
+                                ',status=yes,toolbar=yes,menubar=yes' +
+                                ',scrollbars=yes,resizable=yes,location=yes';
+                nsWin = window.open(url,'displayWindow',parms);
+                nsWin.focus();
+                return false;
+        }
+
+        function openStrippedNS(url) {
+                if ((navigator.appName == "Microsoft Internet Explorer") &&
+                        (parseFloat(navigator.appVersion) < 4 ))
+                {
+                        return false;
+                }
+
+                var xOffset=25,yOffset=25;
+                var parms = 'left='+ xOffset +
+                                ',top=' + yOffset +
+                                ',status=yes,toolbar=no,menubar=no' +
+                                ',scrollbars=yes,resizable=yes,location=no';
+                nsWin = window.open(url,'displayWindow',parms);
+                nsWin.focus();
+                return false;
+        }
+
+        function openPopup(url, windowName, width, height) {
+            if ((navigator.appName == "Microsoft Internet Explorer") &&
+                (parseFloat(navigator.appVersion) < 4 )) { return false; }
+               
+            var xOffset=25,yOffset=25;
+            var parms = 'width=' + width +
+                        ',height=' + height +
+                        ',left=' + xOffset +
+                        ',top=' + yOffset +
+                        ',status=no,toolbar=no,menubar=no' +
+                        ',scrollbars=yes,resizable=yes';
+            var displayName = windowName;
+
+            nsWin = window.open(url, displayName, parms);
+            nsWin.focus();
+            return false;
+        }
+//--></script>
+
+<script language="Javascript"><!--
+function flip(e){
+        var menustyle = eval(getStyleObj(e))
+                if (menustyle.display=="none"){
+                        menustyle.display=''
+                }
+                else{
+                        menustyle.display="none"
+                }
+}
+function getStyleObj(elem,parent) {
+      if (document.layers) {
+            if (parent) {
+                  return "document."+parent+".document."+elem;
+            } else {
+                  return "document."+elem + ".style";
+            }
+      } else if (document.all) {
+            return "document.all."+elem + ".style";
+      } else if (document.getElementById) {
+            return "document.getElementById('"+elem+"').style";
+      }
+}
+//--></script>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <td colspan="3" style="padding-left: 0.2em;" nowrap="nowrap" width="30%">
+      <a href="http://www.sciencedirect.com/science?_ob=HomePageURL&amp;_method=userHomePage&amp;_lg=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c7870f9657dff8745244b4749ca7c26d" border="0" target="_top"><img src="science_files/logo.gif" title="Go to ScienceDirect® Home" alt="Go to ScienceDirect® Home" border="0"></a>
+      <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-48063X3-1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=b1f250a115f79e78dae94efac264378e#Skip%20Buttons" target="_top"><img src="science_files/clear.gif" alt="Skip Main Navigation Links" border="0" height="1" width="10"></a>
+    </td>
+    <td align="center" bgcolor="#ffffff" nowrap="nowrap" valign="middle">
+    
+        
+            
+        
+    
+
+    </td>
+    <td style="padding-right: 0.2em;" align="right" nowrap="nowrap" width="37%">
+    <span style="font-size: 75%; font-family: arial,verdana,helvetica,sans-serif;">
+    
+      
+        
+<script language="Javascript">
+<!---------------
+document.write("<div style=\"padding:0.4em\">");
+document.write("<div id=\"sdLoginBoxFold\" >");
+document.write("<a href=\"javascript:flip('sdLoginBox'); javascript:flip('sdLoginBoxFold');\" title=\"Open the Login Box\">Login: &nbsp;<img src=\"/scidirimg/sign_plus.gif \" width=\"9\" height=\"9\" alt=\"+\" border=\"0\" title=\"Open the Login Box\"/></a><br>");
+
+
+  
+    
+      document.write("<a href=\"https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-48063X3-1%26_user%3D167669%26_coverDate%3D01%2F31%2F2003%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3Db1f250a115f79e78dae94efac264378e&_acct=C000013278&_version=1&_userid=167669&md5=107a2afd81671ed73578a37bab5df473\" target=\"_top\" title=\"Click here to learn about registering with ScienceDirect\">Register</a>");
+    
+  
+
+document.write("</div>");
+document.write("</div>");
+document.write("<div id=\"sdLoginBox\"");
+document.write("style=\"background-image: url(/scidirimg/login_background.gif); background-repeat: repeat-x; height:70px;padding:0.2em;");
+document.write("display:none;\">");
+
+	document.write("<form name=\"sdLogin\" method=\"POST\" action=\"https://www.sciencedirect.com/science/login\">");
+	document.write("<input type=\"hidden\" name=\"login\" value=\"login\">");
+	document.write("<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">");
+	document.write("<tr valign=\"top\">");
+	document.write("<td align=\"left\" nowrap>");
+
+
+
+document.write("</td>");
+
+  
+    document.write("<tr><td nowrap>&nbsp;<a href=\"/science?_ob=FederationURL&_method=display&_type=f&_acct=C000013278&_version=1&_userid=167669&md5=ab29801dc8d391fc32e9ce6efd988674\"title=\"Athens/Institution Login\">Athens/Institution Login</a>&nbsp;</font></td>");
+  
+
+
+  
+    document.write("<td align=\"right\">");
+    
+      
+        
+          document.write("<a href=\"https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-48063X3-1%26_user%3D167669%26_coverDate%3D01%2F31%2F2003%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3Db1f250a115f79e78dae94efac264378e&_acct=C000013278&_version=1&_userid=167669&md5=107a2afd81671ed73578a37bab5df473\" target=\"_top\" title=\"Click here to learn about registering with ScienceDirect\">Not Registered?&nbsp;</a>");
+        
+      
+    
+    
+      document.write("<a href=\"javascript:flip('sdLoginBox');javascript:flip('sdLoginBoxFold');\" title=\"Close the Login Box\">");
+        document.write("<img src=\"/scidirimg/sign_minus.gif\" width=\"9\" height=\"9\" alt=\"-\" border=\"0\" title=\"Close the Login Box\"/>");
+        document.write("</a>");
+    
+  
+
+document.write("</td>");
+document.write("</tr>");
+document.write("</table>");
+document.write("<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">");
+document.write("<tr align=\"right\">");
+document.write("<td align=\"left\">User&nbsp;Name:</td>");
+document.write("<td align=\"left\">");
+document.write("<input type=\"text\" name=\"userid\" class=\"xpstyle\" size=\"11\" title=\"Please enter your user name here\" />");
+document.write("</td>");
+document.write("<td align=\"right\">Password: </td>");
+document.write("<td align=\"left\">");
+document.write("<input type=\"password\" name=\"password\" class=\"xpstyle\" size=\"11\" maxlength=\"20\" title=\"Please enter your password here\" />");
+document.write("</td>");
+document.write("<input type=\"hidden\" name=\"_ob\" value=\"MiamiLogonURL\">");
+document.write("<input type=\"hidden\" name=\"targetURL\" value=\"http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-48063X3-1&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=b1f250a115f79e78dae94efac264378e\" >")
+document.write("<input type=\"hidden\" name=\"returnURL\" value=\"http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-48063X3-1&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=b1f250a115f79e78dae94efac264378e\">");
+document.write("<td align=\"left\"><input class=\"image\" type=\"image\" onmouseover=\"this.src='/scidirimg/sci_dir/arrow_small_b.gif'\" onmouseout=\"this.src='/scidirimg/sci_dir/arrow_small_a.gif'\" name=\"arrow\" src=\"/scidirimg/sci_dir/arrow_small_a.gif\" title=\"Login\" value=\"Submit\" /></a>");
+document.write("		</td>");
+document.write("</tr>");
+document.write("<tr valign=\"baseline\">");
+document.write("<td align=\"left\" colspan=\"3\">");
+
+document.write("<input type=\"checkbox\" name=\"rememberid\" id=\"rememberMe\" value=\"Y\" class=\"checkbox\" title=\"Checking this option will log you in automatically next time you visit ScienceDirect\"/>");
+document.write("<label for=\"rememberMe\"><span title=\"Checking this option will log you in automatically next time you visit ScienceDirect\">Remember&nbsp;me&nbsp;on&nbsp;this&nbsp;computer</span></label>");
+
+document.write("</td>");
+document.write("<td align=\"left\" colspan=\"2\">");
+document.write("<a href=\"/science?_ob=ReminderURL&_method=display&_acct=C000013278&_version=1&_userid=167669&md5=4dfd57dfc485caef26f9ad0f791812f8\" target=\"passwd\" onClick=\"var remindWin;remindWin=window.open('','passwd','scrollbars=yes,resizable=yes,directories=no,toolbar=n,menubar=no,status=no,width=650,height=300');\" title=\"Click here for help in recovering your ScienceDirect access\">Forgotten&nbsp;password?</a>");
+document.write("</td>");
+document.write("</tr>");
+document.write("</table></form></div>");
+//---------->
+</script><div style="padding: 0.4em;"><div id="sdLoginBoxFold"><a href="javascript:flip('sdLoginBox'); javascript:flip('sdLoginBoxFold');" title="Open the Login Box">Login: &nbsp;<img src="science_files/sign_plus.gif" alt="+" title="Open the Login Box" border="0" height="9" width="9"></a><br><a href="https://www.sciencedirect.com/science?_ob=RegistrationURL&amp;_method=display&amp;_type=ip&amp;_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-48063X3-1%26_user%3D167669%26_coverDate%3D01%2F31%2F2003%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3Db1f250a115f79e78dae94efac264378e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=107a2afd81671ed73578a37bab5df473" target="_top" title="Click here to learn about registering with ScienceDirect">Register</a></div></div><div id="sdLoginBox" style="padding: 0.2em; background-image: url(/scidirimg/login_background.gif); background-repeat: repeat-x; height: 70px; display: none;"><form name="sdLogin" method="post" action="https://www.sciencedirect.com/science/login"><input name="login" value="login" type="hidden"><table cellpadding="0" cellspacing="0" width="100%"><tbody><tr valign="top"><td align="left" nowrap="nowrap"></td></tr><tr><td nowrap="nowrap">&nbsp;<a href="http://www.sciencedirect.com/science?_ob=FederationURL&amp;_method=display&amp;_type=f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ab29801dc8d391fc32e9ce6efd988674" title="Athens/Institution Login">Athens/Institution Login</a>&nbsp;</td><td align="right"><a href="https://www.sciencedirect.com/science?_ob=RegistrationURL&amp;_method=display&amp;_type=ip&amp;_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-48063X3-1%26_user%3D167669%26_coverDate%3D01%2F31%2F2003%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3Db1f250a115f79e78dae94efac264378e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=107a2afd81671ed73578a37bab5df473" target="_top" title="Click here to learn about registering with ScienceDirect">Not Registered?&nbsp;</a><a href="javascript:flip('sdLoginBox');javascript:flip('sdLoginBoxFold');" title="Close the Login Box"><img src="science_files/sign_minus.gif" alt="-" title="Close the Login Box" border="0" height="9" width="9"></a></td></tr></tbody></table><input name="_ob" value="MiamiLogonURL" type="hidden"><input value="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-48063X3-1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=b1f250a115f79e78dae94efac264378e" name="targetURL" type="hidden"><input value="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-48063X3-1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=b1f250a115f79e78dae94efac264378e" name="returnURL" type="hidden"><table cellpadding="0" cellspacing="0" width="100%"><tbody><tr align="right"><td align="left">User&nbsp;Name:</td><td align="left"><input name="userid" class="xpstyle" size="11" title="Please enter your user name here" type="text"></td><td align="right">Password: </td><td align="left"><input name="password" class="xpstyle" size="11" maxlength="20" title="Please enter your password here" type="password"></td><td align="left"><input class="image" onmouseover="this.src='/scidirimg/sci_dir/arrow_small_b.gif'" onmouseout="this.src='/scidirimg/sci_dir/arrow_small_a.gif'" name="arrow" src="science_files/arrow_small_a.gif" title="Login" value="Submit" type="image">		</td></tr><tr valign="baseline"><td colspan="3" align="left"><input name="rememberid" id="rememberMe" value="Y" class="checkbox" title="Checking this option will log you in automatically next time you visit ScienceDirect" type="checkbox"><label for="rememberMe"><span title="Checking this option will log you in automatically next time you visit ScienceDirect">Remember&nbsp;me&nbsp;on&nbsp;this&nbsp;computer</span></label></td><td colspan="2" align="left"><a href="http://www.sciencedirect.com/science?_ob=ReminderURL&amp;_method=display&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=4dfd57dfc485caef26f9ad0f791812f8" target="passwd" onclick="var remindWin;remindWin=window.open('','passwd','scrollbars=yes,resizable=yes,directories=no,toolbar=n,menubar=no,status=no,width=650,height=300');" title="Click here for help in recovering your ScienceDirect access">Forgotten&nbsp;password?</a></td></tr></tbody></table></form></div>
+<noscript>
+<div id="sdLoginBox"
+style="background-image: url(/scidirimg/login_background.gif);
+background-repeat: repeat-x; height:70px;padding:.02em;"> <form
+name="sdLogin" method="POST"
+action="https://www.sciencedirect.com/science/login"> <input
+type="hidden" name="login" value="login"> <table width="100%"
+cellspacing="0" cellpadding="0"> <tr valign="top"> <tr> <td nowrap
+align="left"> &nbsp;<a
+href="/science?_ob=FederationURL&_method=display&_type=f&_acct=C000013278&_version=1&_userid=167669&md5=ab29801dc8d391fc32e9ce6efd988674"title="Athens/
+Institution Login">Athens/Institution Login</a>&nbsp;</font></td> <td
+align="right"> <a
+href="https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-48063X3-1%26_user%3D167669%26_coverDate%3D01%2F31%2F2003%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3Db1f250a115f79e78dae94efac264378e&_acct=C000013278&_version=1&_userid=167669&md5=107a2afd81671ed73578a37bab5df473"
+title="Click here to learn about registering with ScienceDirect"
+target="_top">Not Registered?&nbsp;</a> </td> </tr>
+</table> <table width="100%" cellspacing="0" cellpadding="0"> <tr
+align="right"> <td align="left">User&nbsp;Name: </td> <td align="left">
+<input type="text" name="userid" class="xpstyle" size="11"
+title="Please enter your user name here" /> </td> <td
+align="right">Password: </td> <td align="left"> <input type="password"
+name="password" class="xpstyle" size="11" maxlength="20" title="Please
+enter your password here" /> </td>
+<input type="hidden" name="_ob" value="MiamiLogonURL">
+<input type="hidden" name="targetURL"
+value="http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-48063X3-1&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=b1f250a115f79e78dae94efac264378e"
+>
+<input type="hidden" name="returnURL"
+value="http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-48063X3-1&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=b1f250a115f79e78dae94efac264378e"
+> <td align="left"><input class="image" type="image"
+src="/scidirimg/sci_dir/arrow_small_a.gif" title="Login" alt="Go"
+value="Submit" /></a> </td> </tr> <tr valign="baseline"> <td
+align="left" colspan="3"> <input type="checkbox"
+name="rememberid"id="rememberMe" value="Y" class="checkbox"
+title="Checking this option will log you in automatically next time you
+visit ScienceDirect"/> <label for="rememberMe"><span title="Checking
+this option will log you in automatically next time you visit
+ScienceDirect">Remember&nbsp;me&nbsp;on&nbsp;this&nbsp;computer</span></label>
+</td> <td align="left" colspan="2"> <a
+href="/science?_ob=ReminderURL&_method=display&_acct=C000013278&_version=1&_userid=167669&md5=4dfd57dfc485caef26f9ad0f791812f8"
+target="passwd" onClick="var
+remindWin;remindWin=window.open('','passwd','scrollbars=yes,resizable=yes,directories=no,toolbar=n,menubar=no,status=no,width=650,height=300');"
+title="Click here for help in recovering your ScienceDirect
+access">Forgotten&nbsp;password?</a> </td> </tr> </table></form></div>
+</noscript>
+		</span></td>
+	</tr>
+       
+    
+  
+ 
+
+</tbody></table>
+
+
+<span style="font-size: 75%; font-family: arial,verdana,helvetica,sans-serif;">
+<table class="sdMainNav sci_dirNav" style="font-size: 1em; background-image: url(/scidirimg/sci_dir/navbar_back.gif);" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+      <td align="right" width="1%">&nbsp;</td>
+      <td align="left"><img src="science_files/space.gif" height="1" width="1"><table class="sdMainNavCenter" style="font-size: 1em;" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="center">
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HomePageURL&amp;_method=userHomePage&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c7870f9657dff8745244b4749ca7c26d" target="_top" name="Home" alt="Home" title="Home"><div class="sdMainNavPadding">Home</div></a></td>
+
+<td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=BrowseListURL&amp;_type=all&amp;_auth=y&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=cd640f2d5607ab1204ee83049bdadeba" target="_top" name="Browse" alt="Browse" title="Browse"><div class="sdMainNavPadding">Browse</div></a></td>
+
+<td class="sdMainNav sci_dirNavActive" style="background-image: url(/scidirimg/sci_dir/navbar_select.gif);" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSearchURL&amp;_method=requestForm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=fb9fec760e84d9abcf5ed2dc70534c28" target="_top" name="Search" alt="Search" title="Search"><div class="sdMainNavPadding">Search</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=begin&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=f222c767c0a36820cbec24eed935de22" target="_top" name="account" alt="My Settings" title="My Settings"><div class="sdMainNavPadding">My Settings</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSDIURL&amp;_method=listAlerts&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e57a2692284e455b0d835f8aee17a7f2" target="_top" name="alert" alt="Alerts" title="Alerts"><div class="sdMainNavPadding">Alerts</div></a></td>
+
+      
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=browse_open_doc.htm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f7d44b4b8317300c75bc3a870b6777aa" target="sdhelp" alt="Help (Opens new window)" title="Help (Opens new window)" onclick="var helpWin; helpWin=window.open('/science?_ob=HelpURL&_file=browse_open_doc.htm&_btn=Y&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f7d44b4b8317300c75bc3a870b6777aa','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus(); return false"><div class="sdMainNavPadding">Help</div></a></td>
+      
+</tr></tbody></table>
+</td></tr></tbody></table>
+</span>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td><a name="Skip Buttons"></a><script language="javascript">
+<!--
+function clearQSForm() {
+    document.qkSrch.qs_tak.value="";
+    document.qkSrch.qs_author.value="";
+    document.qkSrch.qs_title.value="";
+    document.qkSrch.qs_vol.value="";
+    document.qkSrch.qs_issue.value="";
+    document.qkSrch.qs_pages.value="";
+}
+//-->
+</script>
+
+<div id="sdQuickSearch" style="font-size: 75%;">
+<div style="background-image: url(/scidirimg/sci_dir/qs_background.gif); background-repeat: repeat-x; background-position: left bottom; background-color: rgb(218, 218, 218);">
+<input name="_ob" value="QuickSearchURL" type="hidden">
+<input value="submitForm" name="_method" type="hidden">
+<input value="C000013278" name="_acct" type="hidden">
+<input value="f8cedf90cc77e7aa17d3e496ae9e99de" name="md5" type="hidden">
+
+<table border="0" width="100%">
+<form name="qkSrch" method="get" target="_top" action="/science"></form>
+<tbody><tr valign="center"><td align="left" nowrap="nowrap">&nbsp;<b>Quick Search</b></td>
+   <td align="right">&nbsp;&nbsp;Title,&nbsp;abstract,&nbsp;keywords</td>
+   <td align="left"><input name="qs_tak" value="" size="28" maxlength="450" title="For example: heart attack AND behavio?" class="qsinput xpstyle" tabindex="1" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Author</td>
+   <td align-left="" colspan="5"><input name="qs_author" value="" size="30" maxlength="450" title="For example: j s smith" class="qsinput xpstyle" tabindex="2" type="text"></td>
+   <td colspan="2" nowrap="nowrap"><span style="font-size: 0.9em;">e.g.&nbsp;&nbsp;j s smith</span>
+
+   </td>
+   <td align="right" valign="top" width="90%"></td>
+</tr>
+<tr valign="center"><td align="left" nowrap="nowrap">&nbsp;<a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=qs_main.htm&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=4a0f77d3d377a395b541957f04e604ce" target="sdhelp" onmouseover="window.status='Help is Available';return true" onclick="var helpWin; helpWin=window.open('qs_main.htm','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus()"><img src="science_files/qs_tips.gif" tabindex="9" alt="Search tips (Opens new window)" title="Search tips (Opens new window)" align="absmiddle" border="0"></a></td>
+   <td align="right">&nbsp;&nbsp;Journal/book&nbsp;title</td>
+   <td align="left"><input name="qs_title" value="" size="28" maxlength="450" title="For example: journal of molecular biology" tabindex="3" class="qsinput xpstyle" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Volume</td>
+   <td align="left"><input name="qs_vol" value="" size="3" maxlength="10" class="qsinput xpstyle" style="width: 30px;" tabindex="4" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Issue</td>
+   <td align="left"><input name="qs_issue" value="" size="3" maxlength="10" class="qsinput xpstyle" style="width: 30px;" tabindex="5" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Page</td>
+   <td align="right"><input name="qs_pages" value="" size="3" maxlength="10" title="For example: 14-27" class="qsinput xpstyle" style="width: 30px;" tabindex="6" type="text"></td>
+   <td colspan="2" align="left" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-48063X3-1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=b1f250a115f79e78dae94efac264378e&amp;clearQS=y" onclick="clearQSForm(); return false;" onmouseover="document.images['clearQS'].src='/scidirimg/sci_dir/btn_clear2.gif'" onmouseout="document.images['clearQS'].src='/scidirimg/sci_dir/btn_clear1.gif'"><img src="science_files/btn_clear1.gif" alt="Clear all fields" title="Clear all fields" name="clearQS" tabindex="7" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;<input src="science_files/btn_go1.gif" onmouseover="this.src='/scidirimg/sci_dir/btn_go2.gif'" onmouseout="this.src='/scidirimg/sci_dir/btn_go1.gif'" alt="Submit Quick Search" title="Submit Quick Search" value="Submit" tabindex="8" type="image"></td></tr>
+
+
+</tbody></table>
+</div>
+</div>
+</td></tr>
+</tbody></table>
+<div style="margin-left: 8px; margin-right: 5px;">
+<div style="width: 100%;">
+
+
+
+<div id="sdBody" class="pageText">
+
+<table style="padding-top: 2px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td>
+
+
+ 
+ 
+  
+   <a href="http://www.sciencedirect.com/science/journal/10773142"><strong>Computer Vision and Image Understanding</strong></a>
+   <br>
+  
+ 
+ 
+  
+  <a href="http://www.sciencedirect.com/science?_ob=PublicationURL&amp;_tockey=%23TOC%236750%232003%23999109998%23406188%23FLA%23&amp;_cdi=6750&amp;_pubType=J&amp;view=c&amp;_auth=y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=6356b2549658e506cd78cebf343f2be8">
+
+
+Volume 89, Issue 1</a>, 
+
+
+January 2003,
+
+
+Pages 1-23
+
+
+
+
+</td>
+
+<td>
+
+
+</td></tr>
+</tbody></table>
+
+<strong><font color="#ff0000">
+
+
+
+
+
+
+
+</font></strong>
+
+
+
+
+
+
+  
+<br>
+  
+<table border="0" cellpadding="1" cellspacing="0" width="100%">
+<tbody><tr><td>
+<table align="left" border="0" cellpadding="0" cellspacing="0">
+  
+<tbody><tr>
+
+
+   <td><a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-48063X3-1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=summary&amp;_orig=search&amp;_cdi=6750&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=1c5f99a993f63167d2b8d40674113490" class="tab sci_dirTab">SummaryPlus</a></td>
+
+
+  <td><a href="#" class="tabActive sci_dirTabActive">Full Text + Links</a></td>
+
+
+  <td><a href="http://www.sciencedirect.com/science?_ob=MImg&amp;_imagekey=B6WCX-48063X3-1-4R&amp;_cdi=6750&amp;_user=167669&amp;_orig=search&amp;_coverDate=01%2F31%2F2003&amp;_sk=999109998&amp;view=c&amp;wchp=dGLbVtz-zSkWA&amp;md5=8e9e88c7e2bb895370f229ee711af80e&amp;ie=/sdarticle.pdf" class="tab sci_dirtab" target="newPdfWin" onclick="var newWidth=((document.body.clientWidth*90)/100); var newHeight=document.body.clientHeight; var pdfWin; pdfWin=window.open('','newPdfWin','width='+newWidth+',height='+newHeight+',resizable=yes, left=50, top=50');" pdfwin.focus()="">PDF (447 K)</a></td>
+
+<td>&nbsp;<b> View thumbnail images</b> | <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-48063X3-1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;_cdi=6750&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f04a6968da70fcf374e38ad923190a46&amp;artImgPref=F">View full size images</a></td>
+</tr>
+</tbody></table>
+</td></tr>
+<tr><td>
+<table valign="bottom" align="left" bgcolor="#cccccc" border="0" cellpadding="3" cellspacing="0" width="100%">
+  <tbody><tr><td align="left" valign="middle">
+      
+          <a href="http://www.sciencedirect.com/science?_ob=QuickLinksURL&amp;_method=createIntLink&amp;_type=article&amp;_key=B6WCX-48063X3-1&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=0b0cd22994e63f7787c83952cbf70c5b" onmouseover="document.images['addQuickLink'].src='/scidirimg/sci_dir/quicklink_b.gif'" onmouseout="document.images['addQuickLink'].src='/scidirimg/sci_dir/quicklink_a.gif'"><img src="science_files/quicklink_a.gif" name="addQuickLink" alt="Add to my quick links" title="Add to my quick links" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+      
+    
+      
+          <a href="http://www.sciencedirect.com/science?_ob=CitedSearchURL&amp;_method=submitSearch&amp;_udi=B6WCX-48063X3-1&amp;_alid=0&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;dest=list&amp;_tockey=%23toc%236750%232003%23999109998%23406188%21&amp;_orig_alid=&amp;sterms=%23refsrchkey%23f%23Suzuki%232003%231%2323%23K%23&amp;source=citedSrcs&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=7f2612fce4040afdc6f2054a081cedb0" onmouseover="document.images['citedBy'].src='/scidirimg/sci_dir/citedby_b.gif'" onmouseout="document.images['citedBy'].src='/scidirimg/sci_dir/citedby_a.gif'"><img src="science_files/citedby_a.gif" name="citedBy" alt="Cited by" title="Cited by" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+      
+    
+          <a href="http://www.sciencedirect.com/science?_ob=EmailFriendURL&amp;_method=gatherInfo&amp;refSource=html&amp;count=1&amp;_uoikey=B6WCX-48063X3-1&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=5876d085f81bc283825725b7b38fab8f" onmouseover="document.images['addEmail'].src='/scidirimg/sci_dir/emailarticle_b.gif'" onmouseout="document.images['addEmail'].src='/scidirimg/sci_dir/emailarticle_a.gif'"><img src="science_files/emailarticle_a.gif" name="addEmail" alt="E-mail article" title="E-mail article" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+    
+      
+      
+       
+          <a href="http://www.sciencedirect.com/science?_ob=CitedSearchURL&amp;_method=submitSearch&amp;_udi=B6WCX-48063X3-1&amp;_alid=0&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;dest=save&amp;_tockey=%23toc%236750%232003%23999109998%23406188%21&amp;_orig_alid=&amp;sterms=%23refsrchkey%23f%23Suzuki%232003%231%2323%23K%23&amp;source=citedSrcs&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=7f2612fce4040afdc6f2054a081cedb0" onmouseover="document.images['saveCitation'].src='/scidirimg/sci_dir/saveascitationalert_b.gif'" onmouseout="document.images['saveCitation'].src='/scidirimg/sci_dir/saveascitationalert_a.gif'"><img src="science_files/saveascitationalert_a.gif" name="saveCitation" alt="Save as citation alert" title="Save as citation alert" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+       
+      
+      
+          <a href="http://www.sciencedirect.com/science?_ob=DownloadURL&amp;_method=confirm&amp;_uoikey=B6WCX-48063X3-1&amp;count=1&amp;_docType=FLA&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=a25c55d96d57a72fffe9f4af345b0ab1" onmouseover="document.images['export'].src='/scidirimg/sci_dir/exportarticle_b.gif'" onmouseout="document.images['export'].src='/scidirimg/sci_dir/exportarticle_a.gif'"><img src="science_files/exportarticle_a.gif" name="export" alt="Export citation + link" title="Export citation + link" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+      
+      
+          <a href="http://www.sciencedirect.com/science?_ob=CitedSearchURL&amp;_method=submitSearch&amp;_udi=B6WCX-48063X3-1&amp;_alid=0&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;dest=saveRss&amp;_tockey=%23toc%236750%232003%23999109998%23406188%21&amp;_orig_alid=&amp;sterms=%23refsrchkey%23f%23Suzuki%232003%231%2323%23K%23&amp;source=citedSrcs&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=7f2612fce4040afdc6f2054a081cedb0" target="_blank" onclick="openPopup('/science?_ob=CitedSearchURL&_method=submitSearch&_udi=B6WCX-48063X3-1&_alid=0&_rdoc=1&_fmt=&_orig=search&dest=saveRss&_tockey=%23toc%236750%232003%23999109998%23406188!&_orig_alid=&sterms=%23refsrchkey%23f%23Suzuki%232003%231%2323%23K%23&source=citedSrcs&_acct=C000013278&_version=1&_userid=167669&md5=7f2612fce4040afdc6f2054a081cedb0', '', 700, 500); return false;"><img src="science_files/rsscite.gif" alt="Set up a citation RSS feed (Opens new window)" title="Set up a citation RSS feed (Opens new window)" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+       
+  
+      
+      </td>
+    </tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+
+
+ 
+  <table valign="top" align="right" border="0" cellpadding="0" cellspacing="0" width="185">
+     
+   
+                           
+      <tbody><tr class="tableFmDivider" bgcolor="#ddf8ad">
+         <td></td>
+      </tr>  
+      <tr>
+        <td><table class="tableFmBgPad sci_dirBorder" cellspacing="0" width="185"><tbody><tr><td align="left" valign="middle"><a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=835&amp;_udi=B6WCX-48063X3-1&amp;_targetURL=https%3A%2F%2Fs100.copyright.com%2FAppDispatchServlet%3FpublisherName%3DELS%26contentID%3DS1077314202000309%26orderBeanReset%3Dtrue&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=b31ee61efc11a52402c0c8f3d318ba5a" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><img src="science_files/gw_ol_rts.gif" alt="Request permission to reuse this article" border="0" vspace="5"></a></td></tr><tr><td align="left" valign="middle"><font color="#0000ff"><a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_udi=B6WCX-48063X3-1&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0041527213%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Da58bcb7d94824ff3f3114cda4e433c7f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8664e26359d288c3c2a134d4c4d13e68" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a></font></td></tr><tr width="185" class="tableFmDivider"><td></td></tr><tr><td align="left" valign="middle"><font color="#0000ff"><a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_udi=B6WCX-48063X3-1&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0041527213%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Da58bcb7d94824ff3f3114cda4e433c7f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=af9f015b89b111c1c5fb9d17b28a057f" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (13)</a></font></td></tr></tbody></table></td>
+      </tr>
+      <tr class="tableFmDivider" bgcolor="#ddf8ad">
+         <td></td>
+      </tr>
+  
+</tbody></table>
+
+  
+
+
+
+  
+    <img src="science_files/clear.gif" alt="" border="0" height="10" width="1"><br><a href="http://dx.doi.org/10.1016/S1077-3142%2802%2900030-9" target="doilink" onclick="var doiWin; doiWin=window.open('http://dx.doi.org/10.1016/S1077-3142(02)00030-9','doilink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes'); doiWin.focus()">doi:10.1016/S1077-3142(02)00030-9</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=doi.htm&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=07af7894a3de21c7f7b216fbc7fb8f98" target="sdhelp" onmouseover="window.status='Help is Available';return true" onclick="var helpWin; helpWin=window.open('/science?_ob=HelpURL&_file=doi.htm&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=07af7894a3de21c7f7b216fbc7fb8f98','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus()"><img src="science_files/icon_doi.gif" alt="How to Cite or Link Using DOI (Opens New Window)" align="absmiddle" border="0" height="14" width="136"></a>
+  
+
+
+
+  &nbsp;
+
+ 
+
+
+
+<br><span class="SDtxtSmall">
+Copyright © 2003 Elsevier Science (USA). All rights reserved. </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="articleTitle">
+<p>Linear-time connected-component labeling based on sequential local operations </p></span>
+
+
+<strong>
+</strong><p><strong>Kenji Suzuki<a name="m4.bcor*"></a><a href="#m4.cor*"><sup><img src="science_files/REcor.gif" alt="Corresponding Author Contact Information" border="0"></sup></a><sup>, </sup><a href="mailto:k-suzuki@hilum.bsd.uchicago.edu"><sup><img src="science_files/REemail.gif" alt="E-mail The Corresponding Author" border="0"></sup></a><sup>, </sup><a href="mailto:"><sup><img src="science_files/REemail.gif" alt="E-mail The Corresponding Author" border="0"></sup></a><sup>, </sup><a href="#aff1"><sup>a</sup></a>, Isao Horiba<a href="#aff1"><sup>a</sup></a> and Noboru Sugie<a href="#aff2"><sup>b</sup></a> </strong>
+
+
+
+<br><a name="aff1"></a><sup>a</sup> Faculty of Information Science and Technology, Aichi Prefectural University, Nagakute, Aichi 480-1198, Japan<br><a name="aff2"></a><sup>b</sup> Faculty of Science and Technology, Meijo University, Tempaku, Nagoya 468-8502, Japan 
+
+
+<br>
+
+Received 18 October 2000;&nbsp; accepted 19 November 2002.&nbsp;; Available online  21 February 2003.  
+
+<br>
+<br><br><br></p><div class="art">
+<p><span class="h3">Abstract</span></p><p>This paper presents a fast
+algorithm for labeling connected components in binary images based on
+sequential local operations. A one-dimensional table, which memorizes
+label equivalences, is used for uniting equivalent labels successively
+during the operations in forward and backward raster directions. The
+proposed algorithm has a desirable characteristic: the execution time
+is directly proportional to the number of pixels in connected
+components in an image. By comparative evaluations, it has been shown
+that the efficiency of the proposed algorithm is superior to those of
+the conventional algorithms. </p><p>
+<strong>Author Keywords: </strong>Labeling; Connected component; Linear time; Sequential local operation; One-dimensional table; Raster scan order 
+
+
+<br clear="all">
+</p></div><br><div class="art">
+<p><span class="h3">Article Outline</span></p><dl><dt><a href="#toc1">1. Introduction</a></dt><dt><a href="#toc2">2. Conventional algorithm</a></dt><dl><dt><a href="#toc3">2.1. Outline of the conventional algorithm</a></dt><dt><a href="#toc4">2.2. Problem</a></dt></dl><dt><a href="#toc5">3. Fast connected-component labeling</a></dt><dl><dt><a href="#toc6">3.1. Proposed algorithm</a></dt><dt><a href="#toc7">3.2. Main features</a></dt><dt><a href="#toc8">3.3. Analysis of the proposed algorithm</a></dt><dl><dt><a href="#toc9">3.3.1. Some results of labeling</a></dt><dt><a href="#toc10">3.3.2. Consideration of the number of scans</a></dt></dl></dl><dt><a href="#toc11">4. Experiments</a></dt><dl><dt><a href="#toc12">4.1. Maximum number of scans</a></dt><dl><dt><a href="#toc13">4.1.1. Results</a></dt><dt><a href="#toc14">4.1.2. Analysis</a></dt></dl><dt><a href="#toc15">4.2. Characteristics of algorithms</a></dt><dl><dt><a href="#toc16">4.2.1. Maximum execution time</a></dt><dt><a href="#toc17">4.2.2. Characteristic against image size</a></dt></dl><dt><a href="#toc18">4.3. Evaluation with various images</a></dt><dt><a href="#toc19">4.4. Comparisons with the improved versions</a></dt><dl><dt><a href="#toc20">4.4.1. Conventional algorithm B</a></dt><dt><a href="#toc21">4.4.2. Conventional algorithm C</a></dt></dl></dl><dt><a href="#toc22">5. Concluding remarks</a></dt><dt><a href="#ack1">Acknowledgements</a></dt><dt><a href="#app1">Appendix A</a></dt><dt><a href="#app2">Appendix B</a></dt><dt><a href="#bibl1">References</a></dt></dl> 
+
+<br clear="all">
+</div><br><div class="art">
+<a name="toc1"></a><p><span class="h3">1. Introduction</span></p><p>One
+of the most fundamental operations in pattern recognition is the
+labeling of connected components in a binary image. The labeling
+algorithm transforms a binary image into a symbolic image in order that
+each connected component is assigned a unique label. This issue has a
+close connection with the connectivity of the connected components and
+cannot be resolved by mere parallel local operations [<a name="bbib21"></a><a href="#bib21">21</a>]. This is a typical one requiring sequential operations [<a name="bbib28"></a><a href="#bib28">28</a> and <a name="bbib30"></a><a href="#bib30">30</a>].</p><p>Various
+algorithms have been proposed so far. They are classified into four
+classes; the following two classes are representatives and suitable for
+ordinary computer architectures:</p><p>(A) Algorithms [<a name="bbib9"></a><a href="#bib9">9</a> and <a name="bbib11"></a><a href="#bib11">11</a>]
+repeat passes through an image in forward and backward raster
+directions alternately to propagate the label equivalences until no
+labels change.</p><p>(B) Algorithms [<a name="bbib7"></a><a href="#bib7">7</a>, <a name="bbib8"></a><a href="#bib8">8</a>, <a name="bbib10"></a><a href="#bib10">10</a>, <a name="bbib16"></a><a href="#bib16">16</a>, <a name="bbib17"></a><a href="#bib17">17</a>, <a name="bbib18"></a><a href="#bib18">18</a>, <a name="bbib22"></a><a href="#bib22">22</a>, <a href="#bib28">28</a>, <a href="#bib30">30</a> and <a name="bbib37"></a><a href="#bib37">37</a>]
+perform two passes: during the first pass, provisional labels are
+assigned to connected components; the label equivalences are stored in
+a one-dimensional or a two-dimensional table array. After or during the
+first pass, the label equivalences are resolved by some search. This is
+often performed by using a search algorithm such as the union-find
+algorithm [<a name="bbib5"></a><a href="#bib5">5</a>, <a name="bbib20"></a><a href="#bib20">20</a>, <a name="bbib41"></a><a href="#bib41">41</a> and <a name="bbib42"></a><a href="#bib42">42</a>].
+The results of resolving are generally stored in a one-dimensional
+table. During the second pass, the provisional labels are replaced by
+the smallest equivalent label using the table.</p><p>The others are as follows:</p><p>(C) Algorithms [<a name="bbib4"></a><a href="#bib4">4</a>, <a name="bbib6"></a><a href="#bib6">6</a>, <a name="bbib13"></a><a href="#bib13">13</a>, <a name="bbib31"></a><a href="#bib31">31</a>, <a name="bbib33"></a><a href="#bib33">33</a>, <a name="bbib34"></a><a href="#bib34">34</a>, <a name="bbib35"></a><a href="#bib35">35</a> and <a name="bbib40"></a><a href="#bib40">40</a>] have been developed for the images represented by hierarchical tree structures [<a name="bbib15"></a><a href="#bib15">15</a>, <a name="bbib32"></a><a href="#bib32">32</a> and <a name="bbib38"></a><a href="#bib38">38</a>], i.e., <i>n</i>-ary
+tree such as bintree, quadtree, octree, etc. The label equivalences are
+resolved by using a search algorithm such as the union-find algorithm.
+The algorithm in [<a href="#bib4">4</a>] can handle the images represented by both an array and hierarchical tree structures.</p><p>(D) Parallel algorithms [<a name="bbib2"></a><a href="#bib2">2</a>, <a name="bbib3"></a><a href="#bib3">3</a>, <a name="bbib14"></a><a href="#bib14">14</a>, <a name="bbib19"></a><a href="#bib19">19</a>, <a name="bbib23"></a><a href="#bib23">23</a>, <a name="bbib26"></a><a href="#bib26">26</a>, <a name="bbib36"></a><a href="#bib36">36</a> and <a name="bbib43"></a><a href="#bib43">43</a>] have been developed for parallel machine models such as a mesh connected massively parallel processor.</p><p>In addition, the hardware implementation of the above algorithms has been also studied [<a name="bbib1"></a><a href="#bib1">1</a>, <a name="bbib12"></a><a href="#bib12">12</a>, <a name="bbib24"></a><a href="#bib24">24</a>, <a name="bbib25"></a><a href="#bib25">25</a> and <a name="bbib44"></a><a href="#bib44">44</a>].</p><p>The
+algorithms in the class (A) are relatively easy to implement in
+hardware because they are based on only sequential local operations and
+require no search algorithm. However, they require a large number of
+passes. The required execution time has not been clarified
+theoretically as yet: it may depend on the complexity of the connected
+components. In the algorithms in the class (B), since the label
+equivalences are resolved by using some search, the execution time may
+also depend on the complexity of the connected components. In the
+algorithms in the class (C), the execution time is much more efficient,
+but the worst case one, however, is the same as that required for those
+in the class (B), i.e., where the image representation is an array. The
+algorithms in the class (D) are not suitable for ordinary computer
+architectures.</p><p>The execution time of the above conventional
+algorithms differs exceedingly among different images. In their
+applications, it should be estimated that the maximum execution time is
+required. This prevents them from applying to a wide range of real-time
+applications.</p><p>In this paper, a fast algorithm for labeling the
+connected components, based on sequential local operations using
+one-dimensional table, is proposed. The proposed algorithm combines
+ones in the classes (A) and (B), leading to fast computation, and is
+suitable for ordinary computers. First, the determination of the
+connected components at which the conventional algorithms in the class
+(A) are weak, i.e., the maximum execution time is required for them, is
+stated. Then, it is described that the proposed algorithm can determine
+such connected components fast. Through experiments, the
+characteristics of the conventional algorithms and the proposed
+algorithm are made clear. By comparative evaluations with the
+conventional algorithms, the efficiency of the proposed algorithm is
+shown.</p><p><span class="h3"><a name="toc2"></a>2. Conventional algorithm</span><a name="toc3"></a></p><p><span class="h4">2.1. Outline of the conventional algorithm</span></p><p>The conventional algorithm in [<a href="#bib9">9</a>] in the class (A) repeats passes through a binary image <i>b</i>(<i>x</i>,<i>y</i>) in the forward and the backward raster directions alternately. Let us suppose that the binary image <i>b</i>(<i>x</i>,<i>y</i>) consists of pixel values <i>F</i><sub>O</sub>, indicating objects, and <i>F</i><sub>B</sub>, indicating the background; that <i>F</i><sub>O</sub> and <i>F</i><sub>B</sub> are sufficiently high values (<i>F</i><sub>O</sub>&lt;<i>F</i><sub>B</sub>); and that a provisional label <i>m</i>
+is initialized to one. First, the following sequential local operations
+in the forward raster scan order, called the forward scan, are
+performed using the mask shown in <a href="#fig1">Fig. 1a</a> for eight-connected components—see [<a name="bbib29"></a><a href="#bib29">29</a>] for the definition</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><a name="fd1"></a><img src="science_files/0_015.gif" alt="Image" align="absbottom" border="0" height="49" width="401"></td><td style="text-align: right; vertical-align: middle;" width="5%">(1)</td></tr></tbody></table></p><p></p></div><div class="art"></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>g</i><sub>min</sub>(<i>x</i>,<i>y</i>)=min[{<i>g</i>(<i>x</i>−<i>i</i>,<i>y</i>−<i>j</i>) | <i>i</i>,<i>j</i><img src="science_files/2208.gif" alt="set membership, variant" border="0"><i>M</i><sub><i>S</i></sub>}],</td><td style="text-align: right; vertical-align: middle;" width="5%">(2)</td></tr></tbody></table></p><p></p></div><div class="art">where (<i>m</i>=<i>m</i>+1) indicates an increment of <i>m</i>, min(·) an operator calculating the minimum value, and <i>M</i><sub><i>S</i></sub> the region of the mask except the object pixel, i.e., <i>b</i>(<i>x</i>−1,<i>y</i>−1), <i>b</i>(<i>x</i>,<i>y</i>−1), <i>b</i>(<i>x</i>+1,<i>y</i>−1), and <i>b</i>(<i>x</i>−1,<i>y</i>). In the above equation (<a href="#fd1">1</a>),
+the priority is given to the condition in the upper column. The
+condition in the first column means a case where the object pixel <i>b</i>(<i>x</i>,<i>y</i>)
+is in the background. The condition in the second column means a case
+where the object pixel belongs to the object, and all of the
+neighboring pixels in the mask to the background. In this case, an
+initial provisional label is assigned to the object pixel. In the case
+of the third column, the minimum label among the provisional labels in
+the mask is assigned to the object pixel. Thus, the smaller label
+propagates on the connected component.
+<blockquote><p><a name="fig1"></a><a name="1"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig1&amp;_ba=1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=235e9b5a8ca7c1fb1e06d55ab9736d99" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig1&_ba=1&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=235e9b5a8ca7c1fb1e06d55ab9736d99'); return false;"><img src="science_files/0_023.gif" alt="" title="Display Full Size version of this image (1K) - Opens new window" align="middle" border="1" height="60" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig1&amp;_ba=1&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=235e9b5a8ca7c1fb1e06d55ab9736d99" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig1&_ba=1&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=235e9b5a8ca7c1fb1e06d55ab9736d99'); return false;" alt="Display Full Size version of this image (1K) - Opens new window" title="Display Full Size version of this image (1K) - Opens new window">Display Full Size version of this image</a> (1K)</td></tr></tbody></table></p><p>Fig. 1. Masks for the labeling of eight-connected components: (a) forward scan; (b) backward scan. </p><p></p></blockquote>
+<p>Then, the following operations in the backward raster scan order,
+called the backward scan, are performed using the mask shown in <a href="#fig1">Fig. 1b</a>,</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_022.gif" alt="Image" align="absbottom" border="0" height="33" width="370"></td><td style="text-align: right; vertical-align: middle;" width="5%">(3)</td></tr></tbody></table></p><p></p></div><div class="art">where <i>M</i> indicates the region of the mask.<p>The
+forward and the backward scans are repeated alternately until no
+provisional labels change, and then the final labeled image in which
+each connected component is assigned a unique label can be obtained.<a name="toc4"></a></p><p><span class="h4">2.2. Problem</span></p><p>In
+the conventional algorithm, the labeling can be completed by performing
+plural scans. However, the number of scans required to complete the
+labeling has not been clarified theoretically as yet; it depends on the
+geometrical complexity of the connected components. It may take huge
+time to complete the labeling; this is a serious problem.</p><p><a href="#fig2">Fig. 2</a>
+illustrates the labeling of one sample, a stair-like connected
+component, using the conventional algorithm. When an object with a
+rectangular shape is put with a slight inclination, the obtained
+digital image frequently includes this kind of connected component. The
+labeling is completed by four scans, as shown in the figure. The
+provisional labels propagate from the top left to the right bottom—in
+the opposite direction in the case of the backward scan—on the
+connected components, by replacing neighboring connected pixel values
+with smaller ones. Plural scans depending on the geometrical complexity
+of the connected components are required to complete labeling. When the
+number of steps of the stair-like connected component is <i>N</i>, 2(<i>N</i>−1) scans are required. The labeling of the other sample, a spiral-like connected component, is illustrated in <a href="#fig3">Fig. 3</a>.
+Four scans are required to complete the labeling of this connected
+component, the number of turns of which is two, as shown in the figure.
+When the number of turns is <i>N</i>, 2<i>N</i> scans are required.
+</p><blockquote><p><a name="fig2"></a><a name="2"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig2&amp;_ba=2&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=ea5df8aca11663ee6231f8771574eeca" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig2&_ba=2&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=ea5df8aca11663ee6231f8771574eeca'); return false;"><img src="science_files/0_004.gif" alt="" title="Display Full Size version of this image (2K) - Opens new window" align="middle" border="1" height="79" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig2&amp;_ba=2&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=ea5df8aca11663ee6231f8771574eeca" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig2&_ba=2&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=ea5df8aca11663ee6231f8771574eeca'); return false;" alt="Display Full Size version of this image (2K) - Opens new window" title="Display Full Size version of this image (2K) - Opens new window">Display Full Size version of this image</a> (2K)</td></tr></tbody></table></p><p>Fig.
+2. Labeling of a stair-like connected component using the conventional
+algorithm: (a) after the first forward scan; (b) after the first
+backward scan; (c) after the second forward scan; (d) after the second
+backward scan. </p><p></p></blockquote>
+
+<blockquote><a name="fig3"></a><a name="3"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig3&amp;_ba=3&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=0f8ff481bf125360a3327a697f7c15e6" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig3&_ba=3&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=0f8ff481bf125360a3327a697f7c15e6'); return false;"><img src="science_files/0_026.gif" alt="" title="Display Full Size version of this image (9K) - Opens new window" align="middle" border="1" height="94" hspace="2" vspace="2" width="83"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig3&amp;_ba=3&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=0f8ff481bf125360a3327a697f7c15e6" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig3&_ba=3&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=0f8ff481bf125360a3327a697f7c15e6'); return false;" alt="Display Full Size version of this image (9K) - Opens new window" title="Display Full Size version of this image (9K) - Opens new window">Display Full Size version of this image</a> (9K)</td></tr></tbody></table><p>Fig.
+3. Labeling of a spiral connected component using the conventional
+algorithm: (a) after the first forward scan; (b) after the first
+backward scan; (c) after the second forward scan; (d) after the second
+backward scan. </p><p></p></blockquote>
+<p><span class="h3"><a name="toc5"></a>3. Fast connected-component labeling</span><a name="toc6"></a></p><p><span class="h4">3.1. Proposed algorithm</span></p><p>We have reported the preliminary version of the proposed algorithm briefly in [<a name="bbib39"></a><a href="#bib39">39</a>].
+In the conventional algorithm, since the provisional labels propagate
+only in a definite direction on the connected components, plural scans
+depending on the geometrical complexity of them are required. In the
+proposed algorithm, a one-dimensional table called the label connection
+table, which memorizes label equivalences, is used successively during
+operations. The provisional labels propagate not only on the connected
+components but also on the table. By this measure, the connectivity
+between the provisional labels at a geometrical distance can be
+reflected on the label-propagation; this can reduce the number of scans.</p><p>In
+the proposed algorithm, the forward and the backward scans are
+performed alternately successively using the label connection table;
+this leads to fast labeling. First of all, the label connection table
+is initialized as <i>T</i>[<i>F</i><sub>O</sub>]=<i>F</i><sub>O</sub> and <i>T</i>[<i>F</i><sub>B</sub>]=<i>F</i><sub>B</sub>.<br>[<i>First scan</i>]</p><p>The following sequential local operations using the label connection table <i>T</i>[<i>m</i>] are performed to assign the provisional labels and propagate them to the connected components:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><a name="fd2"></a><img src="science_files/0_011.gif" alt="Image" align="absbottom" border="0" height="49" width="401"></td><td style="text-align: right; vertical-align: middle;" width="5%">(4)</td></tr></tbody></table></p><p></p></div><div class="art"></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>T</i><sub>min</sub>(<i>x</i>,<i>y</i>)=min[{<i>T</i>[<i>g</i>(<i>x</i>−<i>i</i>,<i>y</i>−<i>j</i>)] | <i>i</i>,<i>j</i><img src="science_files/2208.gif" alt="set membership, variant" border="0"><i>M</i><sub><i>S</i></sub>}].</td><td style="text-align: right; vertical-align: middle;" width="5%">(5)</td></tr></tbody></table></p><p></p></div><div class="art"><p>The first and second columns in the above equation (<a href="#fd2">4</a>)
+are the same as those in the conventional algorithm. In the third
+column, the minimum label among the provisional labels converted by the
+label connection table is assigned to the object pixel. Thus, smaller
+labels, on which the previously obtained connectivity is reflected,
+propagate on the connected component.</p><p>The label connection table is updated, simultaneously with assigning the provisional labels, as follows:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_008.gif" alt="Image" align="absbottom" border="0" height="49" width="429"></td><td style="text-align: right; vertical-align: middle;" width="5%">(6)</td></tr></tbody></table></p><p></p></div><div class="art"><p>In
+the second column, an initial value is given to the label connection
+table. In the third column, the connectivity is stored in the table as
+the form that the provisional labels are equivalent to the minimum one.
+Thus, the previously obtained connectivity is reflected on the stored
+labels as smaller labels.<br>[<i>Scans after the first scan</i>]</p><p>After
+the first scan, the backward scan and the forward scan are performed
+alternately. The following operations using each mask of its own are
+performed in each raster scan order:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_007.gif" alt="Image" align="absbottom" border="0" height="33" width="231"></td><td style="text-align: right; vertical-align: middle;" width="5%">(7)</td></tr></tbody></table></p><p></p></div><div class="art"></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>T</i><sub>min</sub>(<i>x</i>,<i>y</i>)=min[{<i>T</i>[<i>g</i>(<i>x</i>−<i>i</i>,<i>y</i>−<i>j</i>)] | <i>i</i>,<i>j</i><img src="science_files/2208.gif" alt="set membership, variant" border="0"><i>M</i>}].</td><td style="text-align: right; vertical-align: middle;" width="5%">(8)</td></tr></tbody></table></p><p></p></div><div class="art"><p>The label connection table is updated, simultaneously with the above operations, as follows:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_002.gif" alt="Image" align="absbottom" border="0" height="33" width="345"></td><td style="text-align: right; vertical-align: middle;" width="5%">(9)</td></tr></tbody></table></p><p></p></div><div class="art"><p>The
+forward and backward scans are repeated until no provisional labels
+change, i.e., until the following condition is not fulfilled, and then
+the final labeled image is obtained,</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>g</i>(<i>x</i>−<i>i</i>,<i>y</i>−<i>j</i>)≠<i>T</i><sub>min</sub>(<i>x</i>,<i>y</i>) if <i>g</i>(<i>x</i>−<i>i</i>,<i>y</i>−<i>j</i>)≠<i>F</i><sub>B</sub>,</td><td style="text-align: right; vertical-align: middle;" width="5%">(10)</td></tr></tbody></table></p><p></p></div><div class="art">where <i>i</i>,<i>j</i><img src="science_files/2208.gif" alt="set membership, variant" border="0"><i>M</i><sub><i>S</i></sub>.<p>The operations in the proposed algorithm can be performed by using the logic table shown in <a href="#app1">Appendix A</a>. An efficient implementation can be realized by using it. The labeling of four-connected components [<a href="#bib29">29</a>] can be performed by using the mask shown in <a href="#app2">Appendix B</a>.<a name="toc7"></a></p><p><span class="h4">3.2. Main features</span></p><p>The main features of the proposed algorithm are as follows:</p><dl><dt><a name="list-item1"></a><a href="#list-item1"></a>The algorithm is based on only sequential local operations; no search algorithm to resolve the label equivalences is required.</dt><dt><a name="list-item2"></a><a href="#list-item2"></a>The
+label equivalences are stored in a one-dimensional table; the
+connectivity is resolved by simply reading and writing the table during
+the scans.</dt></dl><p>As for the feature [<a name="blist-item1"></a><a href="#list-item1">1</a>],
+since the search algorithm consists of complex procedures, it is
+performed generally in software. It takes much time to execute. The
+proposed algorithm, requiring no search algorithm, is expected to take
+less time. Furthermore, since the proposed algorithm is based on only
+sequential local operations, it is suitable for implementation in
+hardware. The conventional algorithms having the same feature as the
+feature [<a href="#list-item1">1</a>] are the algorithms in [<a href="#bib9">9</a> and <a href="#bib11">11</a>]
+in the class (A). They may require a lot of scans, depending on the
+geometrical complexity of connected components, as described concretely
+in the previous section.</p><p>As for the feature [<a name="blist-item2"></a><a href="#list-item2">2</a>],
+in the conventional algorithms, the label equivalences are stored in a
+two-dimensional table, a pair of one-dimensional tables or a
+one-dimensional table. In general, the algorithm using a
+one-dimensional table, like the proposed algorithm, can be implemented
+in a smaller size of hardware. The proposed algorithm requires just a
+small size of one-dimensional table handling the number of initial
+provisional labels. Since the connectivity is resolved by simply
+reading and writing the table in the proposed algorithm, the control
+circuit becomes very simple. The algorithms which resolve the
+connectivity in the same way as the proposed algorithm have not been
+proposed yet.</p><p>Thus, the proposed algorithm is expected to take less time and to be suitable for implementation in hardware.</p><p><span class="h4"><a name="toc8"></a>3.3. Analysis of the proposed algorithm</span><a name="toc9"></a></p><p><span class="h5">3.3.1. Some results of labeling</span></p><p>Consideration is given to some results of labeling. <a href="#fig4">Fig. 4</a> shows the result of labeling the stair-like connected component shown in <a href="#fig2">Fig. 2</a>. <a href="#fig4">Fig. 4a</a>
+shows the provisional labels assigned by the first forward scan of the
+conventional algorithm. ○ indicates the junction of two different
+provisional labels. On this connected component, the provisional labels
+1 and 2 meet before 2 and 3 meet. <a href="#fig4">Fig. 4b</a> shows
+the order of occurrences of the junctions in the forward raster scan
+order. After the first scan of the proposed algorithm, the provisional
+labels are assigned to the connected component, as shown in <a href="#fig4">Fig. 4c</a>. Since the provisional labels 1 and 2 meet first, the label 1 is written to the address (<i>T</i>(2))
+of 2 of the label connection table. Then, the provisional labels 2 and
+3 meet. The label 1, the result of conversion of the label 2 using the
+label connection table, is written to the address (<i>T</i>(3)) of 3 of
+the table, and the label 1 is assigned to the pixel of the connected
+component. Thus, the label connection table for this connected
+component, memorizing that the provisional labels 1, 2, and 3 are
+equivalent to the label 1, is completed. After the second scan, the
+labeling is completed, as shown in <a href="#fig4">Fig. 4d</a>. The labeling of the stair-like connected component having <i>N</i> steps is also completed by two scans.
+</p><blockquote><p><a name="fig4"></a><a name="4"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig4&amp;_ba=4&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=4a27e349fb2dc0da56b28a04450c3dc2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig4&_ba=4&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=4a27e349fb2dc0da56b28a04450c3dc2'); return false;"><img src="science_files/0_025.gif" alt="" title="Display Full Size version of this image (4K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="85"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig4&amp;_ba=4&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=4a27e349fb2dc0da56b28a04450c3dc2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig4&_ba=4&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=4a27e349fb2dc0da56b28a04450c3dc2'); return false;" alt="Display Full Size version of this image (4K) - Opens new window" title="Display Full Size version of this image (4K) - Opens new window">Display Full Size version of this image</a> (4K)</td></tr></tbody></table></p><p>Fig.
+4. Labeling of a stair-like connected component using the proposed
+algorithm (connection pattern I): (a) connectivity; (b) order of
+occurrences of the junctions; (c) after the first scan (forward scan);
+(d) after the second scan (backward scan). </p><p></p></blockquote>
+<p><a href="#fig5">Fig. 5</a> shows the result of labeling the spiral-like connected component shown in <a href="#fig3">Fig. 3</a>.
+On this connected component, the provisional labels 2 and 3 meet before
+1 and 2 meet. As compared with the stair-like connected component, the
+order of occurrences of the junctions is reversed. Therefore, the label
+connection table is completed after the second scan; i.e., both the
+operations in the backward raster scan order and the labeling are
+completed simultaneously. The labeling of the spiral-like connected
+component having <i>N</i> turns is also completed by two scans.
+</p><blockquote><p><a name="fig5"></a><a name="5"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig5&amp;_ba=5&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e7d5fdef056cbc4f4b51412e3ff5b33d" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig5&_ba=5&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e7d5fdef056cbc4f4b51412e3ff5b33d'); return false;"><img src="science_files/0_003.gif" alt="" title="Display Full Size version of this image (9K) - Opens new window" align="middle" border="1" height="92" hspace="2" vspace="2" width="42"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig5&amp;_ba=5&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e7d5fdef056cbc4f4b51412e3ff5b33d" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig5&_ba=5&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e7d5fdef056cbc4f4b51412e3ff5b33d'); return false;" alt="Display Full Size version of this image (9K) - Opens new window" title="Display Full Size version of this image (9K) - Opens new window">Display Full Size version of this image</a> (9K)</td></tr></tbody></table></p><p>Fig.
+5. Labeling of a spiral connected component using the proposed
+algorithm (connection pattern II): (a) connectivity; (b) order of
+occurrences of the junctions; (c) after the first scan (forward scan);
+(d) after the second scan (backward scan). </p><p></p></blockquote>
+<p>Thus, in the proposed algorithm, the labeling of the illustrated
+connected components can be completed by performing a definite number
+of scans, while the number depends on the geometrical complexity of
+image for the conventional algorithms.<a name="toc10"></a></p><p><span class="h5">3.3.2. Consideration of the number of scans</span></p><p>The labeling of the connected component shown in <a href="#fig5">Fig. 5</a>
+is completed at the same time as the label connection table is
+completed. However, to complete the labeling of arbitrary connected
+components, one more scan after the completion of the table is
+required, as shown in <a href="#fig6">Fig. 6</a>.
+</p><blockquote><p><a name="fig6"></a><a name="6"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig6&amp;_ba=6&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=40b424c1f4123b07df31ad531cc28de8" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig6&_ba=6&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=40b424c1f4123b07df31ad531cc28de8'); return false;"><img src="science_files/0_027.gif" alt="" title="Display Full Size version of this image (9K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="46"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig6&amp;_ba=6&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=40b424c1f4123b07df31ad531cc28de8" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig6&_ba=6&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=40b424c1f4123b07df31ad531cc28de8'); return false;" alt="Display Full Size version of this image (9K) - Opens new window" title="Display Full Size version of this image (9K) - Opens new window">Display Full Size version of this image</a> (9K)</td></tr></tbody></table></p><p>Fig.
+6. Labeling of another connected component using the proposed algorithm
+(connection pattern II): (a) connectivity; (b) order of occurrences of
+the junctions; (c) after the first scan (forward scan); (d) after the
+second scan (backward scan); (e) after the third scan (forward scan). </p><p></p></blockquote>
+<p>Giving consideration to the order of occurrences of the junctions,
+the connected component composed of three provisional labels connected
+by two junctions constitutes a primary orderly label connection. We can
+make six binary permutations with three junctions consisting of three
+pairs of provisional labels 1–2, 1–3, and 2–3: the number of
+permutations of three junctions taken two at a time, <sub>3</sub>P<sub>2</sub>, is six. Possible six types of connected components in the primary orderly label connections are shown in <a href="#fig7">Fig. 7</a>. The results of labeling the first two of them, the connection patterns I and II, are shown in <a href="#fig4">Fig. 4</a> and <a href="#fig5">Fig. 5</a>. <a href="#fig8">Fig. 8</a>
+illustrates the results of labeling the other four types of connected
+components. The label connection tables for the patterns III and IV are
+completed after the forward scan and the backward scan, respectively,
+as shown in the figure. The label connection tables for the patterns V
+and VI are completed after either the forward scan or the backward
+scan. Therefore, six patterns can be classified into three classes: (i)
+the connectivity of the patterns I and III can be resolved after the
+forward scan; (ii) that of the patterns II and IV can be done after the
+backward scan; (iii) that of the patterns V and VI can be done after
+either the forward scan or the backward scan.
+</p><blockquote><p><a name="fig7"></a><a name="7"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig7&amp;_ba=7&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=9ff9301b9302f638576af017c7a68e62" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig7&_ba=7&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=9ff9301b9302f638576af017c7a68e62'); return false;"><img src="science_files/0.gif" alt="" title="Display Full Size version of this image (3K) - Opens new window" align="middle" border="1" height="68" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig7&amp;_ba=7&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=9ff9301b9302f638576af017c7a68e62" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig7&_ba=7&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=9ff9301b9302f638576af017c7a68e62'); return false;" alt="Display Full Size version of this image (3K) - Opens new window" title="Display Full Size version of this image (3K) - Opens new window">Display Full Size version of this image</a> (3K)</td></tr></tbody></table></p><p>Fig. 7. Primary orderly label connections. From (a) to (f): connection patterns I, II, III, IV, V, and VI. </p><p></p></blockquote>
+
+<blockquote><a name="fig8"></a><a name="8"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig8&amp;_ba=8&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=dade9ba85524ed0999a15014c97c3bc3" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig8&_ba=8&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=dade9ba85524ed0999a15014c97c3bc3'); return false;"><img src="science_files/0_021.gif" alt="" title="Display Full Size version of this image (7K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="112"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig8&amp;_ba=8&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=dade9ba85524ed0999a15014c97c3bc3" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig8&_ba=8&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=dade9ba85524ed0999a15014c97c3bc3'); return false;" alt="Display Full Size version of this image (7K) - Opens new window" title="Display Full Size version of this image (7K) - Opens new window">Display Full Size version of this image</a> (7K)</td></tr></tbody></table><p>Fig.
+8. Labeling of four connected components using the proposed algorithm
+(connection patterns III, IV, V, and VI): (a), (d), (g), and (j)
+Connectivity of the connection patterns III, IV, V, and VI,
+respectively; (b), (e), (h), and (k) order of occurrences of the
+junctions; (c) after the forward scan; (f) after the backward scan; (i)
+and (l) after the forward scan or the backward scan. </p><p></p></blockquote>
+<p>Any arbitrary connected component can be represented by the
+combination of these six primary patterns. One forward scan can resolve
+the connectivity of the patterns combined with the patterns I, III, V,
+and VI: on the patterns I or III, since one of the provisional labels
+at the ensuing junction (2 on the pattern I; 3 on the pattern III) has
+already met the minimum label, all labels of the label connection
+table, related to this pattern, should become the minimum label even in
+the case of the combination of these patterns. On the patterns V or VI,
+since the provisional labels, 2 and 3, meet directly the minimum label
+1, all labels of the label connection table should become the minimum
+label. In the manner similar to the above consideration, the
+connectivity of the patterns combined with the patterns II, IV, V, and
+VI can be resolved after the backward scan.</p><p>However, the
+connectivity of the multiplex combination of these patterns cannot be
+always resolved after the backward scan. Such a pattern is illustrated
+in <a href="#fig9">Fig. 9</a>. This connected component consists of
+the connection patterns I, II, IV, V, and VI. During the first scan
+(forward scan), the initial provisional labels 1–9 are assigned to the
+pixels. After the second scan (backward scan), they are replaced by the
+provisional labels 1, 2, and 6, i.e., the provisional labels 3, 4, 5,
+7, 8, and 9 do not exist any more on the connected component. <a href="#fig9">Fig. 9d</a>
+shows the label connection table after the second scan (backward scan).
+At this time, the connectivity of the provisional label 6 has not been
+resolved yet. After the third scan (forward scan), the label connection
+table is completed; the provisional label 2, however, remains on this
+connected component, as shown in <a href="#fig9">Fig. 9e</a>. Therefore, one more scan is required to complete labeling this connected component.
+</p><blockquote><p><a name="fig9"></a><a name="9"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig9&amp;_ba=9&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c4b967a3249eb925dca7a8be36c261ab" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig9&_ba=9&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=c4b967a3249eb925dca7a8be36c261ab'); return false;"><img src="science_files/0_029.gif" alt="" title="Display Full Size version of this image (12K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="61"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig9&amp;_ba=9&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c4b967a3249eb925dca7a8be36c261ab" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig9&_ba=9&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=c4b967a3249eb925dca7a8be36c261ab'); return false;" alt="Display Full Size version of this image (12K) - Opens new window" title="Display Full Size version of this image (12K) - Opens new window">Display Full Size version of this image</a> (12K)</td></tr></tbody></table></p><p>Fig.
+9. Sample of the connected component, the labeling of which is
+completed by four scans: (a) connectivity; (b) order of occurrences of
+the junctions; (c) after the first scan (forward scan); (d) after the
+second scan (backward scan); (e) after the third scan (forward scan). </p><p></p></blockquote>
+<p>Through the above consideration, it has been shown that at least
+four scans are required to complete labeling. However, since deriving
+the theoretical upper bound of the number of scans required to complete
+the labeling of arbitrary connected components is of difficulty, it
+will be shown experimentally in the next section.</p><p><span class="h3"><a name="toc11"></a>4. Experiments</span></p><p><span class="h4"><a name="toc12"></a>4.1. Maximum number of scans</span><a name="toc13"></a></p><p><span class="h5">4.1.1. Results</span></p><p>In
+order to examine the maximum number of scans, the following test images
+were prepared: the images (size: 512×512 pixels; maximum level of the
+gray scale: 1000) with uniform random noise were transformed into 41
+binary images by varying the threshold from 1 to 1000 with the step of
+25. Fifty sets of these test images were made by changing the noise.
+This kind of images is appropriate for the severe evaluation of the
+labeling algorithms, because the connected components in them have the
+complicated geometrical shapes and the complex connectivity. The
+labeling of these 2050 images was performed by the proposed algorithm.
+As a result of this experiment, the labeling of all of the images was
+completed by no more than four scans. This result indicates that the
+labeling of almost any arbitrary images is completed by no more than
+four passes.<a name="toc14"></a></p><p><span class="h5">4.1.2. Analysis</span></p><p>The
+image, the labeling of which was completed by four scans, is analyzed.
+For convenience of analysis, the connected component in the image is
+reduced. The reduced connected component is shown in <a href="#fig9">Fig. 9</a>.
+This connected component consists of the connection patterns I, II, IV,
+V, and VI. As described in the previous section, four scans are
+required to complete labeling of this connected component. This case is
+very rare: only five images required four scans; 2045 images required
+no more than three scans.</p><p><span class="h4"><a name="toc15"></a>4.2. Characteristics of algorithms</span><a name="toc16"></a></p><p><span class="h5">4.2.1. Maximum execution time</span></p><p>The
+maximum execution times of the conventional and the proposed algorithms
+are estimated on the basis of experimental measurements, and the
+comparative evaluation of the execution time is performed. We selected
+Haralick’s algorithm in [<a href="#bib9">9</a>] from the class (A), Shirai’s algorithm in [<a href="#bib37">37</a>], and Lumia’s algorithm in [<a href="#bib18">18</a>]
+from the class (B) (here referred to as the conventional algorithms A,
+B, and C, respectively), which are well-known representatives, as the
+targets for comparison. The conventional algorithms have some improved
+versions. We compare with the original ones and clarify their
+characteristics, because we can estimate the efficiencies and
+characteristics of the improved versions from the information on the
+original ones.</p><p>The conventional algorithm B takes two passes:
+during the first pass, the label equivalences are stored in a
+one-dimensional table. Then, the label equivalences are resolved by
+using searching the table. During the second pass, the provisional
+labels are replaced by the final labels using the table. The execution
+time depends on the number of initial provisional labels. The
+conventional algorithm C takes two passes in top-down and bottom-up
+directions. The label equivalences are stored in a small local table at
+each row of an image. Searching the table and replacing the provisional
+labels are performed at every row. A small table whose size is enough
+to handle the provisional labels in two rows is required. It is the
+smallest of all algorithms in the class (B). This algorithm is
+advantageous in terms of memory efficiency. The execution time of this
+algorithm is dominated by that for searching the table. The execution
+time of the conventional algorithm A depends on the geometrical
+complexity of the connected components, as shown in the previous
+section.</p><p>The test images in the previous subsection were used in
+this experiment. The results of comparison of the CPU execution time on
+a workstation (UltraSPARC-II 300&nbsp;MHz made by Sun Microsystems) are
+shown in <a href="#fig10">Fig. 10</a>. It is shown that the execution
+time of the proposed algorithm depends on the number of pixels in the
+connected components. The maximum execution times of the conventional
+algorithms A, B, and C were 4.33, 8.88, and 5.36&nbsp;s, respectively.
+In contrast, that of the proposed algorithm was 0.18&nbsp;s. The
+evaluation should include the worst case one, because the test images
+include the extremely complex connected components. Therefore,
+0.18&nbsp;s must be the maximum execution time of the proposed
+algorithm for this size of images on this computer.
+</p><blockquote><p><a name="fig10"></a><a name="10"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig10&amp;_ba=10&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=2d7a9876d6f6805d064f25df9550cce2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig10&_ba=10&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=2d7a9876d6f6805d064f25df9550cce2'); return false;"><img src="science_files/0_010.gif" alt="" title="Display Full Size version of this image (18K) - Opens new window" align="middle" border="1" height="92" hspace="2" vspace="2" width="49"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig10&amp;_ba=10&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=2d7a9876d6f6805d064f25df9550cce2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig10&_ba=10&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=2d7a9876d6f6805d064f25df9550cce2'); return false;" alt="Display Full Size version of this image (18K) - Opens new window" title="Display Full Size version of this image (18K) - Opens new window">Display Full Size version of this image</a> (18K)</td></tr></tbody></table></p><p>Fig.
+10. Comparison of the execution times: (a) execution time against the
+number of pixels in connected components; (b) execution time against
+the number of initial provisional labels. </p><p></p></blockquote>
+<p><a href="#fig10">Fig. 10b</a> shows the execution time against the
+number of initial provisional labels. The figure shows that the
+execution time of the conventional algorithm B depends on the number of
+initial provisional labels. The evaluation should include the worst
+case execution time. Therefore, 8.88&nbsp;s should be the maximum
+execution time of the conventional algorithm B for this size of images
+on this computer. The execution time of the conventional algorithm C is
+dominated by the execution time for searching the table. Since the test
+images include the connected components having extremely complex
+connectivity, 5.36&nbsp;s should be the maximum execution time of the
+conventional algorithm C for this size of images. When the whole image
+is composed of the stair-like connected components shown in <a href="#fig2">Fig. 2</a>
+the conventional algorithm A takes the theoretical upper bound of the
+execution time. As a result of the measurement, it was 15.53&nbsp;s.
+Therefore, it is the maximum execution time of the conventional
+algorithm A for this size of images. For the same image, the execution
+times of the conventional algorithms B and C and the proposed algorithm
+were 0.20, 0.24, and 0.11&nbsp;s, respectively.<a name="toc17"></a></p><p><span class="h5">4.2.2. Characteristic against image size</span></p><p>By
+varying the size of images (sizes: 64×64, 128×128, 256×256, and 512×512
+pixels), the execution times with 164 binary images were measured. The
+results are shown in <a href="#fig11">Fig. 11</a>. This figure shows
+that the execution time increases in proportion to the power of the
+number of pixels. In order to make quantitative the characteristics
+against the number of pixels <i>I</i>, the maximum execution time <i>t</i><sub>max</sub> was approximated by the following function using the least-square-fitting:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><a name="fd3"></a><i>t</i><sub>max</sub>=<i>aI</i><sup><i>b</i></sup>,</td><td style="text-align: right; vertical-align: middle;" width="5%">(11)</td></tr></tbody></table></p><p></p></div><div class="art">where <i>a</i> and <i>b</i> denote parameters. The results are shown in <a href="#tbl1">Table 1</a>.
+The execution times of the conventional algorithms A, B, and C and the
+proposed algorithm are directly proportional to the power of 1.5, 1.9,
+1.7, and 1.0 of the number of pixels, respectively. This shows that the
+proposed algorithm has a desirable characteristic: the execution time
+does not increase so much even in the case of a larger image.
+<blockquote><p><a name="fig11"></a><a name="11"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig11&amp;_ba=11&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=22da03c4c7caefff5ab7bef844ada82a" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig11&_ba=11&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=22da03c4c7caefff5ab7bef844ada82a'); return false;"><img src="science_files/0_012.gif" alt="" title="Display Full Size version of this image (12K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig11&amp;_ba=11&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=22da03c4c7caefff5ab7bef844ada82a" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig11&_ba=11&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=22da03c4c7caefff5ab7bef844ada82a'); return false;" alt="Display Full Size version of this image (12K) - Opens new window" title="Display Full Size version of this image (12K) - Opens new window">Display Full Size version of this image</a> (12K)</td></tr></tbody></table></p><p>Fig. 11. Comparison of the execution times against the number of pixels in an image. </p><p></p></blockquote>
+
+<blockquote><a name="tbl1"></a><p>Table 1. Results of calculation of the parameters for Eq. (<a href="#fd3">11</a>) <img src="science_files/0_019.gif" alt="Image" align="absbottom" border="0" height="90" width="299"></p><p></p></blockquote>
+<a name="toc18"></a><p><span class="h4">4.3. Evaluation with various images</span></p><p>Fifty
+natural images from the SIDBA (Standard Image Data Base) and the image
+data base of the USC (University of Southern California) and 50 medical
+images, which are 512×512 pixels in size, were used for evaluation. The
+images were transformed into binary images by using Otsu’s threshold
+selection method in [<a name="bbib27"></a><a href="#bib27">27</a>]. The samples of the natural and medical images are shown in <a href="#fig12">Fig. 12</a>. The results of evaluation are shown in <a href="#tbl2">Table 2</a>.
+The proposed algorithm has completed labeling all images by no more
+than three scans. It has been demonstrated that the proposed algorithm
+is faster.
+</p><blockquote><p><a name="fig12"></a><a name="12"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig12&amp;_ba=12&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=0135a0de10b3cf23a29b5b0c9f16427a" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig12&_ba=12&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=0135a0de10b3cf23a29b5b0c9f16427a'); return false;"><img src="science_files/0_017.gif" alt="" title="Display Full Size version of this image (24K) - Opens new window" align="middle" border="1" height="94" hspace="2" vspace="2" width="85"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig12&amp;_ba=12&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=0135a0de10b3cf23a29b5b0c9f16427a" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig12&_ba=12&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=0135a0de10b3cf23a29b5b0c9f16427a'); return false;" alt="Display Full Size version of this image (24K) - Opens new window" title="Display Full Size version of this image (24K) - Opens new window">Display Full Size version of this image</a> (24K)</td></tr></tbody></table></p><p>Fig.
+12. Sample test images: (a) LAX from the USC image database; (b)
+FINGERPRINT from the SIDBA; (c) human head taken on MRI system; (d)
+human heart taken on DSA system. </p><p></p></blockquote>
+
+<blockquote><a name="tbl2"></a><p>Table 2. Comparison of the execution times <img src="science_files/0_009.gif" alt="Image" align="absbottom" border="0" height="103" width="333"></p><p></p></blockquote>
+<a name="toc19"></a><p><span class="h4">4.4. Comparisons with the improved versions</span></p><p>We compare the proposed algorithm with the improved versions of the conventional algorithms B and C.<a name="toc20"></a></p><p><span class="h5">4.4.1. Conventional algorithm B</span></p><p>The improved version of the conventional algorithm B (here referred to as the conventional algorithm B*) has been reported in [<a href="#bib7">7</a> and <a href="#bib8">8</a>].
+The conventional algorithm B* is a two-pass algorithm. During the first
+pass, the label equivalences are stored in a two-dimensional bit table
+using a method for removing duplicate equivalences, called the improved
+triangular memory method. In the method, the image is divided into
+sub-images in order to reduce the size of the table and the execution
+time for making the table. Then, the label equivalences are resolved by
+using a label classification process. During the second pass, the final
+labels are assigned to the image using the resolved label equivalences.
+Before the improved triangular memory method was introduced, a
+one-dimensional table was used for storing the label equivalences. This
+was realized in software and not suitable for video-rate processing. By
+introducing the improved triangular memory method, a video-rate
+labeling has been actually implemented in a commercial device [<a href="#bib16">16</a>].</p><p>Before
+the improved triangular memory method was introduced, a one-dimensional
+table was used in software. This was not suitable for video-rate
+processing. By introducing the triangular table, video-rate labeling
+was in a commercial device.</p><p>We conducted theoretical comparisons
+with the conventional algorithm B*. For any labeling algorithms, the
+process assigning the provisional labels during the first pass and the
+process assigning the final labels during the final pass are always
+required. For convenience, we calculated the execution time excluding
+these two processes. According to [<a href="#bib7">7</a>, <a href="#bib8">8</a> and <a href="#bib16">16</a>], the maximum execution time of the conventional algorithm B* can be represented by</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>t</i><sub>C</sub>=(3<i>L</i><sub>0</sub>·ℓ<sub><i>d</i></sub>)<i>t</i><sub>RW</sub>+(6<i>L</i><sub>0</sub>−12)<i>t</i><sub>RW</sub>+(6<i>L</i><sub>0</sub>−12)<i>N</i><sub><i>S</i></sub>·<i>t</i><sub>MC</sub>,</td><td style="text-align: right; vertical-align: middle;" width="5%">(12)</td></tr></tbody></table></p><p></p></div><div class="art">where <i>L</i><sub>0</sub> denotes the number of initial provisional labels, ℓ<sub><i>d</i></sub> the upper limit on the number of initial provisional labels in a sub-image, <i>t</i><sub>RW</sub> the execution time for reading from or writing on a table memory, <i>t</i><sub>MC</sub> the time of a machine cycle of a microcomputer used for processing the label classification process, and <i>N</i><sub><i>S</i></sub> the number of machine cycles needed for one search in the label classification process. By substituting ℓ<sub><i>d</i></sub>=256 and <i>N</i><sub><i>S</i></sub>=27, according to [<a href="#bib7">7</a>, <a href="#bib8">8</a> and <a href="#bib16">16</a>], and assuming that <i>t</i><sub>MC</sub>=2<i>t</i><sub>RW</sub>, this is the ordinary case, the above equation can be represented by the following equation:</div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><a name="fd4"></a><i>t</i><sub>C</sub>=(1098<i>L</i><sub>0</sub>−660)<i>t</i><sub>RW</sub>.</td><td style="text-align: right; vertical-align: middle;" width="5%">(13)</td></tr></tbody></table></p><p></p></div><div class="art"><p>Since the conventional algorithm B* is stated in [<a href="#bib7">7</a>, <a href="#bib8">8</a> and <a href="#bib16">16</a>]
+as the algorithm for four-connected components, the execution time of
+the proposed algorithm for four-connected components should be
+calculated for fair comparison. In the proposed algorithm, the masks in
+<a href="#fig13">Fig. 13</a> in <a href="#app1">Appendix A</a> are used in this case. Only the first, second, third, sixth, and seventh columns in <a href="#tbl3">Table 3</a> and <a href="#tbl4">Table 4</a> in <a href="#app1">Appendix A</a>
+are used. For labeling of four-connected components, the label
+connection occurs only in the condition indicated at the seventh
+column. Those points are the difference between the algorithm for
+four-connected components and that for eight-connected components.
+Although the number of conditions decreases to five, the execution time
+does not change so much.</p><p>Assuming each condition occurs with the same probability, the following execution time is required for the first scan:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_005.gif" alt="Image" align="absbottom" border="0" height="33" width="264"></td><td style="text-align: right; vertical-align: middle;" width="5%">(14)</td></tr></tbody></table></p><p></p></div><div class="art">where <i>L</i><sub>P</sub>
+denotes the number of pixels in all connected components in an image.
+The following execution time is required for each scan after the first
+scan:</div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_024.gif" alt="Image" align="absbottom" border="0" height="32" width="268"></td><td style="text-align: right; vertical-align: middle;" width="5%">(15)</td></tr></tbody></table></p><p></p></div><div class="art"><p>Since the maximum number of scans is four, the total execution time of the proposed algorithm becomes the following equations:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><a name="fd5"></a><img src="science_files/0_016.gif" alt="Image" align="absbottom" border="0" height="33" width="253"></td><td style="text-align: right; vertical-align: middle;" width="5%">(16)</td></tr></tbody></table></p><p></p></div><div class="art"><p>The
+relationship between the number of initial provisional labels and the
+number of pixels in connected components can be represented by</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><a name="fd6"></a><i>L</i><sub>P</sub>=<i>N</i><sub>P0</sub>·<i>L</i><sub>0</sub>,</td><td style="text-align: right; vertical-align: middle;" width="5%">(17)</td></tr></tbody></table></p><p></p></div><div class="art">where <i>N</i><sub>P0</sub> denotes a parameter. By comparing among Eqs. (<a href="#fd4">(13)</a>, <a href="#fd5">(16)</a> and <a href="#fd6">(17)</a>), and considering the fact that <i>L</i><sub>0</sub>
+is generally more than several hundreds, it is shown that the proposed
+algorithm is advantageous in time efficiency when the following
+condition is fulfilled:</div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>N</i><sub>P0</sub><img src="science_files/2a7d.gif" alt="less-than-or-equals, slant" border="0">51.1−30.7/<i>L</i><sub>0</sub><img src="science_files/2245.gif" alt="congruent with" border="0">51.</td><td style="text-align: right; vertical-align: middle;" width="5%">(18)</td></tr></tbody></table></p><p></p></div><div class="art"><p>In other words, the conventional algorithm B* is advantageous in the case of much simpler connected components where <i>L</i><sub>P</sub> is greater than 51 times of <i>L</i><sub>0</sub>. Since the mean for <i>N</i><sub>P0</sub>’s
+of all test images is about 15, this case is rare. Therefore, the
+proposed algorithm is superior to the conventional algorithm B* for
+most images.</p><p>We estimate the average case execution time by using real values measured from the test images. The mean values of <i>L</i><sub>0</sub> and <i>L</i><sub>P</sub> among all test images were 1994 and 48,723, respectively. Substituting these values into Eqs. (<a href="#fd4">(13)</a> and <a href="#fd5">(16)</a>),
+the average case execution time of the conventional algorithm B* and
+that of the proposed algorithm become the following equations:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>t</i><sub>C</sub>=2.19×10<sup>6</sup>·<i>t</i><sub>RW</sub>,</td><td style="text-align: right; vertical-align: middle;" width="5%">(19)</td></tr></tbody></table></p><p></p></div><div class="art"></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>t</i><sub>P</sub>=1.05×10<sup>6</sup>·<i>t</i><sub>RW</sub>.</td><td style="text-align: right; vertical-align: middle;" width="5%">(20)</td></tr></tbody></table></p><p></p></div><div class="art"><p>Therefore,
+it is shown that the proposed algorithm is approximately two times
+faster on average than that of the conventional algorithm B*.</p><p>Since we should design on the assumption of the worst case, we estimate the worst case execution time. The maximum value of <i>L</i><sub>0</sub> and that of <i>L</i><sub>P</sub> among all test images were 21,555 and 260,100, respectively. Substituting these values into Eqs. (<a href="#fd4">(13)</a> and <a href="#fd5">(16)</a>), the worst case execution time becomes the following equations:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>t</i><sub>C</sub>=23.7×10<sup>6</sup>·<i>t</i><sub>RW</sub>,</td><td style="text-align: right; vertical-align: middle;" width="5%">(21)</td></tr></tbody></table></p><p></p></div><div class="art"></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><i>t</i><sub>P</sub>=5.6×10<sup>6</sup>·<i>t</i><sub>RW</sub>.</td><td style="text-align: right; vertical-align: middle;" width="5%">(22)</td></tr></tbody></table></p><p></p></div><div class="art"><p>Therefore,
+it is shown that the worst case execution time of the proposed
+algorithm is approximately four times smaller than that of the
+conventional algorithm B*.<a name="toc21"></a></p><p><span class="h5">4.4.2. Conventional algorithm C</span></p><p>The improved version of the conventional algorithm C (here referred to as the conventional algorithm C*) has been reported in [<a href="#bib10">10</a>].
+The conventional algorithm C* employs run-length encoding. Since the
+process assigning a provisional label to each pixel and the process
+reassigning labels at each row become more efficient by using the
+run-length encoding, the conventional algorithm C* should be faster
+than the conventional algorithm C.</p><p>We actually measured the
+execution time for performing the two processings that can be efficient
+by using the run-length encoding. As a result, the mean for execution
+times and the maximum execution time for the test images (size 512×512
+pixels) were 0.21 and 0.23&nbsp;s, respectively. While the conventional
+algorithm C took 1.67 and 5.36&nbsp;s, the proposed algorithm took only
+0.11 and 0.18&nbsp;s, respectively. Thus, the execution time of the
+processings that can be efficient by using the run-length encoding is
+not dominated in the whole processing. Therefore, the proposed
+algorithm would be faster than the conventional algorithm C*.</p><p>In
+addition, we can employ the union-find algorithm with path compression
+as the search algorithm of the conventional algorithm C*. According to [<a href="#bib41">41</a> and <a href="#bib42">42</a>], the worst case number of search operations is O(<i>N</i><sub>O</sub><sup>2</sup>) where <i>N</i><sub>O</sub>
+denotes the number of union-find operations required for a target
+processing. If we use the union-find algorithm with path compression,
+the worst case number of search operations becomes O(<i>N</i><sub>O</sub>log<i>N</i><sub>O</sub>).
+Therefore, the conventional algorithm C* using the union-find algorithm
+with path compression should be much faster than the conventional
+algorithm C*.<a name="toc22"></a></p><p><span class="h3">5. Concluding remarks</span></p><p>This
+paper has presented a fast algorithm for labeling connected components
+in binary images. The proposed algorithm is a quite simple: it is based
+on sequential local operations with one-dimensional table in the raster
+scan directions. This is suitable for implementation in hardware.
+Through comparative evaluations with the conventional algorithms, it
+has been demonstrated that the proposed algorithm takes less execution
+time. It has been shown experimentally that the proposed algorithm has
+a desirable characteristic: the execution time is directly proportional
+to the number of pixels in connected components in an image.</p><p>Although
+it has been shown that the labeling of 2314 images is completed by no
+more than four scans, the mathematical proof of the maximum number of
+scans remains. We will perform experimental comparisons with the
+improved versions of the conventional algorithms. We plan in the near
+feature to implement the proposed algorithm in hardware. <br clear="all">
+
+</p></div><br><div class="art">
+<a name="ack1"></a><p><span class="h3">Acknowledgements</span></p><p>The
+authors thank Prof. Yoshiaki Shirai of Osaka University, Prof. Shigeru
+Okabayashi, and Prof. Shin Yamamoto of Meijo University, Dr. Kouji Ueda
+of Nagoya Electric Works, and Dr. Hiroki Yoshioka of Aichi Prefectural
+University for their valuable suggestions. The authors also thank
+anonymous reviewers for their valuable comments. This work was
+supported in part by the Ministry of Education, Science, Sports and
+Culture of Japan under grant-in-aid for encouragement of young
+scientists. </p></div><br><div class="art">
+<a name="bibl1"></a><p><span class="h3">References</span></p><p><a name="bib1"></a><a href="#bbib1">1. </a>H.M. Alnuweirim and V.K. Prasanna, Parallel architectures and algorithms for image component labeling. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> <strong>14</strong> 10 (1992), pp. 1024–1034.</p><p><a name="bib2"></a><a href="#bbib2">2. </a>P. Bhattacharya, Connected component labeling for binary images on a reconfigurable mesh architectures. <i>J. Syst. Architect.</i> <strong>42</strong> 4 (1996), pp. 309–313. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6V1F-3WP2DH6-K&amp;_user=167669&amp;_coverDate=11%2F10%2F1996&amp;_fmt=summary&amp;_orig=search&amp;_cdi=5673&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=219874ac88651183b53fbd0149b80690&amp;ref=full">Abstract</a> | <a href="http://www.sciencedirect.com/science?_ob=MiamiImageURL&amp;_imagekey=B6V1F-3WP2DH6-K-1&amp;_cdi=5673&amp;_user=167669&amp;_check=y&amp;_orig=search&amp;_coverDate=11%2F10%2F1996&amp;view=c&amp;wchp=dGLbVtz-zSkWA&amp;md5=3b50669464103f566c6f645bfd56388c&amp;ie=/sdarticle.pdf" target="newPdfWin" onclick="var newWidth=((document.body.clientWidth*90)/100); var newHeight=document.body.clientHeight; var pdfWin; pdfWin=window.open('','newPdfWin','width='+newWidth+',height='+newHeight+',resizable=yes, left=50, top=50');pdfWin.focus()">PDF (311 K)</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0042293547%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dcff492263208c460d6bea095e56c49ee&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=46fa20e762261b1a66cf77e253d92efa" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0042293547%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dcff492263208c460d6bea095e56c49ee&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=c05ef23174718da26bff34cf31dac8c8" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (5)</a></p><p><a name="bib3"></a><a href="#bbib3">3. </a>A. Choudhary and R. Thakur, Connected component labeling on coarse grain parallel computers: an experimental study. <i>J. Parallel Distrib. Comput.</i> <strong>20</strong> (1994), pp. 78–83. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WKJ-45P0FGS-5H&amp;_user=167669&amp;_coverDate=01%2F31%2F1994&amp;_fmt=summary&amp;_orig=search&amp;_cdi=6908&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=decc856441e9cde88a87a02fcb61a4a6&amp;ref=full">Abstract</a>
+
+</p><p><a name="bib4"></a><a href="#bbib4">4. </a>M.B. Dillencourt, H.
+Samet and M. Tamminen, A general approach to connected-component
+labeling for arbitrary image representations. <i>J. ACM</i> <strong>39</strong> 2 (1992), pp. 253–280.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D160258001&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=9a7a16e6101bece931e5eb0c36fe093a" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F128749.128750&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=df75427055192962b47428d5c9684f27" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0026844063%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D8a810c34fa61a5581568712124a4ae90&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=45a4d458e8825cc5a1399bead61bcc73" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0026844063%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D8a810c34fa61a5581568712124a4ae90&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=30c1b29d9f7d3dea2ded8ccd6b34a596" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (28)</a></p><p><a name="bib5"></a><a href="#bbib5">5. </a>C. Fiorio and J. Gustedt, Two linear time union-find strategies for image processing. <i>Theoret. Comput. Sci.</i> <strong>154</strong> 2 (1996), pp. 165–181. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6V1G-3VSCSTM-9&amp;_user=167669&amp;_coverDate=02%2F05%2F1996&amp;_fmt=summary&amp;_orig=search&amp;_cdi=5674&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=d95e5467b136615f2147e0f299892042&amp;ref=full">SummaryPlus</a> | <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6V1G-3VSCSTM-9&amp;_user=167669&amp;_coverDate=02%2F05%2F1996&amp;_fmt=full&amp;_orig=search&amp;_cdi=5674&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=d9e1d134f338e05375b1e9977f651358&amp;ref=full"><b>Full Text + Links</b></a> | <a href="http://www.sciencedirect.com/science?_ob=MiamiImageURL&amp;_imagekey=B6V1G-3VSCSTM-9-1&amp;_cdi=5674&amp;_user=167669&amp;_check=y&amp;_orig=search&amp;_coverDate=02%2F05%2F1996&amp;view=c&amp;wchp=dGLbVtz-zSkWA&amp;md5=a2652adb3840f33fbcc71a6414ba17dd&amp;ie=/sdarticle.pdf" target="newPdfWin" onclick="var newWidth=((document.body.clientWidth*90)/100); var newHeight=document.body.clientHeight; var pdfWin; pdfWin=window.open('','newPdfWin','width='+newWidth+',height='+newHeight+',resizable=yes, left=50, top=50');pdfWin.focus()">PDF (1103 K)</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D136952711&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=eacbe0ca97750b74e8526d8de68636a4" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0030569893%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db0673b9d1b029d2a5fd29e2b7617dbac&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8a214b5f8d6798c45817a89b2648bb24" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0030569893%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db0673b9d1b029d2a5fd29e2b7617dbac&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=acfea8773e5531c6cc279627b479a43c" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (22)</a></p><p><a name="bib6"></a><a href="#bbib6">6. </a>I. Gargantini, Separation of connected component using linear quad- and oct-trees. In: <i>Proc. 12th Conf. Numerical Mathematics and Computation</i> <strong>vol. 37</strong>, University of Manitoba, Winnipeg (1982), pp. 257–276.</p><p><a name="bib7"></a><a href="#bbib7">7. </a>T. Goto, Y. Ohta, M. Yoshida and Y. Shirai, High speed algorithm for component labeling. <i>Trans. IEICE</i> <strong>J72-D-II</strong> 2 (1989), pp. 247–255 in Japanese .</p><p><a name="bib8"></a><a href="#bbib8">8. </a>T. Gotoh, Y. Ohta, M. Yoshida and Y. Shirai, Component labeling algorithm for video rate processing. In: <i>Proc. SPIE</i><i>Advances in Image Processing</i> <strong>804</strong> (1987), pp. 217–224.</p><p><a name="bib9"></a><a href="#bbib9">9. </a>R.M. Haralick, Some neighborhood operations. In: <i>Real Time/Parallel Computing Image Analysis</i>, Plenum Press, New York (1981), pp. 11–35.</p><p><a name="bib10"></a><a href="#bbib10">10. </a>R.M. Haralick and L.G. Shapiro. In: <i>Computer and Robot Vision</i> <strong>vol. I</strong>, Addison-Wesley, Reading, MA (1992), pp. 28–48.</p><p><a name="bib11"></a><a href="#bbib11">11. </a>A. Hashizume, R. Suzuki, H. Yokouchi <i>et al.</i>, An algorithm of automated RBC classification and its evaluation. <i>BioMed. Engrg.</i> <strong>28</strong> 1 (1990), pp. 25–32.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0025160723%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dfa12a5fed24afd6594c6074acd4b6f3a&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=e1a68f63cea7dc0b647f2376252a8af4" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0025160723%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dfa12a5fed24afd6594c6074acd4b6f3a&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=770e03c4c5767552ea895372f7d1abe5" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (4)</a></p><p><a name="bib12"></a><a href="#bbib12">12. </a>T. Hattori, A high-speed pipeline processor for regional labeling based on a new algorithm. In: <i>Proc. Int. Conf. Pattern Recognition (NJ)</i> (1990), pp. 494–496.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1109%2FICPR.1990.119408&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=a1b8b872a4216d4f122123c4a30636e4" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0025566866%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D0d875a535ae565a85db7a68034fac9ee&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=1333120f6195535ee8eaac69e99995bf" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0025566866%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D0d875a535ae565a85db7a68034fac9ee&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=3c1df2a5a798b402871a62a8c503f7ce" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (2)</a></p><p><a name="bib13"></a><a href="#bbib13">13. </a>J. Hecquard and R. Acharya, Connected component labeling with linear octree. <i>Pattern Recog.</i> <strong>24</strong> 6 (1991), pp. 515–531. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6V14-48MPNTW-1JM&amp;_user=167669&amp;_coverDate=12%2F31%2F1991&amp;_fmt=summary&amp;_orig=search&amp;_cdi=5664&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=9a13894054e53fc3ec4cb459c04d80ca&amp;ref=full">Abstract</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0025920369%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D789db0ea34dbc576136cc01c59f4cf1c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=e3e912f8682d025c9f7a2d8eec418f72" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0025920369%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D789db0ea34dbc576136cc01c59f4cf1c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=5d952edfea2951fdac3e6222946572e1" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (3)</a></p><p><a name="bib14"></a><a href="#bbib14">14. </a>D.S. Hirschberg, A.K. Chandra and D.V. Sarwate, Computing connected components on parallel computers. <i>Commun. ACM</i> <strong>22</strong> 8 (1979), pp. 461–464.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F359138.359141&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=00d5fca45dcaa428b36ee7c742d76cc8" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0018504724%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D7a8b72bdc4623baecd6a40c6b1435d01&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=75de99e7b1073bf47f2f9c1a8d443b01" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0018504724%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D7a8b72bdc4623baecd6a40c6b1435d01&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=e6a167d821d95173bf54511b8c940462" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (23)</a></p><p><a name="bib15"></a><a href="#bbib15">15. </a>C.L. Jackins and S.L. Tanimoto, Octrees and their use in representing 3D objects. <i>Comput. Graphics Image Process.</i> <strong>14</strong> 3 (1980), pp. 249–270. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B7GXF-4KM8SJC-4&amp;_user=167669&amp;_coverDate=11%2F30%2F1980&amp;_fmt=summary&amp;_orig=search&amp;_cdi=20485&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=7f84b3e466101686318811855e521b4f&amp;ref=full">Abstract</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0019229538%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D929f00ef11a615f56caa2286e19174b6&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=a64cc16b78a312795fb8e25922c0523e" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0019229538%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D929f00ef11a615f56caa2286e19174b6&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=55fa8eae9cc4ae8f8b53e797f49ff2ba" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (50)</a></p><p><a name="bib16"></a><a href="#bbib16">16. </a>M. Komeichi, Y. Ohta, T. Gotoh, T. Mima and M. Yoshida, Video-rate labeling processor. In: <i>Proc. SPIE</i><i>Image Processing II</i> <strong>1027</strong> (1988), pp. 69–76.</p><p><a name="bib17"></a><a href="#bbib17">17. </a>R. Lumia, A new three-dimensional connected components algorithm. <i>Comput. Vision, Graphics, and Image Process.</i> <strong>23</strong> 2 (1983), pp. 207–217. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B7GXG-4CTNF83-N&amp;_user=167669&amp;_coverDate=08%2F31%2F1983&amp;_fmt=summary&amp;_orig=search&amp;_cdi=20486&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=4301ff5f42052aaa12f587703c992b2d&amp;ref=full">Abstract</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0020972137%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db763fd0721ab991f1e71d2da93face3e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8b9f13be93185998a3660490bbdff99e" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0020972137%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db763fd0721ab991f1e71d2da93face3e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=cb9f4105be19eeca840f08d746cf57b0" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (4)</a></p><p><a name="bib18"></a><a href="#bbib18">18. </a>R. Lumia, L. Shapiro and O. Zungia, A new connected components algorithm for virtual memory computers. <i>Comput. Vision, Graphics, and Image Process.</i> <strong>22</strong> 2 (1983), pp. 287–300. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B7GXG-4D8FT2G-CK&amp;_user=167669&amp;_coverDate=05%2F31%2F1983&amp;_fmt=summary&amp;_orig=search&amp;_cdi=20486&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=4ed4435d1bcc00ca1416a435cef6d88d&amp;ref=full">Abstract</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0020125052%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D119fa1798aa2d3735e7748c2d859e0c5&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=a05309f99775e326cc4f80711e7060a5" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0020125052%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D119fa1798aa2d3735e7748c2d859e0c5&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=5dd99947c9ebb7a06cf7c8a8aa2a8969" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (35)</a></p><p><a name="bib19"></a><a href="#bbib19">19. </a>M. Manohar and H.K. Ramapriyan, Connected component labeling of binary images on a mesh connected massively parallel processor. <i>Comput. Vision, Graphics, and Image Process.</i> <strong>45</strong> 2 (1989), pp. 133–149.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0024471450%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dc8f4212d788f71f8aa609c68530ef30c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=4e9b2f682fe17e50a63f678eccb56f2f" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0024471450%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dc8f4212d788f71f8aa609c68530ef30c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=f79b077deb5a68e7e50da4a306a392d2" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (11)</a></p><p><a name="bib20"></a><a href="#bbib20">20. </a>K. Mehlhorn, Data Structures and Algorithm 1: Sorting and Searching. , Springer, Berlin (1984).</p><p><a name="bib21"></a><a href="#bbib21">21. </a>M. Minsky and S. Papert, Perceptron. , MIT Press, Cambridge (1969).</p><p><a name="bib22"></a><a href="#bbib22">22. </a>S. Naoi, High-speed labeling method using adaptive variable window size for character shape feature. In: <i>IEEE Asian Conference on Computer Vision</i> <strong>vol. 1</strong> (1995), pp. 408–411.</p><p><a name="bib23"></a><a href="#bbib23">23. </a>D. Nassimi and S. Sahani, Finding connected components and connected ones on a mesh connected parallel compute. <i>SIAM J. Comput.</i> <strong>9</strong> 4 (1980), pp. 744–757.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D592765001&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=3a8088bfffa5b122a0c6585b510f5cee" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1137%2F0209058&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ff07705f2e3db1ede8ce27776348c134" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a></p><p><a name="bib24"></a><a href="#bbib24">24. </a>C.J. Nicol, Design of a connected component labelling chip for real time image processing. In: <i>Proc. IEEE Asia-Pacific Conf. Circuits and Systems, Sydney, Australia</i> (1992), pp. 142–147.</p><p><a name="bib25"></a><a href="#bbib25">25. </a>C.J. Nicol, A systolic approach for real time connected component labeling. <i>Comput. Vision and Image Understanding</i> <strong>61</strong> 1 (1995), pp. 17–31. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-45NJT56-1H&amp;_user=167669&amp;_coverDate=01%2F31%2F1995&amp;_fmt=summary&amp;_orig=search&amp;_cdi=6750&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e6a4bf44a5a056faa4346d0f1769b77b&amp;ref=full">Abstract</a> | <a href="http://www.sciencedirect.com/science?_ob=MiamiImageURL&amp;_imagekey=B6WCX-45NJT56-1H-1&amp;_cdi=6750&amp;_user=167669&amp;_check=y&amp;_orig=search&amp;_coverDate=01%2F31%2F1995&amp;view=c&amp;wchp=dGLbVtz-zSkWA&amp;md5=d13e10d1acefdbf14cea99be097b13b4&amp;ie=/sdarticle.pdf" target="newPdfWin" onclick="var newWidth=((document.body.clientWidth*90)/100); var newHeight=document.body.clientHeight; var pdfWin; pdfWin=window.open('','newPdfWin','width='+newWidth+',height='+newHeight+',resizable=yes, left=50, top=50');pdfWin.focus()">PDF (1146 K)</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0029207176%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db62a1eea9cff8576d5f5fce63338a55c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=0f9760d0aa687ab114ec419c5b1607bd" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0029207176%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db62a1eea9cff8576d5f5fce63338a55c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=3dc25b5d6672db2743b761a0b8a500b3" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (8)</a></p><p><a name="bib26"></a><a href="#bbib26">26. </a>S. Olariu, J.L. Schwing and J. Zhang, Fast component labelling and convex hull computation on reconfigurable meshes. <i>Image and Vision Comput.</i> <strong>11</strong> 7 (1993), pp. 447–455. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6V09-48TD9WN-B9&amp;_user=167669&amp;_coverDate=09%2F30%2F1993&amp;_fmt=summary&amp;_orig=search&amp;_cdi=5641&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=712e84bfb37e235c66b708da41eacd9d&amp;ref=full">Abstract</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0027664885%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D219db95e236bd5f28b486c6c0712078e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=b18751d6374c2bc047607140d65ec219" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0027664885%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D219db95e236bd5f28b486c6c0712078e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=5ed15b458cc141442cb7ff43c3c5c565" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (7)</a></p><p><a name="bib27"></a><a href="#bbib27">27. </a>N. Otsu, A threshold selection method from gray-level histograms. <i>IEEE Trans. Systems Man Cybernet.</i> <strong>9</strong> (1979), pp. 62–66.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0018306059%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dbdc10b2638e8da34cc9154c4bd57829e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=193e644092888484301375b6e5660c4d" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0018306059%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dbdc10b2638e8da34cc9154c4bd57829e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=4217f61e4592951c603dd77852a522d7" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (1557)</a></p><p><a name="bib28"></a><a href="#bbib28">28. </a>A. Rosenfeld, Connectivity in digital pictures. <i>J. ACM</i> <strong>17</strong> 1 (1970), pp. 146–160.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D430430609&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=30fff83cfbe998df2ce0f70540073fdb" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F321556.321570&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=26a235ef1610d1108d7eeb1e21b4ddfb" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a></p><p><a name="bib29"></a><a href="#bbib29">29. </a>A. Rosenfeld and A.C. Kak. (second ed.),<i>Digital Picture Processing</i> <strong>vol. 2</strong>, Academic Press, San Diego, CA (1982).</p><p><a name="bib30"></a><a href="#bbib30">30. </a>A. Rosenfeld and J.L. Pfalts, Sequential operations in digital picture processing. <i>J. ACM</i> <strong>13</strong> 4 (1966), pp. 471–494.</p><p><a name="bib31"></a><a href="#bbib31">31. </a>H. Samet, Connected component labeling using quadtrees. <i>J. ACM</i> <strong>28</strong> 3 (1981), pp. 487–501.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D624729001&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=26ca66a39828f1698bfd610319d716e1" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F322261.322267&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8e44b549846ba2cc44405cd848966221" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0019587751%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D2b84f8e070cb362176f92ec6eb03045b&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=28cfd99097c4eb90fd6cce6ebee3e11e" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0019587751%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D2b84f8e070cb362176f92ec6eb03045b&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=fcc28480b2c656331861344d503337f4" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (14)</a></p><p><a name="bib32"></a><a href="#bbib32">32. </a>H. Samet, The quadtree and related hierarchical data structures. <i>Comput. Surveys</i> <strong>16</strong> 2 (1984).</p><p><a name="bib33"></a><a href="#bbib33">33. </a>H. Samet, Computing geometric properties of images represented by linear quadtrees. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> <strong>PAMI-7</strong> 2 (1985), pp. 229–240.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0022026563%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D0531d049e8b4d2b6c77209fca74fb8d1&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ec4466c44e6c4971aa33af484d3e5d7f" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0022026563%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D0531d049e8b4d2b6c77209fca74fb8d1&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=d40b066a592b7190cdeafc912d42f88c" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (18)</a></p><p><a name="bib34"></a><a href="#bbib34">34. </a>H. Samet and M. Taminen, Efficient component labeling of images of arbitrary dimension represented by linear bintrees. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> <strong>PAMI-10</strong> 4 (1988), pp. 579–586.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1109%2F34.3918&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=243e3cb30fb4a581cb90c22aa9855db3" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0024053187%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Ddc9b63cdcafa59a8d0ce421ad618c853&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=814ef2cb0240467d303ad842315aca04" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0024053187%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Ddc9b63cdcafa59a8d0ce421ad618c853&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=f34df5fe8b61bf9658ab159b41d058bf" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (10)</a></p><p><a name="bib35"></a><a href="#bbib35">35. </a>H. Samet and M. Tamminen, An improved approach to connected component labeling of images. In: <i>Proc. IEEE Conf. Computer Vision and Pattern Recognition, Miami, Florida</i> (1986), pp. 312–318.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0022566608%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D671102e5eacdfff3eb6695f66f24b23e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=7d043dc2ec375dbcbc9e3dc9e3ca0794" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0022566608%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D671102e5eacdfff3eb6695f66f24b23e&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=60775df7025bfd67d58010712a2d773a" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (2)</a></p><p><a name="bib36"></a><a href="#bbib36">36. </a>Y. Schiloach and U. Vishkin, An o(log<i>n</i>) parallel connectivity algorithm. <i>J. Algorithms</i> <strong>3</strong> (1982), pp. 57–67.</p><p><a name="bib37"></a><a href="#bbib37">37. </a>Y. Shirai, Labeling connected regions. In: <i>Three-Dimensional Computer Vision</i>, Springer, Berlin (1987), pp. 86–89.</p><p><a name="bib38"></a><a href="#bbib38">38. </a>S.N. Srihari, Hierarchical representations for serial section images. In: <i>Proc. 5th Int. Conf. Pattern Recognition</i> (1980), pp. 1075–1080.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0019284474%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Df1b3d58561d1d9dab971e84c9baa429f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=631b95129eb874f67b050086e1668853" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0019284474%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Df1b3d58561d1d9dab971e84c9baa429f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=185657dca1a8a26326fe6011edea3a30" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (1)</a></p><p><a name="bib39"></a><a href="#bbib39">39. </a>K.
+Suzuki, I. Horiba and N. Sugie, Fast connected-component labeling based
+on sequential local operations in the course of forward raster scan
+followed by backward raster scan. In: <i>Proc. 15th Int. Conf. Pattern Recognition, Barcelona, Spain</i> <strong>vol. 2</strong> (2000), pp. 434–437. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6T10-4105P9H-F&amp;_user=167669&amp;_coverDate=08%2F15%2F2000&amp;_fmt=summary&amp;_orig=search&amp;_cdi=4876&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=36550b50ec9dd8dd8642f2ba8073777a&amp;ref=full">Abstract</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1109%2FICPR.2000.906105&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=3db6148f287fe24df1ecd3ee47ac00ff" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0012713597%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D56671985e6639658742e2bf68f39651f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=f2aa8cf944c32da74a9c06f0e93e83e5" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0012713597%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D56671985e6639658742e2bf68f39651f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=fcb5ded89cf65b938d90e7f149cba9dd" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (8)</a></p><p><a name="bib40"></a><a href="#bbib40">40. </a>M.
+Taminen, H. Samet, Efficient octree conversion by connectivity
+labeling, in: Proc. SIGGRAPH 84 Conf., Minneapolis, MN, 1984, pp. 43–51
+ACM</p><p><a name="bib41"></a><a href="#bbib41">41. </a>R.E. Tarjan, Efficiency of a good but not linear set union algorithm. <i>J. ACM</i> <strong>22</strong> 2 (1975), pp. 215–225.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D561737709&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=2b57089f3bfe2b36603043b05ef2bdc2" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F321879.321884&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ce94e7f58c202b34d3f9b430fc020695" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0016495233%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D4437f7ceb7841a794cc5038b2b4c51e6&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=c08e3f90a1844398d9393eff5f9c2930" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0016495233%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D4437f7ceb7841a794cc5038b2b4c51e6&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=0bf7ebc74115b820dd39b5575cca7f77" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (125)</a></p><p><a name="bib42"></a><a href="#bbib42">42. </a>R.E. Tarjan and J.V. Leeuwen, Worst-case analysis of set union algorithms. <i>J. ACM</i> <strong>31</strong> 2 (1984), pp. 245–281.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D819138001&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=22995e1e3b5c5b7aca4ddc177564148f" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F62.2160&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=2b50f8f4c587338b33fafa1599b79bd6" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0021415472%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dcece457b55511e3cf12557659b4dbfd2&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=088a27a76ae2b9edd30ef40439d2f926" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0021415472%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dcece457b55511e3cf12557659b4dbfd2&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=82f29e3409485720b56c27393f7c0f5a" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (45)</a></p><p><a name="bib43"></a><a href="#bbib43">43. </a>L.W. Tucker, Labeking connected components on a massively parallel tree machine. In: <i>Proc. IEEE Conf. Computer Vision and Pattern Recognition, Miami, Florida</i> (1986), pp. 124–129.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0022599048%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D050f6cfeae1a5f17b7f8f04127cf779f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=1f554a4cba4e11b2998db1efb148e60a" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0022599048%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D050f6cfeae1a5f17b7f8f04127cf779f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8abfe7b34c46eeaa47ebc6b39e7df3e6" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (1)</a></p><p><a name="bib44"></a><a href="#bbib44">44. </a>X.D. Yang, Design of fast connected components hardware. In: <i>Proc. IEEE Conf. Computer Vision and Pattern Recognition, Ann Arbor, MI</i> (1988), pp. 937–944.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1109%2FCVPR.1988.196345&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ef4b6249ff492c9a2899260b8d710e7a" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0024126131%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D58779c03ace2bdc9a98e533b03c93316&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=c4988442957613b59fddc0c817a27766" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0024126131%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D58779c03ace2bdc9a98e533b03c93316&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=6128f14fc174c16ea40b00b9fb93a998" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (1)</a> 
+
+
+</p></div><br><div class="art">
+<a name="app1"></a><p><span class="h3">Appendix A</span></p><p>Giving consideration to the movement of the mask, the provisional label at the position <i>a</i> in <a href="#fig1">Fig. 1</a> propagates the positions <i>b</i> and <i>d</i>; the provisional label at the position <i>b</i> in <a href="#fig1">Fig. 1</a> propagates the positions <i>c</i> and <i>d</i>. Therefore, the operations of the proposed algorithm can be represented by the logical table in <a href="#tbl3">Table 3</a> and <a href="#tbl4">Table 4</a>. 0 and 1 in the tables indicate <i>F</i><sub>B</sub> and <i>F</i><sub>O</sub>,
+respectively. * indicates 0 or 1, NOP non-operation, max(·) an operator
+calculating the maximum value, and max2(·) an operator calculating the
+second maximum value. max<i>T</i>(·) and max<i>T</i>2(·) are defined as the following equations:</p></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_020.gif" alt="Image" align="absbottom" border="0" height="33" width="298"></td><td style="text-align: right; vertical-align: middle;" width="5%">(render)</td></tr></tbody></table></p><p></p></div><div class="art"></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_018.gif" alt="Image" align="absbottom" border="0" height="49" width="347"></td><td style="text-align: right; vertical-align: middle;" width="5%">(render)</td></tr></tbody></table></p><p></p></div><div class="art"></div><br><div class="art"><p><table border="0" width="100%"><tbody><tr valign="center"><td align="center" width="95%"><img src="science_files/0_014.gif" alt="Image" align="absbottom" border="0" height="49" width="362"></td><td style="text-align: right; vertical-align: middle;" width="5%">(render)</td></tr></tbody></table></p><p></p></div><div class="art"><p><a name="tbl3"></a></p><p>Table 3. Logic table for the first scan <img src="science_files/0_013.gif" alt="Image" align="absbottom" border="0" height="303" width="483"></p><p><a name="tbl4"></a></p><p>Table 4. Logic table for the scans after the first scan </p></div><div class="art"><img src="science_files/0_006.gif" alt="Image" align="absbottom" border="0" height="303" width="644"></div><div class="art"><p></p><p>The efficient implementation in hardware can be performed using these logic tables.<a name="app2"></a></p><p><span class="h3">Appendix B</span></p><p>The labeling of four-connected components can be performed by using the mask shown in <a href="#fig13">Fig. 13</a>.</p><p><a name="fig13"></a><a name="13"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig13&amp;_ba=13&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=82700d2d08553ffb292a3951eca908bb" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig13&_ba=13&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=82700d2d08553ffb292a3951eca908bb'); return false;"><img src="science_files/0_028.gif" alt="" title="Display Full Size version of this image (1K) - Opens new window" align="middle" border="1" height="77" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-48063X3-1&amp;_image=fig13&amp;_ba=13&amp;_user=167669&amp;_coverDate=01%2F31%2F2003&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=82700d2d08553ffb292a3951eca908bb" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-48063X3-1&_image=fig13&_ba=13&_user=167669&_coverDate=01%2F31%2F2003&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=82700d2d08553ffb292a3951eca908bb'); return false;" alt="Display Full Size version of this image (1K) - Opens new window" title="Display Full Size version of this image (1K) - Opens new window">Display Full Size version of this image</a> (1K)</td></tr></tbody></table></p><p>Fig. 13. Masks for the labeling of four-connected components: (a) forward scan; (b) backward scan. </p><p> 
+
+<br clear="all">
+
+</p></div><br><div class="art">
+<p><a name="m4.cor*"></a><a href="#m4.bcor*"><sup><img src="science_files/REcor.gif" alt="Corresponding Author Contact Information" border="0"></sup></a>Corresponding
+author. Present address: Kurt Rossmann Laboratories for Radiologic
+Image Research, Department of Radiology, The University of Chicago,
+5841 South Maryland Avenue, MC 2026, Chicago, IL 60637, USA. Fax:
+1-773-702-0371 </p></div>
+
+<br clear="all">
+
+<br>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td>
+ 
+ 
+  
+   <a href="http://www.sciencedirect.com/science/journal/10773142"><strong>Computer Vision and Image Understanding</strong></a>
+   <br>
+  
+ 
+
+
+ 
+  
+  <a href="http://www.sciencedirect.com/science?_ob=PublicationURL&amp;_tockey=%23TOC%236750%232003%23999109998%23406188%23FLA%23&amp;_cdi=6750&amp;_pubType=J&amp;view=c&amp;_auth=y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=6356b2549658e506cd78cebf343f2be8">
+
+
+Volume 89, Issue 1</a>, 
+
+
+January 2003,
+
+
+Pages 1-23
+
+
+</td>
+
+
+  <td align="right" nowrap="nowrap" valign="top">
+    
+      
+    
+  </td>
+
+</tr>
+</tbody></table>
+
+
+
+
+</div></div></div>
+
+<span style="font-size: 75%; font-family: arial,verdana,helvetica,sans-serif;">
+<table class="sdMainNav sci_dirNav" style="background-image: url(/scidirimg/sci_dir/navbar_back.gif);" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+      <td align="right" width="1%">&nbsp;</td>
+      <td align="left"><img src="science_files/space.gif" height="1" width="1"><table class="sdMainNavCenter" style="font-size: 1em;" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="center">
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HomePageURL&amp;_method=userHomePage&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c7870f9657dff8745244b4749ca7c26d" target="_top" name="Home" alt="Home" title="Home"><div class="sdMainNavPadding">Home</div></a></td>
+
+<td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=BrowseListURL&amp;_type=all&amp;_auth=y&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=cd640f2d5607ab1204ee83049bdadeba" target="_top" name="Browse" alt="Browse" title="Browse"><div class="sdMainNavPadding">Browse</div></a></td>
+
+<td class="sdMainNav sci_dirNavActive" style="background-image: url(/scidirimg/sci_dir/navbar_select.gif);" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSearchURL&amp;_method=requestForm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=fb9fec760e84d9abcf5ed2dc70534c28" target="_top" name="Search" alt="Search" title="Search"><div class="sdMainNavPadding">Search</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=begin&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=f222c767c0a36820cbec24eed935de22" target="_top" name="account" alt="My Settings" title="My Settings"><div class="sdMainNavPadding">My Settings</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSDIURL&amp;_method=listAlerts&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e57a2692284e455b0d835f8aee17a7f2" target="_top" name="alert" alt="Alerts" title="Alerts"><div class="sdMainNavPadding">Alerts</div></a></td>
+
+      
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=browse_open_doc.htm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f7d44b4b8317300c75bc3a870b6777aa" target="sdhelp" alt="Help (Opens new window)" title="Help (Opens new window)" onclick="var helpWin; helpWin=window.open('/science?_ob=HelpURL&_file=browse_open_doc.htm&_btn=Y&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f7d44b4b8317300c75bc3a870b6777aa','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus(); return false"><div class="sdMainNavPadding">Help</div></a></td>
+
+      
+
+</tr></tbody></table>
+</td></tr></tbody></table>
+</span>
+
+<div style="margin: 5px 5px 5px 8px;">
+<div style="width: 100%;">
+<table class="pageText" style="font-size: 75%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td valign="top">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+<td valign="top">
+  <a href="http://www.elsevier.com/" target="_blank"><img src="science_files/tree.gif" alt="Elsevier.com (Opens new window)" target="_blank" align="left" border="0"></a>
+</td>
+<td height="100%" valign="bottom">
+<table border="0" cellpadding="0" cellspacing="0" height="100%">
+<tbody><tr height="100%">
+<td align="left" valign="bottom">
+  <a href="http://info.sciencedirect.com/" title="ScienceDirect Info Site (Opens New Window)" target="_blank">About ScienceDirect</a> &nbsp;|&nbsp;
+  
+    
+       <a href="http://www.sciencedirect.com/science?_ob=MiamiCommentURL&amp;_method=comment&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=9797704d7037c3b7400bb0b1786587bb" target="_top">Contact Us</a>
+       
+          &nbsp;|&nbsp;
+       
+    
+   
+  
+  <a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=displayTerms&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=599ba68b3588c58713bc570666fb09b3" target="_top">Terms &amp; Conditions</a>
+
+
+  &nbsp;|&nbsp;
+
+
+  <a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=displayPolicy&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=02207760886f382917acc495d59a6362" target="_top">Privacy Policy</a>
+
+
+</td>
+</tr>
+<tr><td><img src="science_files/clear.gif" alt="" height="10" width="1"></td></tr>
+<tr height="0">
+<td style="margin: 0px; padding: 0px; height: 0pt;" align="left" valign="bottom">
+Copyright © 2007 <a href="http://www.elsevier.com/" target="_blank">Elsevier B.V.</a> All rights reserved. ScienceDirect® is a registered trademark of Elsevier B.V.
+</td>
+</tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+</td>
+
+</tr></tbody></table>
+</div></div>
+
+
+
+
+</body></html>

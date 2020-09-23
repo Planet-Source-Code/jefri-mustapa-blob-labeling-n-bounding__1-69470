@@ -1,0 +1,11 @@
+blockquote a {
+font-weight : bold
+}
+p {
+line-height: 150%;
+}
+.art {
+line-height: 150%;
+margin-left: 25 !important;
+width: 600px !important
+}

@@ -1,0 +1,239 @@
+body {
+	margin:0;
+}
+
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	background-color: black;
+}
+
+/**********************
+ * Main Dialog Styles *
+ **********************/
+#flyin * {
+	margin: 0px;
+	padding: 0px;
+}
+#flyin {
+	color: #333;
+	font-size: 12px !important;
+	font-family: arial,verdana, trebuchet ms, sans-serif, tahoma;
+	width: 474px;
+	height: 360px;	
+	background-color: white;
+	border: solid 2px #ccc;
+	position: absolute;
+	top: -999px;
+	z-index: 9999;
+	overflow: hidden;
+	display: none;
+	clear: both;
+}
+
+#flyin .title_container {
+	background-image: url("http://www.koders.com/media/special/flyins/eg2/images/gray-white-vgrad.png");
+	background-repeat: repeat-x;
+	background-color: white;
+	font-family: arial, tahoma, trebuchet ms, Sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	color: #333;
+	background-position: 0px -10px;
+	padding-left: 6px;
+	border-bottom: solid 1px #ccc;
+	line-height: 32px;
+	height: 32px;
+}
+
+#flyin .title_container .title {
+	float: left;
+	line-height:32px;
+	text-align: left;
+}
+#flyin .title_container .title img {
+	margin-top:6px;
+}
+
+#flyin .title_container .koder_logo {
+	width:94px;
+	height:20px;
+}
+
+#flyin .title_container .close {
+	float: right;
+	width: 50px;
+	margin-left: -50px;
+	cursor: hand;
+	cursor: pointer;
+}
+
+#flyin .email_status {
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	background-color: #CF2929;
+	background-image: url(http://www.koders.com/media/special/flyins/eg2/images/email_status.gif);
+
+	display: none;
+}
+
+#flyin p {
+	margin-top: 7px;
+	font-size: 12px;
+}
+
+#flyin a {
+	color: #336699;
+}
+
+#flyin h3 {
+	color: #222;
+	font-weight: normal;
+	font-size: 18px;
+	margin:15px 0 10px 0;
+}
+
+#flyin .content {
+	margin:5px 15px 0 15px;
+}
+
+#flyin .email_area, #flyin .continue_area {
+
+	text-align:center;
+	margin-top: 20px;
+	padding: 5px 10px 5px 10px;
+	background-color: #f9f9f9;
+	border-top: solid 1px #e3e3e3;
+	border-bottom: solid 1px #e3e3e3;	
+
+}
+
+#flyin .email_area .pro_download_button {
+	text-align:center;
+	margin:5px auto 0 auto;	
+}
+
+
+#flyin .email_area .email_address {
+	display: inline-block;
+	float: left;
+	height:20px;
+	line-height:20px;
+	font-weight: bold;
+	color: #444;
+
+}
+
+#flyin .email_area .email_input {
+	font-size: 13px;
+	line-height:13px;
+	_height:24px;
+
+	padding:4px 0 4px 0px;
+	text-align:center;
+	border: solid 1px #AFAFAF;
+	margin-top: 0px;
+	width:185px;
+}
+
+
+#flyin .link_status {
+  font-size:11px;
+  font-style:italic;
+  margin:2px;
+}
+
+#flyin .pro_download_button {
+  background-image: url(http://www.koders.com/media/special/flyins/eg2/images/download_pro.gif);
+  width:246px;
+  height:39px;
+  display:block;
+}
+
+#flyin .pro_download_button:hover { 
+  background-position: 0px -40px;
+}
+
+
+#flyin .email_area .submit_button {
+	width: 70px;
+	height: 20px;
+}
+
+#flyin .input_controls {
+	float: right;
+}
+
+#flyin .clear {
+	height: 1px;
+	line-height: 0.08em;
+	overflow: hidden;
+	clear: both;
+}
+
+#flyin .learn_more {
+	text-align: center;
+	bottom: 10;
+	width: 100%;
+	position: absolute;
+	margin-left: 25px 0 0 0;
+}
+
+#flyin .learn_more a {
+	text-decoration: underline;
+	color: #373737;
+}
+
+#flyin #status {
+	display: none;
+	text-align: center;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+#flyin .status_area {
+  font-size:16px;
+  font-weight:bold;
+  height:36px;
+  margin-top:36px;
+  line-height:36px;
+  vertical-align:middle;   
+  border-top: solid 2px #ddd;
+  text-align:center;
+  background-image: url("http://www.koders.com/media/special/flyins/eg2/images/gray-white-vgrad.png");
+  background-repeat:repeat-x;
+  background-position:0px -20px;
+  position:absolute;
+  bottom:0;
+  width:100%;
+}
+
+#flyin .invitation_image {
+	margin:-5px 0 0 10px;
+}
+
+#flyin .hive {
+	float:right;
+	margin-top:10px;
+}
+#flyin #step2 h3.left {
+	float:left;
+	display:block;
+}  
+    
+#flyin p.b {
+	font-weight: bold;
+}
+    
+#flyin .continue {
+	padding: 5px;
+	font-size: 12px;
+}

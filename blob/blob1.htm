@@ -1,0 +1,917 @@
+<html><head>
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- TRANSKEY: 10/08/2007 05:27:01 EDT#2842_003#276829#161.139.212.150 -->
+
+<meta name="robots" content="NOINDEX,NOFOLLOW,NOARCHIVE"><!-- static const char articletmpl_sccsId[] = "%W%  %G% %U% --- Retrieved: %H% %T%"; --><title>ScienceDirect
+- Computer Vision and Image Understanding : A linear-time
+component-labeling algorithm using contour tracing technique</title>
+
+
+
+
+<link rel="stylesheet" title="Default Styles" href="blob1_files/css_art_v01.css" type="text/css">
+<link rel="stylesheet" title="Default Styles" href="blob1_files/css_gen_v01.css" type="text/css"><meta http-equiv="Set-Cookie" content="BROWSER_SUPPORTS_COOKIES=1; path=/"></head><body bgcolor="#ffffff" text="#000000">
+
+
+
+
+<script language="Javascript"><!--
+        function openNS(url) {
+                if ((navigator.appName == "Microsoft Internet Explorer") &&
+                        (parseFloat(navigator.appVersion) < 4 ))
+                {
+                        return false;
+                }
+               
+                var newX=600,newY=400,xOffset=10,yOffset=10;
+                var parms = 'width=' + newX +
+                                ',height=' + newY +
+                                ',screenX='+ xOffset +
+                                ',screenY=' + yOffset +
+                                ',status=yes,toolbar=yes,menubar=yes' +
+                                ',scrollbars=yes,resizable=yes,location=yes';
+                nsWin = window.open(url,'displayWindow',parms);
+                nsWin.focus();
+                return false;
+        }
+
+        function openStrippedNS(url) {
+                if ((navigator.appName == "Microsoft Internet Explorer") &&
+                        (parseFloat(navigator.appVersion) < 4 ))
+                {
+                        return false;
+                }
+
+                var xOffset=25,yOffset=25;
+                var parms = 'left='+ xOffset +
+                                ',top=' + yOffset +
+                                ',status=yes,toolbar=no,menubar=no' +
+                                ',scrollbars=yes,resizable=yes,location=no';
+                nsWin = window.open(url,'displayWindow',parms);
+                nsWin.focus();
+                return false;
+        }
+
+        function openPopup(url, windowName, width, height) {
+            if ((navigator.appName == "Microsoft Internet Explorer") &&
+                (parseFloat(navigator.appVersion) < 4 )) { return false; }
+               
+            var xOffset=25,yOffset=25;
+            var parms = 'width=' + width +
+                        ',height=' + height +
+                        ',left=' + xOffset +
+                        ',top=' + yOffset +
+                        ',status=no,toolbar=no,menubar=no' +
+                        ',scrollbars=yes,resizable=yes';
+            var displayName = windowName;
+
+            nsWin = window.open(url, displayName, parms);
+            nsWin.focus();
+            return false;
+        }
+//--></script>
+
+<script language="Javascript"><!--
+function flip(e){
+        var menustyle = eval(getStyleObj(e))
+                if (menustyle.display=="none"){
+                        menustyle.display=''
+                }
+                else{
+                        menustyle.display="none"
+                }
+}
+function getStyleObj(elem,parent) {
+      if (document.layers) {
+            if (parent) {
+                  return "document."+parent+".document."+elem;
+            } else {
+                  return "document."+elem + ".style";
+            }
+      } else if (document.all) {
+            return "document.all."+elem + ".style";
+      } else if (document.getElementById) {
+            return "document.getElementById('"+elem+"').style";
+      }
+}
+//--></script>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr>
+    <td colspan="3" style="padding-left: 0.2em;" nowrap="nowrap" width="30%">
+      <a href="http://www.sciencedirect.com/science?_ob=HomePageURL&amp;_method=userHomePage&amp;_lg=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c7870f9657dff8745244b4749ca7c26d" border="0" target="_top"><img src="blob1_files/logo.gif" title="Go to ScienceDirect® Home" alt="Go to ScienceDirect® Home" border="0"></a>
+      <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-49RCDC3-1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=6a6e641ed230f7c804975c4a6b6bd8ad#Skip%20Buttons" target="_top"><img src="blob1_files/clear.gif" alt="Skip Main Navigation Links" border="0" height="1" width="10"></a>
+    </td>
+    <td align="center" bgcolor="#ffffff" nowrap="nowrap" valign="middle">
+    
+        
+            
+        
+    
+
+    </td>
+    <td style="padding-right: 0.2em;" align="right" nowrap="nowrap" width="37%">
+    <span style="font-size: 75%; font-family: arial,verdana,helvetica,sans-serif;">
+    
+      
+        
+<script language="Javascript">
+<!---------------
+document.write("<div style=\"padding:0.4em\">");
+document.write("<div id=\"sdLoginBoxFold\" >");
+document.write("<a href=\"javascript:flip('sdLoginBox'); javascript:flip('sdLoginBoxFold');\" title=\"Open the Login Box\">Login: &nbsp;<img src=\"/scidirimg/sign_plus.gif \" width=\"9\" height=\"9\" alt=\"+\" border=\"0\" title=\"Open the Login Box\"/></a><br>");
+
+
+  
+    
+      document.write("<a href=\"https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-49RCDC3-1%26_user%3D167669%26_coverDate%3D02%2F29%2F2004%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3D6a6e641ed230f7c804975c4a6b6bd8ad&_acct=C000013278&_version=1&_userid=167669&md5=3ca179d114f7e897d6993944f78d537f\" target=\"_top\" title=\"Click here to learn about registering with ScienceDirect\">Register</a>");
+    
+  
+
+document.write("</div>");
+document.write("</div>");
+document.write("<div id=\"sdLoginBox\"");
+document.write("style=\"background-image: url(/scidirimg/login_background.gif); background-repeat: repeat-x; height:70px;padding:0.2em;");
+document.write("display:none;\">");
+
+	document.write("<form name=\"sdLogin\" method=\"POST\" action=\"https://www.sciencedirect.com/science/login\">");
+	document.write("<input type=\"hidden\" name=\"login\" value=\"login\">");
+	document.write("<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">");
+	document.write("<tr valign=\"top\">");
+	document.write("<td align=\"left\" nowrap>");
+
+
+
+document.write("</td>");
+
+  
+    document.write("<tr><td nowrap>&nbsp;<a href=\"/science?_ob=FederationURL&_method=display&_type=f&_acct=C000013278&_version=1&_userid=167669&md5=ab29801dc8d391fc32e9ce6efd988674\"title=\"Athens/Institution Login\">Athens/Institution Login</a>&nbsp;</font></td>");
+  
+
+
+  
+    document.write("<td align=\"right\">");
+    
+      
+        
+          document.write("<a href=\"https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-49RCDC3-1%26_user%3D167669%26_coverDate%3D02%2F29%2F2004%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3D6a6e641ed230f7c804975c4a6b6bd8ad&_acct=C000013278&_version=1&_userid=167669&md5=3ca179d114f7e897d6993944f78d537f\" target=\"_top\" title=\"Click here to learn about registering with ScienceDirect\">Not Registered?&nbsp;</a>");
+        
+      
+    
+    
+      document.write("<a href=\"javascript:flip('sdLoginBox');javascript:flip('sdLoginBoxFold');\" title=\"Close the Login Box\">");
+        document.write("<img src=\"/scidirimg/sign_minus.gif\" width=\"9\" height=\"9\" alt=\"-\" border=\"0\" title=\"Close the Login Box\"/>");
+        document.write("</a>");
+    
+  
+
+document.write("</td>");
+document.write("</tr>");
+document.write("</table>");
+document.write("<table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\">");
+document.write("<tr align=\"right\">");
+document.write("<td align=\"left\">User&nbsp;Name:</td>");
+document.write("<td align=\"left\">");
+document.write("<input type=\"text\" name=\"userid\" class=\"xpstyle\" size=\"11\" title=\"Please enter your user name here\" />");
+document.write("</td>");
+document.write("<td align=\"right\">Password: </td>");
+document.write("<td align=\"left\">");
+document.write("<input type=\"password\" name=\"password\" class=\"xpstyle\" size=\"11\" maxlength=\"20\" title=\"Please enter your password here\" />");
+document.write("</td>");
+document.write("<input type=\"hidden\" name=\"_ob\" value=\"MiamiLogonURL\">");
+document.write("<input type=\"hidden\" name=\"targetURL\" value=\"http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-49RCDC3-1&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=6a6e641ed230f7c804975c4a6b6bd8ad\" >")
+document.write("<input type=\"hidden\" name=\"returnURL\" value=\"http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-49RCDC3-1&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=6a6e641ed230f7c804975c4a6b6bd8ad\">");
+document.write("<td align=\"left\"><input class=\"image\" type=\"image\" onmouseover=\"this.src='/scidirimg/sci_dir/arrow_small_b.gif'\" onmouseout=\"this.src='/scidirimg/sci_dir/arrow_small_a.gif'\" name=\"arrow\" src=\"/scidirimg/sci_dir/arrow_small_a.gif\" title=\"Login\" value=\"Submit\" /></a>");
+document.write("		</td>");
+document.write("</tr>");
+document.write("<tr valign=\"baseline\">");
+document.write("<td align=\"left\" colspan=\"3\">");
+
+document.write("<input type=\"checkbox\" name=\"rememberid\" id=\"rememberMe\" value=\"Y\" class=\"checkbox\" title=\"Checking this option will log you in automatically next time you visit ScienceDirect\"/>");
+document.write("<label for=\"rememberMe\"><span title=\"Checking this option will log you in automatically next time you visit ScienceDirect\">Remember&nbsp;me&nbsp;on&nbsp;this&nbsp;computer</span></label>");
+
+document.write("</td>");
+document.write("<td align=\"left\" colspan=\"2\">");
+document.write("<a href=\"/science?_ob=ReminderURL&_method=display&_acct=C000013278&_version=1&_userid=167669&md5=4dfd57dfc485caef26f9ad0f791812f8\" target=\"passwd\" onClick=\"var remindWin;remindWin=window.open('','passwd','scrollbars=yes,resizable=yes,directories=no,toolbar=n,menubar=no,status=no,width=650,height=300');\" title=\"Click here for help in recovering your ScienceDirect access\">Forgotten&nbsp;password?</a>");
+document.write("</td>");
+document.write("</tr>");
+document.write("</table></form></div>");
+//---------->
+</script><div style="padding: 0.4em;"><div id="sdLoginBoxFold"><a href="javascript:flip('sdLoginBox'); javascript:flip('sdLoginBoxFold');" title="Open the Login Box">Login: &nbsp;<img src="blob1_files/sign_plus.gif" alt="+" title="Open the Login Box" border="0" height="9" width="9"></a><br><a href="https://www.sciencedirect.com/science?_ob=RegistrationURL&amp;_method=display&amp;_type=ip&amp;_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-49RCDC3-1%26_user%3D167669%26_coverDate%3D02%2F29%2F2004%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3D6a6e641ed230f7c804975c4a6b6bd8ad&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=3ca179d114f7e897d6993944f78d537f" target="_top" title="Click here to learn about registering with ScienceDirect">Register</a></div></div><div id="sdLoginBox" style="padding: 0.2em; background-image: url(/scidirimg/login_background.gif); background-repeat: repeat-x; height: 70px; display: none;"><form name="sdLogin" method="post" action="https://www.sciencedirect.com/science/login"><input name="login" value="login" type="hidden"><table cellpadding="0" cellspacing="0" width="100%"><tbody><tr valign="top"><td align="left" nowrap="nowrap"></td></tr><tr><td nowrap="nowrap">&nbsp;<a href="http://www.sciencedirect.com/science?_ob=FederationURL&amp;_method=display&amp;_type=f&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ab29801dc8d391fc32e9ce6efd988674" title="Athens/Institution Login">Athens/Institution Login</a>&nbsp;</td><td align="right"><a href="https://www.sciencedirect.com/science?_ob=RegistrationURL&amp;_method=display&amp;_type=ip&amp;_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-49RCDC3-1%26_user%3D167669%26_coverDate%3D02%2F29%2F2004%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3D6a6e641ed230f7c804975c4a6b6bd8ad&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=3ca179d114f7e897d6993944f78d537f" target="_top" title="Click here to learn about registering with ScienceDirect">Not Registered?&nbsp;</a><a href="javascript:flip('sdLoginBox');javascript:flip('sdLoginBoxFold');" title="Close the Login Box"><img src="blob1_files/sign_minus.gif" alt="-" title="Close the Login Box" border="0" height="9" width="9"></a></td></tr></tbody></table><input name="_ob" value="MiamiLogonURL" type="hidden"><input value="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-49RCDC3-1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=6a6e641ed230f7c804975c4a6b6bd8ad" name="targetURL" type="hidden"><input value="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-49RCDC3-1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=6a6e641ed230f7c804975c4a6b6bd8ad" name="returnURL" type="hidden"><table cellpadding="0" cellspacing="0" width="100%"><tbody><tr align="right"><td align="left">User&nbsp;Name:</td><td align="left"><input name="userid" class="xpstyle" size="11" title="Please enter your user name here" type="text"></td><td align="right">Password: </td><td align="left"><input name="password" class="xpstyle" size="11" maxlength="20" title="Please enter your password here" type="password"></td><td align="left"><input class="image" onmouseover="this.src='/scidirimg/sci_dir/arrow_small_b.gif'" onmouseout="this.src='/scidirimg/sci_dir/arrow_small_a.gif'" name="arrow" src="blob1_files/arrow_small_a.gif" title="Login" value="Submit" type="image">		</td></tr><tr valign="baseline"><td colspan="3" align="left"><input name="rememberid" id="rememberMe" value="Y" class="checkbox" title="Checking this option will log you in automatically next time you visit ScienceDirect" type="checkbox"><label for="rememberMe"><span title="Checking this option will log you in automatically next time you visit ScienceDirect">Remember&nbsp;me&nbsp;on&nbsp;this&nbsp;computer</span></label></td><td colspan="2" align="left"><a href="http://www.sciencedirect.com/science?_ob=ReminderURL&amp;_method=display&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=4dfd57dfc485caef26f9ad0f791812f8" target="passwd" onclick="var remindWin;remindWin=window.open('','passwd','scrollbars=yes,resizable=yes,directories=no,toolbar=n,menubar=no,status=no,width=650,height=300');" title="Click here for help in recovering your ScienceDirect access">Forgotten&nbsp;password?</a></td></tr></tbody></table></form></div>
+<noscript>
+<div id="sdLoginBox"
+style="background-image: url(/scidirimg/login_background.gif);
+background-repeat: repeat-x; height:70px;padding:.02em;"> <form
+name="sdLogin" method="POST"
+action="https://www.sciencedirect.com/science/login"> <input
+type="hidden" name="login" value="login"> <table width="100%"
+cellspacing="0" cellpadding="0"> <tr valign="top"> <tr> <td nowrap
+align="left"> &nbsp;<a
+href="/science?_ob=FederationURL&_method=display&_type=f&_acct=C000013278&_version=1&_userid=167669&md5=ab29801dc8d391fc32e9ce6efd988674"title="Athens/
+Institution Login">Athens/Institution Login</a>&nbsp;</font></td> <td
+align="right"> <a
+href="https://www.sciencedirect.com/science?_ob=RegistrationURL&_method=display&_type=ip&_returnURL=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB6WCX-49RCDC3-1%26_user%3D167669%26_coverDate%3D02%2F29%2F2004%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26view%3Dc%26_acct%3DC000013278%26_version%3D1%26_urlVersion%3D0%26_userid%3D167669%26md5%3D6a6e641ed230f7c804975c4a6b6bd8ad&_acct=C000013278&_version=1&_userid=167669&md5=3ca179d114f7e897d6993944f78d537f"
+title="Click here to learn about registering with ScienceDirect"
+target="_top">Not Registered?&nbsp;</a> </td> </tr>
+</table> <table width="100%" cellspacing="0" cellpadding="0"> <tr
+align="right"> <td align="left">User&nbsp;Name: </td> <td align="left">
+<input type="text" name="userid" class="xpstyle" size="11"
+title="Please enter your user name here" /> </td> <td
+align="right">Password: </td> <td align="left"> <input type="password"
+name="password" class="xpstyle" size="11" maxlength="20" title="Please
+enter your password here" /> </td>
+<input type="hidden" name="_ob" value="MiamiLogonURL">
+<input type="hidden" name="targetURL"
+value="http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-49RCDC3-1&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=6a6e641ed230f7c804975c4a6b6bd8ad"
+>
+<input type="hidden" name="returnURL"
+value="http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WCX-49RCDC3-1&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=6a6e641ed230f7c804975c4a6b6bd8ad"
+> <td align="left"><input class="image" type="image"
+src="/scidirimg/sci_dir/arrow_small_a.gif" title="Login" alt="Go"
+value="Submit" /></a> </td> </tr> <tr valign="baseline"> <td
+align="left" colspan="3"> <input type="checkbox"
+name="rememberid"id="rememberMe" value="Y" class="checkbox"
+title="Checking this option will log you in automatically next time you
+visit ScienceDirect"/> <label for="rememberMe"><span title="Checking
+this option will log you in automatically next time you visit
+ScienceDirect">Remember&nbsp;me&nbsp;on&nbsp;this&nbsp;computer</span></label>
+</td> <td align="left" colspan="2"> <a
+href="/science?_ob=ReminderURL&_method=display&_acct=C000013278&_version=1&_userid=167669&md5=4dfd57dfc485caef26f9ad0f791812f8"
+target="passwd" onClick="var
+remindWin;remindWin=window.open('','passwd','scrollbars=yes,resizable=yes,directories=no,toolbar=n,menubar=no,status=no,width=650,height=300');"
+title="Click here for help in recovering your ScienceDirect
+access">Forgotten&nbsp;password?</a> </td> </tr> </table></form></div>
+</noscript>
+		</span></td>
+	</tr>
+       
+    
+  
+ 
+
+</tbody></table>
+
+
+<span style="font-size: 75%; font-family: arial,verdana,helvetica,sans-serif;">
+<table class="sdMainNav sci_dirNav" style="font-size: 1em; background-image: url(/scidirimg/sci_dir/navbar_back.gif);" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+      <td align="right" width="1%">&nbsp;</td>
+      <td align="left"><img src="blob1_files/space.gif" height="1" width="1"><table class="sdMainNavCenter" style="font-size: 1em;" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="center">
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HomePageURL&amp;_method=userHomePage&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c7870f9657dff8745244b4749ca7c26d" target="_top" name="Home" alt="Home" title="Home"><div class="sdMainNavPadding">Home</div></a></td>
+
+<td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=BrowseListURL&amp;_type=all&amp;_auth=y&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=cd640f2d5607ab1204ee83049bdadeba" target="_top" name="Browse" alt="Browse" title="Browse"><div class="sdMainNavPadding">Browse</div></a></td>
+
+<td class="sdMainNav sci_dirNavActive" style="background-image: url(/scidirimg/sci_dir/navbar_select.gif);" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSearchURL&amp;_method=requestForm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=fb9fec760e84d9abcf5ed2dc70534c28" target="_top" name="Search" alt="Search" title="Search"><div class="sdMainNavPadding">Search</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=begin&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=f222c767c0a36820cbec24eed935de22" target="_top" name="account" alt="My Settings" title="My Settings"><div class="sdMainNavPadding">My Settings</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSDIURL&amp;_method=listAlerts&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e57a2692284e455b0d835f8aee17a7f2" target="_top" name="alert" alt="Alerts" title="Alerts"><div class="sdMainNavPadding">Alerts</div></a></td>
+
+      
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=browse_open_doc.htm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f7d44b4b8317300c75bc3a870b6777aa" target="sdhelp" alt="Help (Opens new window)" title="Help (Opens new window)" onclick="var helpWin; helpWin=window.open('/science?_ob=HelpURL&_file=browse_open_doc.htm&_btn=Y&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f7d44b4b8317300c75bc3a870b6777aa','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus(); return false"><div class="sdMainNavPadding">Help</div></a></td>
+      
+</tr></tbody></table>
+</td></tr></tbody></table>
+</span>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td><a name="Skip Buttons"></a><script language="javascript">
+<!--
+function clearQSForm() {
+    document.qkSrch.qs_tak.value="";
+    document.qkSrch.qs_author.value="";
+    document.qkSrch.qs_title.value="";
+    document.qkSrch.qs_vol.value="";
+    document.qkSrch.qs_issue.value="";
+    document.qkSrch.qs_pages.value="";
+}
+//-->
+</script>
+
+<div id="sdQuickSearch" style="font-size: 75%;">
+<div style="background-image: url(/scidirimg/sci_dir/qs_background.gif); background-repeat: repeat-x; background-position: left bottom; background-color: rgb(218, 218, 218);">
+<input name="_ob" value="QuickSearchURL" type="hidden">
+<input value="submitForm" name="_method" type="hidden">
+<input value="C000013278" name="_acct" type="hidden">
+<input value="f8cedf90cc77e7aa17d3e496ae9e99de" name="md5" type="hidden">
+
+<table border="0" width="100%">
+<form name="qkSrch" method="get" target="_top" action="/science"></form>
+<tbody><tr valign="center"><td align="left" nowrap="nowrap">&nbsp;<b>Quick Search</b></td>
+   <td align="right">&nbsp;&nbsp;Title,&nbsp;abstract,&nbsp;keywords</td>
+   <td align="left"><input name="qs_tak" value="" size="28" maxlength="450" title="For example: heart attack AND behavio?" class="qsinput xpstyle" tabindex="1" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Author</td>
+   <td align-left="" colspan="5"><input name="qs_author" value="" size="30" maxlength="450" title="For example: j s smith" class="qsinput xpstyle" tabindex="2" type="text"></td>
+   <td colspan="2" nowrap="nowrap"><span style="font-size: 0.9em;">e.g.&nbsp;&nbsp;j s smith</span>
+
+   </td>
+   <td align="right" valign="top" width="90%"></td>
+</tr>
+<tr valign="center"><td align="left" nowrap="nowrap">&nbsp;<a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=qs_main.htm&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=4a0f77d3d377a395b541957f04e604ce" target="sdhelp" onmouseover="window.status='Help is Available';return true" onclick="var helpWin; helpWin=window.open('qs_main.htm','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus()"><img src="blob1_files/qs_tips.gif" tabindex="9" alt="Search tips (Opens new window)" title="Search tips (Opens new window)" align="absmiddle" border="0"></a></td>
+   <td align="right">&nbsp;&nbsp;Journal/book&nbsp;title</td>
+   <td align="left"><input name="qs_title" value="" size="28" maxlength="450" title="For example: journal of molecular biology" tabindex="3" class="qsinput xpstyle" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Volume</td>
+   <td align="left"><input name="qs_vol" value="" size="3" maxlength="10" class="qsinput xpstyle" style="width: 30px;" tabindex="4" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Issue</td>
+   <td align="left"><input name="qs_issue" value="" size="3" maxlength="10" class="qsinput xpstyle" style="width: 30px;" tabindex="5" type="text"></td>
+   <td align="right">&nbsp;&nbsp;Page</td>
+   <td align="right"><input name="qs_pages" value="" size="3" maxlength="10" title="For example: 14-27" class="qsinput xpstyle" style="width: 30px;" tabindex="6" type="text"></td>
+   <td colspan="2" align="left" nowrap="nowrap">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-49RCDC3-1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=6a6e641ed230f7c804975c4a6b6bd8ad&amp;clearQS=y" onclick="clearQSForm(); return false;" onmouseover="document.images['clearQS'].src='/scidirimg/sci_dir/btn_clear2.gif'" onmouseout="document.images['clearQS'].src='/scidirimg/sci_dir/btn_clear1.gif'"><img src="blob1_files/btn_clear1.gif" alt="Clear all fields" title="Clear all fields" name="clearQS" tabindex="7" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;<input src="blob1_files/btn_go1.gif" onmouseover="this.src='/scidirimg/sci_dir/btn_go2.gif'" onmouseout="this.src='/scidirimg/sci_dir/btn_go1.gif'" alt="Submit Quick Search" title="Submit Quick Search" value="Submit" tabindex="8" type="image"></td></tr>
+
+
+</tbody></table>
+</div>
+</div>
+</td></tr>
+</tbody></table>
+<div style="margin-left: 8px; margin-right: 5px;">
+<div style="width: 100%;">
+
+
+
+<div id="sdBody" class="pageText">
+
+<table style="padding-top: 2px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td>
+
+
+ 
+ 
+  
+   <a href="http://www.sciencedirect.com/science/journal/10773142"><strong>Computer Vision and Image Understanding</strong></a>
+   <br>
+  
+ 
+ 
+  
+  <a href="http://www.sciencedirect.com/science?_ob=PublicationURL&amp;_tockey=%23TOC%236750%232004%23999069997%23476324%23FLA%23&amp;_cdi=6750&amp;_pubType=J&amp;view=c&amp;_auth=y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=1f49d6eff3d8bff8af3cc9a64da012f3">
+
+
+Volume 93, Issue 2</a>, 
+
+
+February 2004,
+
+
+Pages 206-220
+
+
+
+
+</td>
+
+<td>
+
+
+</td></tr>
+</tbody></table>
+
+<strong><font color="#ff0000">
+
+
+
+
+
+
+
+</font></strong>
+
+
+
+
+
+
+  
+<br>
+  
+<table border="0" cellpadding="1" cellspacing="0" width="100%">
+<tbody><tr><td>
+<table align="left" border="0" cellpadding="0" cellspacing="0">
+  
+<tbody><tr>
+
+
+   <td><a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-49RCDC3-1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=summary&amp;_orig=search&amp;_cdi=6750&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=67a9043c87fcc8be7cebfca44d37e0a3" class="tab sci_dirTab">SummaryPlus</a></td>
+
+
+  <td><a href="#" class="tabActive sci_dirTabActive">Full Text + Links</a></td>
+
+
+  <td><a href="http://www.sciencedirect.com/science?_ob=MImg&amp;_imagekey=B6WCX-49RCDC3-1-1V&amp;_cdi=6750&amp;_user=167669&amp;_orig=search&amp;_coverDate=02%2F29%2F2004&amp;_sk=999069997&amp;view=c&amp;wchp=dGLzVlz-zSkzS&amp;md5=6c7f0b3c2c029b1f088bccdd5b7dc7b7&amp;ie=/sdarticle.pdf" class="tab sci_dirtab" target="newPdfWin" onclick="var newWidth=((document.body.clientWidth*90)/100); var newHeight=document.body.clientHeight; var pdfWin; pdfWin=window.open('','newPdfWin','width='+newWidth+',height='+newHeight+',resizable=yes, left=50, top=50');" pdfwin.focus()="">PDF (416 K)</a></td>
+
+<td>&nbsp;<b> View thumbnail images</b> | <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WCX-49RCDC3-1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;_cdi=6750&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=0183fa5b51bfae0c2d44afce1f2a0ae8&amp;artImgPref=F">View full size images</a></td>
+</tr>
+</tbody></table>
+</td></tr>
+<tr><td>
+<table valign="bottom" align="left" bgcolor="#cccccc" border="0" cellpadding="3" cellspacing="0" width="100%">
+  <tbody><tr><td align="left" valign="middle">
+      
+          <a href="http://www.sciencedirect.com/science?_ob=QuickLinksURL&amp;_method=createIntLink&amp;_type=article&amp;_key=B6WCX-49RCDC3-1&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ba5e3a55906b58aeb5ca40852df86540" onmouseover="document.images['addQuickLink'].src='/scidirimg/sci_dir/quicklink_b.gif'" onmouseout="document.images['addQuickLink'].src='/scidirimg/sci_dir/quicklink_a.gif'"><img src="blob1_files/quicklink_a.gif" name="addQuickLink" alt="Add to my quick links" title="Add to my quick links" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+      
+    
+      
+          <a href="http://www.sciencedirect.com/science?_ob=CitedSearchURL&amp;_method=submitSearch&amp;_udi=B6WCX-49RCDC3-1&amp;_alid=0&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;dest=list&amp;_tockey=%23toc%236750%232004%23999069997%23476324%21&amp;_orig_alid=&amp;sterms=%23refsrchkey%23f%23Chang%232004%23206%23220%23F%23&amp;source=citedSrcs&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=9b4acab0d5d43d58d5f8907edb9fd66b" onmouseover="document.images['citedBy'].src='/scidirimg/sci_dir/citedby_b.gif'" onmouseout="document.images['citedBy'].src='/scidirimg/sci_dir/citedby_a.gif'"><img src="blob1_files/citedby_a.gif" name="citedBy" alt="Cited by" title="Cited by" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+      
+    
+          <a href="http://www.sciencedirect.com/science?_ob=EmailFriendURL&amp;_method=gatherInfo&amp;refSource=html&amp;count=1&amp;_uoikey=B6WCX-49RCDC3-1&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8cb76a1d4ee1b1d4587b82f5b286a028" onmouseover="document.images['addEmail'].src='/scidirimg/sci_dir/emailarticle_b.gif'" onmouseout="document.images['addEmail'].src='/scidirimg/sci_dir/emailarticle_a.gif'"><img src="blob1_files/emailarticle_a.gif" name="addEmail" alt="E-mail article" title="E-mail article" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+    
+      
+      
+       
+          <a href="http://www.sciencedirect.com/science?_ob=CitedSearchURL&amp;_method=submitSearch&amp;_udi=B6WCX-49RCDC3-1&amp;_alid=0&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;dest=save&amp;_tockey=%23toc%236750%232004%23999069997%23476324%21&amp;_orig_alid=&amp;sterms=%23refsrchkey%23f%23Chang%232004%23206%23220%23F%23&amp;source=citedSrcs&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=9b4acab0d5d43d58d5f8907edb9fd66b" onmouseover="document.images['saveCitation'].src='/scidirimg/sci_dir/saveascitationalert_b.gif'" onmouseout="document.images['saveCitation'].src='/scidirimg/sci_dir/saveascitationalert_a.gif'"><img src="blob1_files/saveascitationalert_a.gif" name="saveCitation" alt="Save as citation alert" title="Save as citation alert" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+       
+      
+      
+          <a href="http://www.sciencedirect.com/science?_ob=DownloadURL&amp;_method=confirm&amp;_uoikey=B6WCX-49RCDC3-1&amp;count=1&amp;_docType=FLA&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=543d1b94e8ddb38de4235b43a3d3340f" onmouseover="document.images['export'].src='/scidirimg/sci_dir/exportarticle_b.gif'" onmouseout="document.images['export'].src='/scidirimg/sci_dir/exportarticle_a.gif'"><img src="blob1_files/exportarticle_a.gif" name="export" alt="Export citation + link" title="Export citation + link" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+      
+      
+          <a href="http://www.sciencedirect.com/science?_ob=CitedSearchURL&amp;_method=submitSearch&amp;_udi=B6WCX-49RCDC3-1&amp;_alid=0&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;dest=saveRss&amp;_tockey=%23toc%236750%232004%23999069997%23476324%21&amp;_orig_alid=&amp;sterms=%23refsrchkey%23f%23Chang%232004%23206%23220%23F%23&amp;source=citedSrcs&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=9b4acab0d5d43d58d5f8907edb9fd66b" target="_blank" onclick="openPopup('/science?_ob=CitedSearchURL&_method=submitSearch&_udi=B6WCX-49RCDC3-1&_alid=0&_rdoc=1&_fmt=&_orig=search&dest=saveRss&_tockey=%23toc%236750%232004%23999069997%23476324!&_orig_alid=&sterms=%23refsrchkey%23f%23Chang%232004%23206%23220%23F%23&source=citedSrcs&_acct=C000013278&_version=1&_userid=167669&md5=9b4acab0d5d43d58d5f8907edb9fd66b', '', 700, 500); return false;"><img src="blob1_files/rsscite.gif" alt="Set up a citation RSS feed (Opens new window)" title="Set up a citation RSS feed (Opens new window)" style="vertical-align: middle;" border="0"></a>&nbsp;&nbsp;&nbsp;
+       
+  
+      
+      </td>
+    </tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+
+
+ 
+  <table valign="top" align="right" border="0" cellpadding="0" cellspacing="0" width="185">
+     
+   
+                           
+      <tbody><tr class="tableFmDivider" bgcolor="#ddf8ad">
+         <td></td>
+      </tr>  
+      <tr>
+        <td><table class="tableFmBgPad sci_dirBorder" cellspacing="0" width="185"><tbody><tr><td align="left" valign="middle"><a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=835&amp;_udi=B6WCX-49RCDC3-1&amp;_targetURL=https%3A%2F%2Fs100.copyright.com%2FAppDispatchServlet%3FpublisherName%3DELS%26contentID%3DS1077314203001401%26orderBeanReset%3Dtrue&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=128d6292c2c9e433f1796b20e5760497" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><img src="blob1_files/gw_ol_rts.gif" alt="Request permission to reuse this article" border="0" vspace="5"></a></td></tr><tr><td align="left" valign="middle"><font color="#0000ff"><a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_udi=B6WCX-49RCDC3-1&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0742322178%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D174e014d815242fab146794ce4049090&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=812b4d4d8c8342f42e8d44eda1c2eb87" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a></font></td></tr><tr width="185" class="tableFmDivider"><td></td></tr><tr><td align="left" valign="middle"><font color="#0000ff"><a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_udi=B6WCX-49RCDC3-1&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0742322178%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D174e014d815242fab146794ce4049090&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=a72d1736dd7bbffdb72dd755d6f5665e" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (23)</a></font></td></tr></tbody></table></td>
+      </tr>
+      <tr class="tableFmDivider" bgcolor="#ddf8ad">
+         <td></td>
+      </tr>
+  
+</tbody></table>
+
+  
+
+
+
+  
+    <img src="blob1_files/clear.gif" alt="" border="0" height="10" width="1"><br><a href="http://dx.doi.org/10.1016/j.cviu.2003.09.002" target="doilink" onclick="var doiWin; doiWin=window.open('http://dx.doi.org/10.1016/j.cviu.2003.09.002','doilink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes'); doiWin.focus()">doi:10.1016/j.cviu.2003.09.002</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=doi.htm&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=07af7894a3de21c7f7b216fbc7fb8f98" target="sdhelp" onmouseover="window.status='Help is Available';return true" onclick="var helpWin; helpWin=window.open('/science?_ob=HelpURL&_file=doi.htm&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=07af7894a3de21c7f7b216fbc7fb8f98','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus()"><img src="blob1_files/icon_doi.gif" alt="How to Cite or Link Using DOI (Opens New Window)" align="absmiddle" border="0" height="14" width="136"></a>
+  
+
+
+
+  &nbsp;
+
+ 
+
+
+
+<br><span class="SDtxtSmall">
+Copyright © 2003 Elsevier Inc. All rights reserved. </span>
+
+
+
+
+
+
+
+
+
+
+
+
+<p><span class="h4">
+<p>Note </p></span>
+
+
+
+
+
+
+<span class="articleTitle">
+<p>A linear-time component-labeling algorithm using contour tracing technique </p></span>
+
+
+<strong>
+</strong></p><p><strong>Fu Chang<a name="m4.bcor*"></a><a href="#m4.cor*"><sup><img src="blob1_files/REcor.gif" alt="Corresponding Author Contact Information" border="0"></sup></a><sup>, </sup><a href="mailto:fchang@iis.sinica.edu.tw"><sup><img src="blob1_files/REemail.gif" alt="E-mail The Corresponding Author" border="0"></sup></a>, Chun-Jen Chen<a href="mailto:dean@iis.sinica.edu.tw"><sup><img src="blob1_files/REemail.gif" alt="E-mail The Corresponding Author" border="0"></sup></a> and Chi-Jen Lu<a href="mailto:cjlu@iis.sinica.edu.tw"><sup><img src="blob1_files/REemail.gif" alt="E-mail The Corresponding Author" border="0"></sup></a> </strong>
+
+
+
+<br>Institute of Information Science, Academia Sinica, 128 Academia Road, Section 2, Nankang, Taipei 115, Taiwan 
+
+
+<br>
+
+Received 8 August 2003;&nbsp; accepted 8 September 2003.&nbsp;; Available online  10 October 2003.  
+
+<br>
+<br><br><br></p><div class="art">
+<p><span class="h3">Abstract</span></p><p>A new linear-time algorithm
+is presented in this paper that simultaneously labels connected
+components (to be referred to merely as components in this paper) and
+their contours in binary images. The main step of this algorithm is to
+use a contour tracing technique to detect the external contour and
+possible internal contours of each component, and also to identify and
+label the interior area of each component. Labeling is done in a single
+pass over the image, while contour points are revisited more than once,
+but no more than a constant number of times. Moreover, no re-labeling
+is required throughout the entire process, as it is required by other
+algorithms. Experimentation on various types of images (characters,
+half-tone pictures, photographs, newspaper, etc.) shows that our method
+outperforms methods that use the equivalence technique. Our algorithm
+not only labels components but also extracts component contours and
+sequential orders of contour points, which can be useful for many
+applications. </p><p>
+<strong>Author Keywords: </strong>Component-labeling algorithm; Contour tracing; Linear-time algorithm 
+
+
+<br clear="all">
+</p></div><br><div class="art">
+<p><span class="h3">Article Outline</span></p><dl><dt><a href="#toc1">1. Introduction</a></dt><dt><a href="#sec1">2. Review of traditional component-labeling algorithms</a></dt><dt><a href="#sec2">3. Our method</a></dt><dl><dt><a href="#toc2">3.1. Contour tracing</a></dt><dt><a href="#toc3">3.2. Tracer</a></dt></dl><dt><a href="#sec3">4. Complexity and efficacy</a></dt><dt><a href="#sec4">5. Experimental results</a></dt><dt><a href="#sec5">6. Conclusion</a></dt><dt><a href="#bibl1">References</a></dt></dl> 
+
+<br clear="all">
+</div><br><div class="art">
+<a name="toc1"></a><p><span class="h3">1. Introduction</span></p><p>Researchers
+often face the need to detect and classify objects in images.
+Technically, image objects are formed out of components that in turn
+are made of connected pixels. It is thus most equitable to first detect
+components from images. When objects have been successfully extracted
+from their backgrounds, they also need to be specifically identified.
+For the latter purpose, component contour is often a useful resource
+for identifying objects. There are methods that identify objects from
+either chain codes [<a name="bbib5"></a><a href="#bib5">5</a>] or Fourier descriptors [<a name="bbib12"></a><a href="#bib12">12</a>], which are derived from object contours. There are also methods that match object contours against certain stochastic models [<a name="bbib9"></a><a href="#bib9">9</a>].
+These methods demonstrate that both component and contour labeling is
+an effective method for detecting and identifying two-dimensional
+objects.</p><p>In this paper, we present a method that simultaneously
+labels contours and components in binary images. This method is
+applicable in areas in which we must detect components and also
+classify them by means of certain contour features. Document analysis
+and recognition (DAR) in particular is an area for which our method is
+beneficial. High-order objects, such as half-tone pictures, characters,
+textlines, and text regions, need to be classified in order to
+effectively perform DAR [<a name="bbib1"></a><a href="#bib1">1</a>].
+Components are the basic ingredients of all high-order objects.
+Labeling components is therefore a commonly used technique for
+extracting high-order objects. The objective of DAR is not simply to
+extract high-order objects, but to recognize individual characters
+found within textual areas. There are many methods that employ certain
+contour features for classifying characters [<a name="bbib2"></a><a href="#bib2">2</a>, <a name="bbib10"></a><a href="#bib10">10</a> and <a name="bbib16"></a><a href="#bib16">16</a>].</p><p>Our
+method labels each component using a contour tracing technique. This
+method is based on the principle that a component is fully determined
+by its contours, just as a polygon is fully determined by its vertices.
+This method also provides a procedure for finding all component pixels.
+We scan an image the same way as it would be encountered by a scanner,
+i.e., from top to bottom and from left to right per each line. When an
+external or internal contour is encountered, we use a contour-tracing
+procedure [<a name="bbib6"></a><a href="#bib6">6</a>] to complete the contour and assign a label, say <i>L</i>,
+to all pixels on the contour. When the contour is traced back to its
+starting point, we resume scanning at that point. Later on, when the
+contour pixels labeled <i>L</i> are visited again, we assign the same label <i>L</i> to black pixels that lie next to them.</p><p>Our
+method has the following advantages. First, it requires only one pass
+over the image. Contour points are visited more than once due to the
+aforementioned contour tracing procedure, but no more than a constant
+number of times. Second, it does not require any re-labeling mechanism.
+Once a labeling index is assigned to a pixel, its value is unchanged.
+Third, we obtain as by-products all contours and sequential orders of
+contour pixels. Fourth, experimental results show that our algorithm is
+faster than traditional component-labeling algorithms.</p><p>Our paper is organized as follows. A review of five traditional component-labeling algorithms is given in <a href="#sec1">Section 2</a>. The details of our method are described in <a href="#sec2">Section 3</a>. Analysis and proof of our algorithm are provided in <a href="#sec3">Section 4</a>. The experimental results of our method as compared with the five algorithms from <a href="#sec1">Section 2</a> are discussed in <a href="#sec4">Section 5</a>. A brief conclusion is given in <a href="#sec5">Section 6</a>.<a name="sec1"></a></p><p><span class="h3">2. Review of traditional component-labeling algorithms</span></p><p>In
+this section, we review five important methods for component labeling.
+One of them is the first proposed method, and the other four use varied
+strategies in attempt to improve on the first. They all attempt to
+re-label component pixels according to an equivalence relation induced
+by 8-connectivity. The first method proposed by Rosenfeld and Pfaltz [<a name="bbib13"></a><a href="#bib13">13</a>] performs two passes over a binary image. Each point is encountered once in the first pass. At each black pixel <i>P</i>,
+a further examination of its four neighboring points (left, upper left,
+top, and upper right) is conducted. If none of these neighbors carries
+a label, <i>P</i> is assigned a new label. Otherwise, those labels carried by neighbors of <i>P</i> are said to be equivalent. In this case, the label of <i>P</i>
+is replaced by the minimal equivalent label. For this purpose, a pair
+of arrays is generated, one containing all current labels and the other
+the minimal equivalent labels of those current labels. In the second
+pass, label replacements are made.</p><p>Haralick [<a name="bbib8"></a><a href="#bib8">8</a>]
+designed a method to remove the extra storage required for the pair of
+arrays proposed in the first method. Initially, each black pixel is
+given a unique label. The labeled image is then processed iteratively
+in two directions. In the first pass, conducted from the top down, each
+labeled point is reassigned the smallest label among its four
+neighboring points. The second pass is similar to the first, except
+that it is conducted from the bottom up. The process goes on
+iteratively until no more labels change. The memory storage of this
+method is small, but the overall processing time varies according to
+the complexity of the image being processed.</p><p>The method proposed by Lumia et al. [<a name="bbib11"></a><a href="#bib11">11</a>]
+compromises between the two previous methods. In the first top-down
+pass, labels are assigned to black pixels as in the first method. At
+the end of each scan line, however, the labels on this line are changed
+to their minimal equivalent labels. The second pass begins from the
+bottom and works similarly as the top-down pass. It can be proved that
+all components obtain a unique label after these two passes.</p><p>Fiorio and Gustedt [<a name="bbib4"></a><a href="#bib4">4</a>] employ a special version of the union-find algorithm [<a name="bbib15"></a><a href="#bib15">15</a>] in that it runs in linear time for the component-labeling problem (see also Dillencourt et al. [<a name="bbib3"></a><a href="#bib3">3</a>]).
+This method consists of two passes. In the first pass, each set of
+equivalent labels is represented as a tree. In the second pass, a
+re-labeling procedure is performed. The operation used in the
+union-find technique serves to merge two trees into a single tree when
+a node in one tree bears an 8-connectivity relationship to a node in
+the other tree.</p><p>The method proposed by Shima et al. [<a name="bbib14"></a><a href="#bib14">14</a>]
+is particularly suitable for compressed images in which a
+pre-processing procedure is required to transform image elements into
+runs. A searching step and a propagation step are exercised iteratively
+on the run data. In the searching step, the image is encountered until
+an unlabeled run (referred to as focal run) is found and is assigned a
+new label. In the propagation step, the label of each focal run is
+propagated to contiguous runs above or below the scan line.<a name="sec2"></a></p><p><span class="h3">3. Our method</span></p><p>In
+our method, we scan a binary image from top to bottom and from left to
+right per each line. We first provide an overview of this method as
+follows. Conceptually, we can divide the operations into four major
+steps that are illustrated in <a href="#fig1">Figs. 1A–D</a>.
+</p><blockquote><p><a name="fig1"></a><a name="1"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig1&amp;_ba=1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c0e817f3ea5f64ec9f2c2e874b128b1b" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig1&_ba=1&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=c0e817f3ea5f64ec9f2c2e874b128b1b'); return false;"><img src="blob1_files/0_018.gif" alt="" title="Display Full Size version of this image (5K) - Opens new window" align="middle" border="1" height="35" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig1&amp;_ba=1&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c0e817f3ea5f64ec9f2c2e874b128b1b" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig1&_ba=1&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=c0e817f3ea5f64ec9f2c2e874b128b1b'); return false;" alt="Display Full Size version of this image (5K) - Opens new window" title="Display Full Size version of this image (5K) - Opens new window">Display Full Size version of this image</a> (5K)</td></tr></tbody></table></p><p>Fig. 1. The four major steps in tracing and labeling component points. </p><p></p></blockquote>
+<p>In <a href="#fig1">Fig. 1A</a>, when an external contour point, say <i>A</i>, is encountered the first time, we make a complete trace of the contour until we return to <i>A</i>. We assign a label to <i>A</i> and to all points of that contour.</p><p>In <a href="#fig1">Fig. 1B</a>, when a labeled external contour point <i>A</i><sup>′</sup> is encountered, we follow the scan line to find all subsequent black pixels (if they exist) and assign them the same label as <i>A</i><sup>′</sup>.</p><p>In <a href="#fig1">Fig. 1C</a>, when an internal counter point, say <i>B</i>, is encountered the first time, we assign <i>B</i> the same label as the external contour of the same component. We then trace the internal contour containing <i>B</i> and also assign to all contour points the same label as <i>B</i>.</p><p>In <a href="#fig1">Fig. 1D</a>, when a labeled internal contour point, say <i>B</i><sup>′</sup>, is encountered, we follow the scan line to find all subsequent black pixels (if they exist) and assign them the same label as <i>B</i><sup>′</sup>.</p><p>In
+the above procedure, we only make a single pass over the image and
+assign to each component point either a new label or the same label as
+the point preceding it on the scan line. The details of this algorithm
+are given below.</p><p>For simplicity, we assume that the pixels in the
+uppermost row are all white (if they are not, we add a dummy row of
+white pixels). For a given document image <i>I</i>, we associate with <i>I</i> an accompanying image <i>L</i>, which stores the label information. Initially, all points of <i>L</i> are set to 0 (i.e., they are <i>unlabeled</i>). We then start to scan <i>I</i> to find a black pixel. Let <i>C</i> be the label index for components. Initially, <i>C</i>
+is set to 1. The aforementioned four conceptual steps can be reduced to
+three logical steps. The first step deals with a newly encountered
+external point and all points of that contour, the second step a newly
+encountered internal point and all points of that contour, and the
+third step all black pixels not dealt in the first two steps.</p><p>Let <i>P</i> be the current point that is being dealt by our algorithm.</p><p><i>Step 1:</i> If <i>P</i> is unlabeled and the pixel above it is a white pixel (<a href="#fig2">Fig. 2</a>), <i>P</i> must be on an external contour of a newly encountered component. So we assign label <i>C</i> to <i>P</i>, meanwhile execute <i>contour tracing</i> (a contour tracing procedure whose details will be given later) to find that external contour, and assign label <i>C</i> to all the contour pixels. We then increase the value of <i>C</i> by 1.
+</p><blockquote><p><a name="fig2"></a><a name="2"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig2&amp;_ba=2&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=dc5a6f1b1c5753872fa2cb96316e7186" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig2&_ba=2&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=dc5a6f1b1c5753872fa2cb96316e7186'); return false;"><img src="blob1_files/0_012.gif" alt="" title="Display Full Size version of this image (6K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="93"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig2&amp;_ba=2&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=dc5a6f1b1c5753872fa2cb96316e7186" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig2&_ba=2&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=dc5a6f1b1c5753872fa2cb96316e7186'); return false;" alt="Display Full Size version of this image (6K) - Opens new window" title="Display Full Size version of this image (6K) - Opens new window">Display Full Size version of this image</a> (6K)</td></tr></tbody></table></p><p>Fig. 2. <i>P</i> is the starting point of an external contour. 1, unlabeled black pixels. </p><p></p></blockquote>
+<p><i>Step 2:</i> If the pixel below <i>P</i> is an <i>unmarked</i> white pixel (the meaning of ‘unmarked’ will be given in a moment), <i>P</i> must be on a newly encountered internal contour. There are two possibilities. First, <i>P</i> is already labeled (<a href="#fig3">Fig. 3A</a>). In this case, <i>P</i> is also an external contour pixel. Second, <i>P</i> is unlabeled (<a href="#fig3">Fig. 3B</a>). In this case, the preceding point <i>N</i> on the scan line (the left neighbor of <i>P</i>) must be labeled. We then assign <i>P</i> the same label as <i>N</i>. In either case, we proceed to execute <i>contour tracing</i> to find the internal contour containing <i>P</i>, and assign the same label to all the contour pixels.
+</p><blockquote><p><a name="fig3"></a><a name="3"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig3&amp;_ba=3&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=ecfdbc3ce1e50a1c06d9fcdbc2f9c0a1" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig3&_ba=3&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=ecfdbc3ce1e50a1c06d9fcdbc2f9c0a1'); return false;"><img src="blob1_files/0_007.gif" alt="" title="Display Full Size version of this image (14K) - Opens new window" align="middle" border="1" height="64" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig3&amp;_ba=3&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=ecfdbc3ce1e50a1c06d9fcdbc2f9c0a1" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig3&_ba=3&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=ecfdbc3ce1e50a1c06d9fcdbc2f9c0a1'); return false;" alt="Display Full Size version of this image (14K) - Opens new window" title="Display Full Size version of this image (14K) - Opens new window">Display Full Size version of this image</a> (14K)</td></tr></tbody></table></p><p>Fig. 3. (A) <i>P</i> is the starting point of an internal contour. <i>P</i> also lies on an external contour. (B) <i>P</i> is the starting point of an internal contour, but it is not on an external contour. 1, unlabeled black pixels; <img src="blob1_files/25b5.gif" alt="up triangle, open" border="0">, labeled black pixels. </p><p></p></blockquote>
+<p><i>Step 3:</i> If <i>P</i> is not a point dealt in Step 1 or Step 2 (i.e., <i>P</i> is not a contour point), then the left neighbor <i>N</i> of <i>P</i> must be a labeled pixel (<a href="#fig4">Fig. 4</a>). We assign <i>P</i> the same label as <i>N</i>.
+</p><blockquote><p><a name="fig4"></a><a name="4"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig4&amp;_ba=4&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e902fe64f2cedadbbe7211069b1287cf" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig4&_ba=4&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e902fe64f2cedadbbe7211069b1287cf'); return false;"><img src="blob1_files/0_002.gif" alt="" title="Display Full Size version of this image (4K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="93"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig4&amp;_ba=4&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e902fe64f2cedadbbe7211069b1287cf" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig4&_ba=4&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e902fe64f2cedadbbe7211069b1287cf'); return false;" alt="Display Full Size version of this image (4K) - Opens new window" title="Display Full Size version of this image (4K) - Opens new window">Display Full Size version of this image</a> (4K)</td></tr></tbody></table></p><p>Fig. 4. <i>P</i> is an unlabeled point and its left neighbor <i>N</i> is already labeled. 1, unlabeled black pixels; <img src="blob1_files/25b5.gif" alt="up triangle, open" border="0">, labeled black pixels. </p><p></p></blockquote>
+<p>As is illustrated in <a href="#fig5">Fig. 5</a>, in order to avoid executing <i>Counter Tracing</i> at the point <i>Q</i>, we <i>mark</i> surrounding white pixels of a component with a negative integer. Thus, at the time the scan line sweeps <i>Q</i>, the pixel below <i>Q</i> is no longer an <i>unmarked</i> white pixel. On the other hand, the neighbor below a first encountered internal contour pixel <i>P</i> (<a href="#fig5">Fig. 5</a>) is still unmarked since the internal contour containing that pixel has not been traced yet.
+</p><blockquote><p><a name="fig5"></a><a name="5"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig5&amp;_ba=5&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=1bfb78d67558c661a4d30cf89eb629a0" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig5&_ba=5&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=1bfb78d67558c661a4d30cf89eb629a0'); return false;"><img src="blob1_files/0_019.gif" alt="" title="Display Full Size version of this image (4K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="93"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig5&amp;_ba=5&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=1bfb78d67558c661a4d30cf89eb629a0" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig5&_ba=5&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=1bfb78d67558c661a4d30cf89eb629a0'); return false;" alt="Display Full Size version of this image (4K) - Opens new window" title="Display Full Size version of this image (4K) - Opens new window">Display Full Size version of this image</a> (4K)</td></tr></tbody></table></p><p>Fig. 5. Surrounding white pixels are marked with a native integer when a contour has been traced. 1, unlabeled black pixels; <img src="blob1_files/25b5.gif" alt="up triangle, open" border="0">, labeled black pixels; -, marked white pixels. </p><p></p></blockquote>
+<p>By marking surrounding white pixels, we also ensure that each internal contour is traced only once. As illustrated in <a href="#fig6">Fig. 6</a>, when the internal contour has been traced, the neighbor below <i>R</i> is no longer an unmarked pixel and we thus avoid tracing the internal contour once again when <i>R</i>
+is encountered by the scan line (we need to trace the internal contour
+at a point only when the white pixel below that point is unmarked).
+</p><blockquote><p><a name="fig6"></a><a name="6"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig6&amp;_ba=6&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f935ad5f086b2e55bb9084699392f655" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig6&_ba=6&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f935ad5f086b2e55bb9084699392f655'); return false;"><img src="blob1_files/0_011.gif" alt="" title="Display Full Size version of this image (5K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="93"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig6&amp;_ba=6&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f935ad5f086b2e55bb9084699392f655" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig6&_ba=6&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f935ad5f086b2e55bb9084699392f655'); return false;" alt="Display Full Size version of this image (5K) - Opens new window" title="Display Full Size version of this image (5K) - Opens new window">Display Full Size version of this image</a> (5K)</td></tr></tbody></table></p><p>Fig.
+6. Surrounding white pixels are marked with a negative integer when an
+internal contour has been traced. 1, unlabeled black pixels; <img src="blob1_files/25b5.gif" alt="up triangle, open" border="0">, labeled black pixels; -, marked white pixels. </p><p></p></blockquote>
+<p>The operation of marking surrounding white pixels with a negative integer is included in the procedure <i>Tracer</i>, which is called forth by the procedure <i>contour tracing</i>. Both procedures will be described below.<a name="toc2"></a></p><p><span class="h4">3.1. Contour tracing</span></p><p>The goal of the procedure <i>contour tracing</i> is to find an external or internal contour at a given point, say <i>S</i>. At point <i>S</i>, we first execute a procedure called <i>Tracer</i>. If <i>Tracer</i> identifies <i>S</i> as an isolated point, we reach the end of <i>contour tracing</i>. Otherwise, <i>Tracer</i> will output the contour point following <i>S</i>. Let this point be <i>T</i>. We then continue to execute <i>Tracer</i> to find the contour point following <i>T</i> and so on, until the following two conditions hold: (1) <i>Tracer</i> outputs <i>S</i> and (2) the contour point following <i>S</i> is <i>T</i>. The procedure stops only when both conditions hold. As shown in <a href="#fig7">Fig. 7</a>, when <i>S</i> is the starting point and <i>T</i> is the next contour point, the path traced by <i>Tracer</i> is <i>STUTSVWVS</i>.
+</p><blockquote><p><a name="fig7"></a><a name="7"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig7&amp;_ba=7&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=9add8841d1c21fc4d549483e0e77d13c" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig7&_ba=7&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=9add8841d1c21fc4d549483e0e77d13c'); return false;"><img src="blob1_files/0_006.gif" alt="" title="Display Full Size version of this image (2K) - Opens new window" align="middle" border="1" height="76" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig7&amp;_ba=7&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=9add8841d1c21fc4d549483e0e77d13c" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig7&_ba=7&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=9add8841d1c21fc4d549483e0e77d13c'); return false;" alt="Display Full Size version of this image (2K) - Opens new window" title="Display Full Size version of this image (2K) - Opens new window">Display Full Size version of this image</a> (2K)</td></tr></tbody></table></p><p>Fig. 7. Tracing the contour of a stripe-shaped component. </p><p></p></blockquote>
+<a name="toc3"></a><p><span class="h4">3.2. Tracer</span></p><p>For a given contour point <i>P</i>, the goal of <i>Tracer</i> is to find among <i>P</i>’s eight neighboring points for the contour point following <i>P</i>. The position of each neighboring point of <i>P</i> is assigned an index as shown in <a href="#fig8">Fig. 8A</a>. The search proceeds in a clockwise direction from the <i>initial</i> position that is determined in the following way.
+</p><blockquote><p><a name="fig8"></a><a name="8"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig8&amp;_ba=8&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=601e3712a3db7a9f9051c29003fbb7ea" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig8&_ba=8&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=601e3712a3db7a9f9051c29003fbb7ea'); return false;"><img src="blob1_files/0_005.gif" alt="" title="Display Full Size version of this image (3K) - Opens new window" align="middle" border="1" height="63" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig8&amp;_ba=8&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=601e3712a3db7a9f9051c29003fbb7ea" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig8&_ba=8&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=601e3712a3db7a9f9051c29003fbb7ea'); return false;" alt="Display Full Size version of this image (3K) - Opens new window" title="Display Full Size version of this image (3K) - Opens new window">Display Full Size version of this image</a> (3K)</td></tr></tbody></table></p><p>Fig. 8. (A) The neighboring points of <i>P</i> are indexed from 0 to 7. (B) If the previous contour point lies at 3, the next search direction is set to be 5. </p><p></p></blockquote>
+<p>If <i>P</i> is the starting point of an external contour, the initial position is set to 7 (upper right) since the point above <i>P</i> is known to be a white pixel and the next point in the clockwise direction is at position 7. If, however, <i>P</i> is the starting point of an internal contour, the initial position is set to 3 (lower left) since the point below <i>P</i>
+is also known to be a white pixel and the next point in the clockwise
+direction is at position 3. On the other hand, if the previous contour
+point exists and lies at position 3 (lower left), for example, then the
+initial position is set to 5 since the pixel at position 4 must have
+been visited already (<a href="#fig8">Fig. 8B</a>). In general, when <i>P</i>
+is not the starting point of a contour, irrespective of whether the
+contour is external or internal, its initial search position is set to <i>d</i>&nbsp;+&nbsp;2 (mod 8), where <i>d</i> is the position of the previous contour point.</p><p>Once
+the initial position is determined, we proceed in a clockwise direction
+to locate the first black pixel. This pixel is the contour point
+following <i>P</i>. If no black pixel is found in the whole circle, <i>P</i> is identified to be an isolated point.</p><p>Marking
+surrounding white pixels (with a negative integer) can be done as we
+search for the following contour point. As illustrated in <a href="#fig9">Fig. 9</a>, <i>A</i> is the current point and <i>C</i> is the following contour point. When tracing from <i>A</i> to <i>C</i>, we mark the white pixel <i>B</i> with a negative integer.
+</p><blockquote><p><a name="fig9"></a><a name="9"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig9&amp;_ba=9&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f93f117d714f512e72b281010c39d51b" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig9&_ba=9&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f93f117d714f512e72b281010c39d51b'); return false;"><img src="blob1_files/0_015.gif" alt="" title="Display Full Size version of this image (7K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="93"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig9&amp;_ba=9&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f93f117d714f512e72b281010c39d51b" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig9&_ba=9&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f93f117d714f512e72b281010c39d51b'); return false;" alt="Display Full Size version of this image (7K) - Opens new window" title="Display Full Size version of this image (7K) - Opens new window">Display Full Size version of this image</a> (7K)</td></tr></tbody></table></p><p>Fig. 9. When tracing an external or internal contour, we also mark the surrounding white points. 1, unlabeled black pixels; <img src="blob1_files/25b5.gif" alt="up triangle, open" border="0">, labeled black pixels; -, marked white pixels. </p><p></p></blockquote>
+<a name="sec3"></a><p><span class="h3">4. Complexity and efficacy</span></p><p>We first analyze the time complexity of our algorithm. The key lemma is as follows:<a name="enun1"></a></p><p><strong>Lemma&nbsp;1.</strong>&nbsp;&nbsp;<i>Our algorithm visits each pixel a constant number of times.</i></p><p><strong>Proof.</strong>&nbsp;&nbsp;Since
+the image is encountered only once, all non-contour pixels are visited
+exactly once. On the other hand, the number of times <i>contour tracing</i> visits a pixel is equal to the number of contours containing the pixel. A contour pixel can lie on at most four contours (<a href="#fig10">Fig. 10</a>). Thus, our algorithm scans each non-contour pixel only once and traces a contour pixel no more than four times.&nbsp;□
+</p><blockquote><p><a name="fig10"></a><a name="10"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig10&amp;_ba=10&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=cadb8f56bc3cc40acdc150b91a4163e2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig10&_ba=10&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=cadb8f56bc3cc40acdc150b91a4163e2'); return false;"><img src="blob1_files/0_014.gif" alt="" title="Display Full Size version of this image (5K) - Opens new window" align="middle" border="1" height="93" hspace="2" vspace="2" width="93"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig10&amp;_ba=10&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=cadb8f56bc3cc40acdc150b91a4163e2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig10&_ba=10&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=cadb8f56bc3cc40acdc150b91a4163e2'); return false;" alt="Display Full Size version of this image (5K) - Opens new window" title="Display Full Size version of this image (5K) - Opens new window">Display Full Size version of this image</a> (5K)</td></tr></tbody></table></p><p>Fig. 10. An example in which a contour pixel <i>P</i> lies on four contours. </p><p></p></blockquote>
+<p>Since each pixel, when visited, takes a constant amount of time for processing, <a href="#enun1">Lemma 1</a> immediately implies the following.</p><p><strong>Theorem&nbsp;2.</strong>&nbsp;&nbsp;<i>Our algorithm runs in linear time.</i></p><p>We
+proceed to prove the efficacy of our algorithm. The contour tracing
+procedure is a well-known technique whose proof can be found in Haig et
+al. [<a name="bbib7"></a><a href="#bib7">7</a>]. The pixel on a contour
+first encountered in the scanning process must be, due to the scanning
+direction, on the leftmost point on the uppermost row of that contour.
+We refer to this point as the <i>opening pixel</i> of the contour. Moreover, the opening pixel of the external contour of a component is also called the <i>opening pixel</i>
+of that component. Note that our algorithm ensures that each component
+is first encountered at its opening pixel and each contour is traced
+from its opening pixel.</p><p>It is also clear that all black pixels
+are labeled with a certain index by our algorithm. To prove the
+correctness of our algorithm, we need to show that all pixels of the
+same component are assigned the same label and that all pixels of
+different components are assigned different labels.<a name="enun2"></a></p><p><strong>Lemma&nbsp;3.</strong>&nbsp;&nbsp;<i>All pixels in the same component are assigned the same label.</i></p><p><strong>Proof.</strong>&nbsp;&nbsp;Suppose that the opening pixel of the component is labeled <i>C</i>. According to Step 1 of our algorithm, all pixels on that external contour are also labeled <i>C</i>.
+To prove that all the remaining pixels of the same component are
+assigned the same label, we apply induction in the same order as they
+are encountered by the scan line. Suppose that the current pixel
+encountered is <i>P</i>. We assume that any component pixel encountered before <i>P</i> is labeled <i>C</i>. We then have to show that <i>P</i> is also labeled <i>C</i>. Assuming, without loss of generality, that <i>P</i> is <i>not</i> an external contour point (we already know that external contour pixels are labeled <i>C</i>), we consider the following three cases.&nbsp;&nbsp;<i>Case 1:</i> <i>P</i> is not on any internal contour. In this case, <i>P</i> must be an interior point since <i>P</i> is not an external contour point either. It follows that the left neighbor <i>Q</i> of <i>P</i> is a black pixel. Since <i>Q</i> is encountered before <i>P</i>, <i>Q</i> is labeled <i>C</i> by our inductive hypothesis. So <i>P</i> is also labeled <i>C</i>, according to Step 3 of our algorithm.&nbsp;&nbsp;<i>Case 2:</i> <i>P</i> is on an internal contour Φ but <i>P</i> is not the opening pixel of Φ. Let Q be the opening pixel of Φ. <i>Q</i> must be encountered before <i>P</i>, by the definition of an opening pixel. <i>Q</i> is labeled <i>C</i> by our inductive hypothesis. It follows that <i>P</i> is assigned the same label as <i>Q</i>, according to Step 2 of our algorithm. Thus, the label of <i>P</i> is <i>C</i>.&nbsp;&nbsp;<i>Case 3:</i> <i>P</i> is the opening pixel of any internal contour containing <i>P</i>. In this case, the left neighbor <i>Q</i> of <i>P</i> is a black pixel for the following reason: if <i>Q</i> is a white pixel, <i>P</i> must lie on some internal contour Ψ, and Ψ contains a pixel <i>U</i> that lies on a row above <i>Q</i> (<a href="#fig11">Fig. 11</a>) and also above <i>P</i>. This contradicts the fact that <i>P</i> is an opening pixel. We thus prove that <i>Q</i> is a black pixel. Since <i>Q</i> is encountered before <i>P</i>, <i>Q</i> is labeled <i>C</i> by our inductive hypothesis. <i>P</i> is thus labeled <i>C</i>, according to Step 2 of our algorithm.&nbsp;&nbsp;In either case, <i>P</i> is labeled <i>C</i>, which completes our inductive step.&nbsp;□<a name="enun3"></a></p><p><strong>Lemma&nbsp;4.</strong>&nbsp;&nbsp;<i>Pixels in different components are assigned different labels.</i></p><p><strong>Proof.</strong>&nbsp;&nbsp;From
+the previous lemma, all pixels in a component are assigned the same
+label as the opening pixel of the component. On the other hand, Step 1
+of our algorithm ensures that the opening pixel of a component is
+assigned a new label. So, different components get different
+labels.&nbsp;□
+</p><blockquote><p><a name="fig11"></a><a name="11"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig11&amp;_ba=11&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=0fd78e9a1f92d30ad3cae1c7f208bfd3" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig11&_ba=11&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=0fd78e9a1f92d30ad3cae1c7f208bfd3'); return false;"><img src="blob1_files/0_009.gif" alt="" title="Display Full Size version of this image (5K) - Opens new window" align="middle" border="1" height="74" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig11&amp;_ba=11&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=0fd78e9a1f92d30ad3cae1c7f208bfd3" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig11&_ba=11&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=0fd78e9a1f92d30ad3cae1c7f208bfd3'); return false;" alt="Display Full Size version of this image (5K) - Opens new window" title="Display Full Size version of this image (5K) - Opens new window">Display Full Size version of this image</a> (5K)</td></tr></tbody></table></p><p>Fig. 11. (A) If <i>P</i> lies on an internal contour Ψ and its left neighbor <i>Q</i> is a white pixel, then Ψ contains a point <i>U</i> lying above Q. (B) Otherwise, the vertical line <i>L</i> that passes <i>Q</i> does not intersect with Ψ above Q. This implies that <i>Q</i> lies outside the component containing <i>P</i>, and that <i>P</i> is an external contour point. </p><p></p></blockquote>
+<p>The following theorem is a consequence of <a href="#enun2">Lemmas 3 and 4</a><a href="#enun3">Lemmas 3 and 4</a>.</p><p><strong>Theorem&nbsp;5.</strong>&nbsp;&nbsp;<i>Our algorithm produces a correct labeling for the components.</i><a name="sec4"></a></p><p><span class="h3">5. Experimental results</span></p><p>Our methods are compared with the five other component-labeling methods discussed in <a href="#sec1">Section 2</a>.
+We use six types of test images: legacy documents, headlines, textual
+contents, half-tone pictures, newspaper, and photographs. The test
+environment is an Intel Pentium III 1&nbsp;GHz personal computer with
+384MB SDRAM. Each document type has four sets of images. Each set, in
+turn, consists of four images whose sizes correspond to four paper
+sizes: A3, A4, A5, and A6.</p><p>We have to make certain test images by
+cutting relevant objects from various sources and pasting them onto a
+blank canvas of a specified size. The reason we need to make a collage
+out of small images is because we are not able to obtain a document
+that consists of only a single type of specified objects (e.g.,
+headlines). Some test images, however, can be directly segmented from
+their sources (e.g., photographs, newspaper, and legacy documents)
+without being made into collages. All six algorithms being compared are
+listed in <a href="#tbl1">Table 1</a>. The comparison results are listed in <a href="#tbl2">Table 2</a>. The performances of all the algorithms are shown in <a href="#fig12">Fig. 12</a>, <a href="#fig13">Fig. 13</a>, <a href="#fig14">Fig. 14</a>, <a href="#fig15">Fig. 15</a>, <a href="#fig16">Fig. 16</a> and <a href="#fig17">Fig. 17</a>.
+In these figures, the size of the test image is plotted along the
+horizontal axis, and the average processing time of each method is
+plotted along the vertical axis.
+</p><blockquote><p><a name="tbl1"></a></p><p>Table 1. Six types of methods, including ours, that are being compared <img src="blob1_files/0_016.gif" alt="Image" align="absbottom" border="0" height="103" width="172"></p><p></p></blockquote>
+
+<blockquote><a name="tbl2"></a><p>Table 2. Performances of the six methods being compared </p></blockquote></div><div class="art"><img src="blob1_files/0_008.gif" alt="Image" align="absbottom" border="0" height="573" width="714"></div><div class="art"><p>#CC, number of connected components.<br></p><p>
+
+</p><blockquote><a name="fig12"></a><a name="12"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig12&amp;_ba=12&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e7c6c453f5fbacdac1e566f64cd327ee" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig12&_ba=12&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e7c6c453f5fbacdac1e566f64cd327ee'); return false;"><img src="blob1_files/0_004.gif" alt="" title="Display Full Size version of this image (8K) - Opens new window" align="middle" border="1" height="52" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig12&amp;_ba=12&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e7c6c453f5fbacdac1e566f64cd327ee" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig12&_ba=12&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e7c6c453f5fbacdac1e566f64cd327ee'); return false;" alt="Display Full Size version of this image (8K) - Opens new window" title="Display Full Size version of this image (8K) - Opens new window">Display Full Size version of this image</a> (8K)</td></tr></tbody></table><p>Fig. 12. Performances of the six methods for legacy documents. </p><p></p></blockquote>
+
+<blockquote><a name="fig13"></a><a name="13"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig13&amp;_ba=13&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=ae4b6840cec21f801d72efb7363457ba" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig13&_ba=13&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=ae4b6840cec21f801d72efb7363457ba'); return false;"><img src="blob1_files/0.gif" alt="" title="Display Full Size version of this image (7K) - Opens new window" align="middle" border="1" height="51" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig13&amp;_ba=13&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=ae4b6840cec21f801d72efb7363457ba" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig13&_ba=13&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=ae4b6840cec21f801d72efb7363457ba'); return false;" alt="Display Full Size version of this image (7K) - Opens new window" title="Display Full Size version of this image (7K) - Opens new window">Display Full Size version of this image</a> (7K)</td></tr></tbody></table><p>Fig. 13. Performances of the six methods for headlines. </p><p></p></blockquote>
+
+<blockquote><a name="fig14"></a><a name="14"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig14&amp;_ba=14&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f0f3cb57f2561a63f87cb7fe6739d1a7" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig14&_ba=14&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f0f3cb57f2561a63f87cb7fe6739d1a7'); return false;"><img src="blob1_files/0_013.gif" alt="" title="Display Full Size version of this image (7K) - Opens new window" align="middle" border="1" height="51" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig14&amp;_ba=14&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f0f3cb57f2561a63f87cb7fe6739d1a7" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig14&_ba=14&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f0f3cb57f2561a63f87cb7fe6739d1a7'); return false;" alt="Display Full Size version of this image (7K) - Opens new window" title="Display Full Size version of this image (7K) - Opens new window">Display Full Size version of this image</a> (7K)</td></tr></tbody></table><p>Fig. 14. Performances of the six methods for textual contents. </p><p></p></blockquote>
+
+<blockquote><a name="fig15"></a><a name="15"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig15&amp;_ba=15&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c58e65a0eda3f7ed483e3b8c50de9ca8" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig15&_ba=15&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=c58e65a0eda3f7ed483e3b8c50de9ca8'); return false;"><img src="blob1_files/0_017.gif" alt="" title="Display Full Size version of this image (7K) - Opens new window" align="middle" border="1" height="50" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig15&amp;_ba=15&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c58e65a0eda3f7ed483e3b8c50de9ca8" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig15&_ba=15&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=c58e65a0eda3f7ed483e3b8c50de9ca8'); return false;" alt="Display Full Size version of this image (7K) - Opens new window" title="Display Full Size version of this image (7K) - Opens new window">Display Full Size version of this image</a> (7K)</td></tr></tbody></table><p>Fig. 15. Performances of the six methods for half-tone pictures. </p><p></p></blockquote>
+
+<blockquote><a name="fig16"></a><a name="16"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig16&amp;_ba=16&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=fdcf1339ea21c863247d226fb49134f2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig16&_ba=16&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=fdcf1339ea21c863247d226fb49134f2'); return false;"><img src="blob1_files/0_010.gif" alt="" title="Display Full Size version of this image (7K) - Opens new window" align="middle" border="1" height="50" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig16&amp;_ba=16&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=fdcf1339ea21c863247d226fb49134f2" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig16&_ba=16&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=fdcf1339ea21c863247d226fb49134f2'); return false;" alt="Display Full Size version of this image (7K) - Opens new window" title="Display Full Size version of this image (7K) - Opens new window">Display Full Size version of this image</a> (7K)</td></tr></tbody></table><p>Fig. 16. Performances of the six methods for newspaper. </p><p></p></blockquote>
+
+<blockquote><a name="fig17"></a><a name="17"></a><br clear="all">
+<table width="100%"><tbody><tr><td width="10%"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig17&amp;_ba=17&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e538313268360c8a1de9d7a18b86dc4c" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig17&_ba=17&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e538313268360c8a1de9d7a18b86dc4c'); return false;"><img src="blob1_files/0_003.gif" alt="" title="Display Full Size version of this image (8K) - Opens new window" align="middle" border="1" height="51" hspace="2" vspace="2" width="125"></a></td><td valign="bottom"><a href="http://www.sciencedirect.com/science?_ob=MiamiCaptionURL&amp;_method=retrieve&amp;_udi=B6WCX-49RCDC3-1&amp;_image=fig17&amp;_ba=17&amp;_user=167669&amp;_coverDate=02%2F29%2F2004&amp;_rdoc=1&amp;_fmt=full&amp;_orig=search&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e538313268360c8a1de9d7a18b86dc4c" onclick="openStrippedNS('/science?_ob=MiamiCaptionURL&_method=retrieve&_udi=B6WCX-49RCDC3-1&_image=fig17&_ba=17&_user=167669&_coverDate=02%2F29%2F2004&_rdoc=1&_fmt=full&_orig=search&view=c&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=e538313268360c8a1de9d7a18b86dc4c'); return false;" alt="Display Full Size version of this image (8K) - Opens new window" title="Display Full Size version of this image (8K) - Opens new window">Display Full Size version of this image</a> (8K)</td></tr></tbody></table><p>Fig. 17. Performances of the six methods for photographs. </p><p></p></blockquote>
+<a name="sec5"></a><p><span class="h3">6. Conclusion</span></p><p>We
+have presented a new component-labeling algorithm that employs contour
+tracing technique. This method scans a binary image only once and
+traces each contour pixel no more than a constant number of times. It
+is thus computationally effective in labeling connected components and
+also finding all contours and sequential orders of contour pixels. In
+experiments on six types of images of various sizes, we compare our
+method with five other algorithms. The results show that our algorithm
+outperforms all of them in terms of computational speed. </p></div><br><div class="art">
+<a name="bibl1"></a><p><span class="h3">References</span></p><p><a name="bib1"></a><a href="#bbib1">1.</a> F. Chang, Retrieving information from document images: problems and solutions. <i>Internat. J. Document Anal. Recogn., Special Issues Document Anal. Office Syst.</i> <strong>4</strong> (2001), pp. 46–55.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1007%2FPL00013573&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=e80005fb6227ddeb54eeb742f33e7956" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a></p><p><a name="bib2"></a><a href="#bbib2">2.</a> F. Chang, Y.C. Lu and T. Pavlidis, Feature analysis using line sweep thinning algorithm. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> <strong>21</strong> (1999), pp. 145–158.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0033076896%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D9bdaf05e66d7ae19f9c803b97fb2a398&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=75088b966c75370acd21cc9703f4a862" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0033076896%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D9bdaf05e66d7ae19f9c803b97fb2a398&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=33b13f83a85e69cfa6b3a7c7311a2799" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (11)</a></p><p><a name="bib3"></a><a href="#bbib3">3.</a>
+M.B. Dillencourt, H. Samet and M. Tamminen, A general approach to
+connected-component labeling for arbitrary image representations. <i>J. Assoc. Comput. Mach.</i> <strong>39</strong> (1992), pp. 253–280.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D160258001&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=9a7a16e6101bece931e5eb0c36fe093a" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F128749.128750&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=df75427055192962b47428d5c9684f27" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0026844063%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D8a810c34fa61a5581568712124a4ae90&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=45a4d458e8825cc5a1399bead61bcc73" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0026844063%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D8a810c34fa61a5581568712124a4ae90&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=30c1b29d9f7d3dea2ded8ccd6b34a596" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (28)</a></p><p><a name="bib4"></a><a href="#bbib4">4.</a> C. Fiorio and J. Gustedt, Two linear time Union-Find strategies for image processing. <i>Theor. Comput. Sci.</i> <strong>154</strong> (1996), pp. 165–181. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6V1G-3VSCSTM-9&amp;_user=167669&amp;_coverDate=02%2F05%2F1996&amp;_fmt=summary&amp;_orig=search&amp;_cdi=5674&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=d95e5467b136615f2147e0f299892042&amp;ref=full">SummaryPlus</a> | <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6V1G-3VSCSTM-9&amp;_user=167669&amp;_coverDate=02%2F05%2F1996&amp;_fmt=full&amp;_orig=search&amp;_cdi=5674&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=d9e1d134f338e05375b1e9977f651358&amp;ref=full"><b>Full Text + Links</b></a> | <a href="http://www.sciencedirect.com/science?_ob=MiamiImageURL&amp;_imagekey=B6V1G-3VSCSTM-9-1&amp;_cdi=5674&amp;_user=167669&amp;_check=y&amp;_orig=search&amp;_coverDate=02%2F05%2F1996&amp;view=c&amp;wchp=dGLzVlz-zSkzS&amp;md5=a2652adb3840f33fbcc71a6414ba17dd&amp;ie=/sdarticle.pdf" target="newPdfWin" onclick="var newWidth=((document.body.clientWidth*90)/100); var newHeight=document.body.clientHeight; var pdfWin; pdfWin=window.open('','newPdfWin','width='+newWidth+',height='+newHeight+',resizable=yes, left=50, top=50');pdfWin.focus()">PDF (1103 K)</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D136952711&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=eacbe0ca97750b74e8526d8de68636a4" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0030569893%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db0673b9d1b029d2a5fd29e2b7617dbac&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8a214b5f8d6798c45817a89b2648bb24" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0030569893%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Db0673b9d1b029d2a5fd29e2b7617dbac&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=acfea8773e5531c6cc279627b479a43c" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (22)</a></p><p><a name="bib5"></a><a href="#bbib5">5.</a> H. Freeman, Techniques for the digital computer analysis of chain-encoded arbitrary plane curves. <i>Proc. Natl. Electron. Conf.</i> (1961), pp. 421–432.</p><p><a name="bib6"></a><a href="#bbib6">6.</a> T.D. Haig and Y. Attikiouzel, An improved algorithm for border following of binary images. <i>IEE Eur. Conf. Circuit Theory Design</i> (1989), pp. 118–122.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0024910647%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dc4c6168e085c2007fb0f56f8baadd34b&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=275c97c8210bf6ef6cf67bf23aa95d63" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0024910647%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dc4c6168e085c2007fb0f56f8baadd34b&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8243e57d5c5c2604681eb1d1f5988ff5" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"></a>Cited By in Scopus (0)</p><p><a name="bib7"></a><a href="#bbib7">7.</a> T.D. Haig, Y. Attikiouzel and M.D. Alder, Border following: new definition gives improved borders. <i>IEE Proc.-I</i> <strong>139</strong> (1992), pp. 206–211.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0026854094%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D7c22ce05fd2d8e21c30fbf07a00ce364&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=d1c3624d16e5805c80a3920aa41173a4" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0026854094%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D7c22ce05fd2d8e21c30fbf07a00ce364&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=c09a0cbdb2174eb4a6d0fea942ed2cca" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (6)</a></p><p><a name="bib8"></a><a href="#bbib8">8.</a> R.H. Haralick, Some neighborhood operations. In: M. Onoe, K. Preston and A. Rosenfeld, Editors, <i>Real Time/Parallel Computing Image Analysis</i>, Plenum Press, New York (1981).</p><p><a name="bib9"></a><a href="#bbib9">9.</a> Y. He and A. Kundu, 2-D shape classification using hidden Markov model. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> <strong>13</strong> (1991), pp. 1172–1184.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1109%2F34.103276&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=0f271a348755435659ea2238493fe3b6" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0026255179%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D10a2a22d6d9f5a469bffcd57a52dc5a0&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=1c0cddb4a208786cafab0ca0e43159b8" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0026255179%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D10a2a22d6d9f5a469bffcd57a52dc5a0&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=1aa724fc8a2ab9a08042e8336d5199b3" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (65)</a></p><p><a name="bib10"></a><a href="#bbib10">10.</a> A.K. Jain, R.P.W. Duin and J. Mao, Statistical pattern recognition: a review. <i>IEEE Trans. Pattern Anal. Mach. Intell.</i> <strong>22</strong> (2000), pp. 4–37.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1109%2F34.824819&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=a55dc60a14dfd9484e4a42596a76847d" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0033640646%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D0bd684e14bcb7eb57deabfec2a88a8e2&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=e78bdc2914b89721c960e87ecaceb7e9" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0033640646%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D0bd684e14bcb7eb57deabfec2a88a8e2&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=306b092554dd8c2914bd08de10855930" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (761)</a></p><p><a name="bib11"></a><a href="#bbib11">11.</a> R. Lumia, L. Shapiro and O. Zuniga, A new connected components algorithm for virtual memory computers. <i>Comput. Vision Graphics Image Process.</i> <strong>22</strong> (1983), pp. 287–300. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B7GXG-4D8FT2G-CK&amp;_user=167669&amp;_coverDate=05%2F31%2F1983&amp;_fmt=summary&amp;_orig=search&amp;_cdi=20486&amp;view=c&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=4ed4435d1bcc00ca1416a435cef6d88d&amp;ref=full">Abstract</a>
+
+ |  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0020125052%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D119fa1798aa2d3735e7748c2d859e0c5&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=a05309f99775e326cc4f80711e7060a5" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0020125052%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D119fa1798aa2d3735e7748c2d859e0c5&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=5dd99947c9ebb7a06cf7c8a8aa2a8969" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (35)</a></p><p><a name="bib12"></a><a href="#bbib12">12.</a> E. Persoon and K.S. Fu, Shape discriminations using fourier descriptors. <i>IEEE Trans. Syst. Man Cybernet.</i> <strong>7</strong> (1977), pp. 170–179.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D561031909&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=2b304cb6975d79595f3b126d4afc1e84" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0017368497%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D3ff905233e3610b963d7fc92b831d3ab&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=5f54092ec52e61044ec66a0f5a8ec073" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0017368497%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D3ff905233e3610b963d7fc92b831d3ab&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=348ff651c8caff35e72ecc18ba2b7027" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (210)</a></p><p><a name="bib13"></a><a href="#bbib13">13.</a> A. Rosenfeld and P. Pfaltz, Sequential operations in digital picture processing. <i>J. Assoc. Comput. Mach.</i> <strong>12</strong> (1966), pp. 471–494.</p><p><a name="bib14"></a><a href="#bbib14">14.</a>
+Y. Shima, T. Murakami, M. Koga, H. Yashiro and H. Fujisawa, A high
+speed algorithm for propagation-type labeling based on block sorting of
+runs in binary images. <i>Proc. 10th Internat. Conf. Pattern Recogn.</i> (1990), pp. 655–658.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1109%2FICPR.1990.118183&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=b1bfbf276f4fa10e88b2fbdffda381ef" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0025545065%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D26993afe87f931783f3b8319279de477&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=411c647f8b4eff049bf0752b8af205a4" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0025545065%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D26993afe87f931783f3b8319279de477&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=09b0d402c5ee0d9d2df99b4ebacbb4c8" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (7)</a></p><p><a name="bib15"></a><a href="#bbib15">15.</a> R.E. Tarjan, Efficiency of a good but not linear set union algorithm. <i>J. Assoc. Comput. Mach.</i> <strong>22</strong> (1975), pp. 215–225.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=2&amp;_targetURL=http%3A%2F%2Fwww.ams.org%2Fmathscinet-getitem%3Fmr%3D561737709&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=2b57089f3bfe2b36603043b05ef2bdc2" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">MathSciNet</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=3&amp;_targetURL=http%3A%2F%2Fdx.doi.org%2F10.1145%2F321879.321884&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=ce94e7f58c202b34d3f9b430fc020695" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()"><b>Full Text</b> via CrossRef</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0016495233%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D4437f7ceb7841a794cc5038b2b4c51e6&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=c08e3f90a1844398d9393eff5f9c2930" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0016495233%26partnerID%3D10%26rel%3DR3.0.0%26md5%3D4437f7ceb7841a794cc5038b2b4c51e6&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=0bf7ebc74115b820dd39b5575cca7f77" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (125)</a></p><p><a name="bib16"></a><a href="#bbib16">16.</a> O.D. Trier, A.K. Jain and T. Taxt, Feature extraction methods for character recognition—a survey. <i>Pattern Recogn.</i> <strong>29</strong> (1996), pp. 641–662.  <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=655&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Frecord.url%3Feid%3D2-s2.0-0030128299%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dd02118b1d7f09b2b5c85ae92f6f0194c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=fe7f42bb1ee737dfc13f206b83b9fda2" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">View Record in Scopus</a> | <a href="http://www.sciencedirect.com/science?_ob=RedirectURL&amp;_method=outwardLink&amp;_partnerName=656&amp;_targetURL=http%3A%2F%2Fwww.scopus.com%2Fscopus%2Finward%2Fcitedby.url%3Feid%3D2-s2.0-0030128299%26partnerID%3D10%26rel%3DR3.0.0%26md5%3Dd02118b1d7f09b2b5c85ae92f6f0194c&amp;_acct=C000013278&amp;_version=1&amp;_userid=167669&amp;md5=8b880dad7a8c2ea6fbbd941ade4cb4b0" target="outwardLink" onclick="var outwardWin; outwardWin=window.open('','outwardLink','scrollbars=yes,resizable=yes,directories=yes,toolbar=yes,menubar=yes,status=yes,location=yes,width=610,height=480,screenX=10,screenY=10'); outwardWin.focus()">Cited By in Scopus (172)</a> 
+
+<br clear="all">
+
+</p></div><br><div class="art">
+<p><a name="m4.cor*"></a><a href="#m4.bcor*"><sup><img src="blob1_files/REcor.gif" alt="Corresponding Author Contact Information" border="0"></sup></a>Corresponding author 
+
+
+
+
+
+</p></div>
+
+<br clear="all">
+
+<br>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td>
+ 
+ 
+  
+   <a href="http://www.sciencedirect.com/science/journal/10773142"><strong>Computer Vision and Image Understanding</strong></a>
+   <br>
+  
+ 
+
+
+ 
+  
+  <a href="http://www.sciencedirect.com/science?_ob=PublicationURL&amp;_tockey=%23TOC%236750%232004%23999069997%23476324%23FLA%23&amp;_cdi=6750&amp;_pubType=J&amp;view=c&amp;_auth=y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=1f49d6eff3d8bff8af3cc9a64da012f3">
+
+
+Volume 93, Issue 2</a>, 
+
+
+February 2004,
+
+
+Pages 206-220
+
+
+</td>
+
+
+  <td align="right" nowrap="nowrap" valign="top">
+    
+      
+    
+  </td>
+
+</tr>
+</tbody></table>
+
+
+
+
+</div></div></div>
+
+<span style="font-size: 75%; font-family: arial,verdana,helvetica,sans-serif;">
+<table class="sdMainNav sci_dirNav" style="background-image: url(/scidirimg/sci_dir/navbar_back.gif);" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+      <td align="right" width="1%">&nbsp;</td>
+      <td align="left"><img src="blob1_files/space.gif" height="1" width="1"><table class="sdMainNavCenter" style="font-size: 1em;" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="center">
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HomePageURL&amp;_method=userHomePage&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=c7870f9657dff8745244b4749ca7c26d" target="_top" name="Home" alt="Home" title="Home"><div class="sdMainNavPadding">Home</div></a></td>
+
+<td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=BrowseListURL&amp;_type=all&amp;_auth=y&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=cd640f2d5607ab1204ee83049bdadeba" target="_top" name="Browse" alt="Browse" title="Browse"><div class="sdMainNavPadding">Browse</div></a></td>
+
+<td class="sdMainNav sci_dirNavActive" style="background-image: url(/scidirimg/sci_dir/navbar_select.gif);" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSearchURL&amp;_method=requestForm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=fb9fec760e84d9abcf5ed2dc70534c28" target="_top" name="Search" alt="Search" title="Search"><div class="sdMainNavPadding">Search</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=begin&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=f222c767c0a36820cbec24eed935de22" target="_top" name="account" alt="My Settings" title="My Settings"><div class="sdMainNavPadding">My Settings</div></a></td>
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=MiamiSDIURL&amp;_method=listAlerts&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=e57a2692284e455b0d835f8aee17a7f2" target="_top" name="alert" alt="Alerts" title="Alerts"><div class="sdMainNavPadding">Alerts</div></a></td>
+
+      
+
+      <td class="sdMainNav" onmouseover="this.style.backgroundImage='url(/scidirimg/sci_dir/navbar_select.gif)';this.style.backgroundColor='#005d2a'" onmouseout="this.style.backgroundImage='';this.style.backgroundColor=''" align="left" nowrap="nowrap" valign="center"><a href="http://www.sciencedirect.com/science?_ob=HelpURL&amp;_file=browse_open_doc.htm&amp;_btn=Y&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=f7d44b4b8317300c75bc3a870b6777aa" target="sdhelp" alt="Help (Opens new window)" title="Help (Opens new window)" onclick="var helpWin; helpWin=window.open('/science?_ob=HelpURL&_file=browse_open_doc.htm&_btn=Y&_acct=C000013278&_version=1&_urlVersion=0&_userid=167669&md5=f7d44b4b8317300c75bc3a870b6777aa','sdhelp','scrollbars=yes,resizable=yes,directories=no,toolbar=no,menubar=no,status=no,width=760,height=570'); helpWin.focus(); return false"><div class="sdMainNavPadding">Help</div></a></td>
+
+      
+
+</tr></tbody></table>
+</td></tr></tbody></table>
+</span>
+
+<div style="margin: 5px 5px 5px 8px;">
+<div style="width: 100%;">
+<table class="pageText" style="font-size: 75%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td valign="top">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+<td valign="top">
+  <a href="http://www.elsevier.com/" target="_blank"><img src="blob1_files/tree.gif" alt="Elsevier.com (Opens new window)" target="_blank" align="left" border="0"></a>
+</td>
+<td height="100%" valign="bottom">
+<table border="0" cellpadding="0" cellspacing="0" height="100%">
+<tbody><tr height="100%">
+<td align="left" valign="bottom">
+  <a href="http://info.sciencedirect.com/" title="ScienceDirect Info Site (Opens New Window)" target="_blank">About ScienceDirect</a> &nbsp;|&nbsp;
+  
+    
+       <a href="http://www.sciencedirect.com/science?_ob=MiamiCommentURL&amp;_method=comment&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=0&amp;_userid=167669&amp;md5=9797704d7037c3b7400bb0b1786587bb" target="_top">Contact Us</a>
+       
+          &nbsp;|&nbsp;
+       
+    
+   
+  
+  <a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=displayTerms&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=599ba68b3588c58713bc570666fb09b3" target="_top">Terms &amp; Conditions</a>
+
+
+  &nbsp;|&nbsp;
+
+
+  <a href="http://www.sciencedirect.com/science?_ob=UserSubscriptionURL&amp;_method=displayPolicy&amp;_acct=C000013278&amp;_version=1&amp;_urlVersion=1&amp;_userid=167669&amp;md5=02207760886f382917acc495d59a6362" target="_top">Privacy Policy</a>
+
+
+</td>
+</tr>
+<tr><td><img src="blob1_files/clear.gif" alt="" height="10" width="1"></td></tr>
+<tr height="0">
+<td style="margin: 0px; padding: 0px; height: 0pt;" align="left" valign="bottom">
+Copyright © 2007 <a href="http://www.elsevier.com/" target="_blank">Elsevier B.V.</a> All rights reserved. ScienceDirect® is a registered trademark of Elsevier B.V.
+</td>
+</tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+</td>
+
+</tr></tbody></table>
+</div></div>
+
+
+
+</body></html>
